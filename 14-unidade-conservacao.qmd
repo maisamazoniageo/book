@@ -141,7 +141,7 @@ floresta_tipo.reset_index(inplace=True)
 floresta_tipo.rename(columns={
   'tipo':'Tipo de Floresta Publica',
   'area_ha': 'Área (ha)'
-})
+}).to_html(index=False)
 
 ```
 :::{.text-justify}

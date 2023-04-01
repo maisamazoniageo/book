@@ -3,12 +3,14 @@ project:
   output-dir: docs
 
 
+
 book:
   sidebar:
     search: false
   title: "Análise Geográfica das Glebas Federais"
   author: "+ Amazônia"
   date: "03/10/2023"
+  repo-url: https://maisamazoniageo.github.io/book/
   cover-image: img/mais_amazonia.png
   chapters:
     - index.qmd

@@ -1,9 +1,27 @@
 # Unidades de Consrvação.
 
-:::{.text-justify}
+:::{.analise}
+**Análises**
+
+**_Perguntas_**
+
+1. qual a UCs / uf ?
+2. qual a área total / uf ?
+3. Quais os tipos de UC ?
+4. Quantidade de área por tipo de UC?
+5. Quatidade de áreas de floresta publica?
+6. Florestas destinadas / não destinadas ?
+
+
+
+**_Problemas_**
+:::
+
+
 
 ## Unidade de Conservação
 
+:::{.text-justify}
 Áreas naturais relevantes para o Brasil são conhecidas como Unidades de Conservação e são protegidas por Lei. Objetivo é garantir a preservação da biodiversidade
 
 Viver em um meio ambiente ecologicamente equilibrado é um direito de todo brasileiro, garantido na Constituição Federal. Há muito o ser humano reconhece a necessidade de proteger áreas naturais com características específicas, salvaguardando fauna, flora, rios e mares, elementos que precisam coexistir para haver equilíbrio na natureza. No Brasil, país considerado megabiodiverso, essas áreas são delimitadas, denominadas Unidades de Conservação (UC) e reguladas por lei.
@@ -22,33 +40,10 @@ Zoneamento – Ainda que as Unidades de Uso Sustentável aliem a preservação a
 
 O zoneamento é definido pelo Plano de Manejo, que também inclui medidas para promover a integração da UC à vida econômica e social das comunidades vizinhas, o que é essencial para que implementação da unidade seja mais eficiente.
 
-fonte:[Ministério do Meio Ambiente](https://antigo.mma.gov.br/informma/item/15713-o-que-s%C3%A3o-as-unidades-de-conserva%C3%A7%C3%A3o.html)
-
-
+fonte:[Ministério do Meio Ambiente](https://antigo.mma.gov.br/informma/item/15713-o-que-s%C3%A3o-as-unidades-de-conserva%C3%A7%C3%A3o.html){target="_blank"}
 :::
 
-:::{.analise}
-**Análises**
-
-**_Perguntas_**
-
-1. qual a UCs / uf ?
-2. qual a área total / uf ?
-3. Quais os tipos de UC ?
-4. Quantidade de área por tipo de UC?
-5. Quatidade de áreas de floresta publica?
-6. Florestas destinadas / não destinadas ?
-
-
-
-**_Problemas_**
-
-
-
-:::
-
-
-## Quantificação das Unidades de Conservação
+### Quantificação das Unidades de Conservação
 
 ```{python}
 #| echo: false
@@ -68,6 +63,7 @@ sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
 floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
 uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
 ```
+
 :::{.column-page}
 ```{python}
 #| echo: false
@@ -81,8 +77,21 @@ plt.show()
 ```
 :::
 
+```{python}
+#| echo: false
 
-## Quantificação das florestas publicas por tipo
+uc_tab = uc[uc['area-estudo']==1].groupby('categori3').agg({
+  'id_uc0':'count',
+  'area_km':'sum'
+})
+
+uc_tab.reset_index(inplace=True)
+uc_tab.rename(columns={'categori3':'Categoria da Unidade de Conservação',
+                      'id_uc0':'Quantidade',
+                      'area_km':'Área (km²)'
+          }).to_html(index=False)
+```
+
 
 ## Cadastro Nacional de Florestas Públicas (CNFP)
 
@@ -103,8 +112,10 @@ Existem três tipos de florestas públicas federais:
 - Florestas Públicas do TIPO B (FPB) - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas.
 - Florestas Públicas do TIPO C (FPC) - São as florestas localizadas em áreas de dominialidade indefinida, comumente chamadas de terras devolutas.
 
-fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assuntos/servico-florestal-brasileiro/cadastro-nacional-de-florestas-publicas)
+fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assuntos/servico-florestal-brasileiro/cadastro-nacional-de-florestas-publicas){target="_blank"}
 :::
+
+### Quantificação das florestas publicas por tipo
 
 :::{.column-page}
 ```{python}
@@ -122,7 +133,6 @@ plt.show()
 
 ```{python}
 #| echo: false
-
 
 floresta[floresta['area-estudo']==1].groupby('tipo').agg({
   'area_ha':'sum'

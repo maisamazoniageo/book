@@ -1,0 +1,574 @@
+# Definição das variáveis coletadas.
+
+<div style="text-align: justify"> 
+
+## Informações gerais.
+
+Com o intuito de padronizar o procedimento de coleta de dados e levantamento das informações referente aos documentos titulatórios, passamos a orientar os trabalhos com a finalidade de diminuir dúvidas e facilitar a execução. É necessário observar algumas padronizações gerais, são elas:
+        
+- Será obrigatório o preenchimento de todos os campos; 
+- Quando não localizar a informação de qualquer campo, é necessário preencher com **“N/C”**;
+- Todos os campos deverão ser preenchidos em **“CAIXA ALTA”**. _**Ex: GLEBA XIRIRI”.**_
+- NÃO poderá preencher os campos com caracteres especiais TODO: definir quais são esses caracterers especiais, usando a regex seria [a-zA-Zà-úÀ-Ú0-9] que representa uma letra qualquer que pode estar no intervalo de a-z ou, de A-Z, ou de à-ú, ou de À-Ú, ou um número que pode estar entre 0 ou 9.;
+
+## Informação sobre os imóveis
+
+### *Identificação*
+
+*Nome do imóvel*
+
+- Obrigatória;
+- Campo aberto;
+- Não aceita caracteres especiais; regex seria [a-zA-Zà-úÀ-Ú0-9] que representa uma letra qualquer que pode estar no intervalo de a-z ou, de A-Z, ou de à-ú, ou de À-Ú, ou um número que pode estar entre 0 ou 9.;
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Matrícula em Nome do Imóvel, Ato de Destinação ou Incorporação.
+
+*Tipologia*
+
+- Obrigatória;
+- Selecionar uma Opção
+
+| Opções                                                          |
+|--------                                                         |
+| PC                                                              |
+| PAR                                                             |
+| Projeto de Assentamento Conjunto                                |
+| PEC                                                             |
+| PA                                                              |
+| PF                                                              |
+| PIC                                                             |
+| Núcleo colonial                                                 |
+| Registrada em nome do INCRA para fins de regularização fundiária|
+| Registrada em nome da União para fins de regularização fundiária|
+| Convênio                                                        |
+| N/C                                                             |
+
+- Fonte de Coleta Primária: Ato de Destinação ou Incorporação;
+- Fonte de Coleta Secundária: Bases de Dados (SIPRA, SNCR, SRTT).
+
+*Unidade da Federação*
+
+- Obrigatória;
+- Selecionar uma Opção
+
+| Opções     |
+|--------    |
+| Acre       |
+| Amapá      |
+| Amazonas   |
+| Maranhão   |
+| Mato Grosso|
+| Pará       |
+| Rondônia   |
+| Roraima    |
+| Tocantins  |
+
+- Fonte de Coleta Primária: IBGE;
+- Fonte de Coleta Secundária: Dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.
+
+*Município*
+
+- Obrigatória;
+- Selecionar múltiplas opções;
+- Opções de resposta:
+    A lista de municípios é carregada de acordo com a UF selecionada seguindo a listagem do IBGE.
+
+*Campos preenchidos automaticamente*
+
+- De acordo com a UF selecionada:
+    * Região
+- De acordo com o município selecionado:
+    * Código do IBGE;
+    * Módulo fiscal do município;
+    * Fracionamento mínimo;
+    * Faixa de fronteira;
+    * Superintendência Regional (Falta relação dos municípios do Pará que pertencem a cada superintendência);
+    * Unidade avançada
+- Obs: Esses campos não são exibidos em tela durante a coleta;
+- Fonte de Coleta Primária: IBGE;
+- Fonte de Coleta Secundária: Dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.
+
+### *Afetação e características quanto a alienação*
+
+*Possui afetação específica?*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    * Sim;
+    * Não;
+    * N/C.
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Cruzamento de Banco de Dados do SIGEF.
+
+*Tipo de afetação*
+
+- Selecionar uma opção
+- Opções de resposta:
+    * Terra indígena;
+    * Terreno de marinha e acrescidos;
+    * Terrenos marginais, ilhas fluviais e lacustres;
+    * Várzeas federais;
+    * Unidades de conservação;
+    * Reservada à administração militar federal;
+    * Florestas Públicas nos termos da Lei 11.284 de 02/03/2006;
+    * Contém acessão ou benfeitoria federal;
+    * Ocupada por Comunidade Quilombola;
+    * Outra finalidade pública ou interesse social da União;
+    * N/C.
+- Fonte de Coleta Primária: Cruzamento de Banco de Dados do SIGEF;
+- Fonte de Coleta Secundária: Processo do Imóvel, Atos ou Relatórios da Superintendência Regional;
+    * OBS: Buscar dados dentro da Superintendência.
+
+*Características quanto a alienação*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    * Totalmente Alienável;
+    * Parcialmente Alienável;
+    * Inalienável;
+    * N/C;
+- Fonte de Coleta Primária: Fazer uma análise do tipo de afetação e comparar com o tamanho da afetação da área.
+
+### *Códigos e publicações*
+
+*Código SIPRA*
+
+- Campo aberto;
+- Não é permitido caracteres especiais exceto: / e ,
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Matrícula do Imóvel, Bases de Dados (SNCR, SIPRA, SRTT), dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.
+
+*Ato de incorporação*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    * Decreto;
+    * Portaria/Resolução;
+    * Concessão;
+    * Escritura de compra e venda;
+    * N/C.
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Pesquisa nos documentos disponíveis e em sites como:
+
+    - [Diário Oficial da Unuão](https://www.in.gov.br/servicos/diario-oficial-da-uniao)
+    - [Câmara Federal](https://www.camara.leg.br/legislacao)
+
+*Número do ato de incorporação*
+
+- Campo aberto;
+- Livre.
+- Fonte de Coleta Primária: Ato de Incorporação;
+- Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA, SRTT), dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.
+
+*Data do ato*
+        
+- Data no formato DD/MM/AAAA
+- Fonte de Coleta Primária: Ato de Incorporação;
+- Fonte de Coleta Secundária: Bases do Incra (SNCR, SIPRA, SRTT).
+
+*Área do ato de incorporação (Ha)*
+
+- Inserção do valor com no máximo de quatro casas decimais;
+- Após a coleta sempre será exibido o valor informado com quatro casas decimais;
+- Separador de milhar: ponto;
+- Separador decimal: vírgula;
+- Fonte de Coleta Primária: Ato de Incorporação;
+- Fonte de Coleta Secundária: Pesquisas em sites, Bases de Dados (SIPRA, SNCR, SRTT), dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.
+
+*Forma de aquisição/obtenção*
+
+- Selecionar uma opção
+- Opções de resposta
+
+| Opções                |
+|--------               |
+| Adjudicação           |
+| Arrecadação Sumária   |
+| Cessão                |
+| Cessão Gratuita       |
+| Compra                |
+| Confisco              |
+| Dação em Pagamento    |
+| Desafetação           |
+| Desapropriação        |
+| Doação                |
+| Esc. Pública de Doação|
+| Herança Jacente       |
+| Incorporação          |
+| Reversão de Domínio   |
+| Sub-Júdice            |
+| Transf. INCRA/UNIÃO   |
+| Transf. UNIÃO/INCRA   |
+| Vacância              |
+| N/C                   |
+- Fonte de Coleta Primária: Processo do Imóvel
+- Fonte de Coleta Secundária: Ato de Incorporação, dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão, Bases de Dados (SIPRA, SNCR, SRTT).
+
+*Ato de destinação*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    - Decreto;
+    - Portaria;
+    - Resolução;
+    - N/C.
+- Fonte de Coleta Primária: Processo do Imóvel
+- Fonte de Coleta Secundária: Ato de Incorporação, dialogar com o Chefe de Divisão na Superintendência Regional, dialogar com os servidores da Divisão de Obtenção, Divisão do Desenvolvimento Pesquisas em sites, Bases de Dados (SNCR, SIPRA, SRTT).
+
+*Tipo de destinação*
+
+- Selecionar uma opção;
+- Opções de resposta:
+
+|opções             |
+|------------------ |
+| Assentamento      |
+| Cadastro histórico|
+| Colonização       |
+| Experimentação    |
+| Núcleo urbano     |
+| Quilombola        |
+| Reserva biológica |
+| Reserva ecológica |
+| Reserva Florestal |
+| Reserva indígena  |
+| Reserva técnica   |
+| Sem destinação    |
+| Utilidade pública |
+| N/C               |
+| Outros            |
+
+*Qual*
+
+- Campo aberto;
+- Questão condicional, caso responda “Outros” no item anterior.
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Ato de Destinação.
+
+*Área do imóvel destinado (Ha)*
+
+- Inserção do valor com no máximo de quatro casas decimais;
+- Após a coleta sempre será exibido o valor informado com quatro casas decimais;
+- Separador de milhar: ponto;
+- Separador decimal: vírgula;
+- Fonte de Coleta Primária: Processo do Imóvel,
+- Fonte de Coleta Secundária: Plantas, Memorial Descritivo, Setor de Cartografia.
+
+### *Matrícula*
+
+*Número*
+
+- Campo aberto;
+- Sem formatação.
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.
+
+*Área (ha)*
+
+- Inserção do valor com no máximo de quatro casas decimais;
+- Após a coleta sempre será exibido o valor informado com quatro casas decimais;
+- Separador de milhar: ponto;
+- Separador decimal: vírgula;
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Plantas, Memorial Descritivo, Setor de Cartografia, Relatório das Divisões.
+
+*Data*
+
+- Data no formato DD/MM/AAAA
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.
+
+*Titular*
+
+-  Selecionar uma opção;
+-  Opções de resposta:
+    - INCRA;
+    - UNIÃO;
+    - N/C.
+-  Fonte de Coleta Primária: Processo do Imóvel;
+-  Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.
+
+*Comarca*
+
+- Campo aberto;
+- Sem formatação.
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.
+
+### *Capacidade do imóvel*
+
+*Número de parcelas urbanas*
+
+- Campo aberto;
+- Somente números.
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.
+
+*Número de parcelas rurais*
+
+- Campo aberto;
+- Somente números.
+- Fonte de Coleta Primária: Processo do Imóvel;
+- Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.
+
+### *Cartografia*
+
+*Perímetro georreferenciado*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    - Sim;
+    - Não;
+    - N/C.
+- Fonte de Coleta Primária: SIGEF;
+- Fonte de Coleta Secundária: Dialogar com o Setor de Cartografia.
+
+*Perímetro certificado*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    - Sim;
+    - Não;
+    - N/C.
+- Fonte de Coleta Primária: SIGEF;
+- Fonte de Coleta Secundária: Dialogar com o Setor de Cartografia.
+
+## Informação das Destinações.
+
+### *Informações individuais sobre a titulação*
+
+*Número do processo*
+
+- Campo obrigatório;
+- Campo aberto;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Incluso no SEI?*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    - Sim;
+    - Não;
+    - N/C.
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+### *Outorgado*
+
+*Nome*
+
+- Campo obrigatório;
+- Campo aberto;
+- Não é permitido caracteres especiais;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*CPF/CNPJ*
+
+- Campo obrigatório;
+- Campo aberto;
+- Limite mínimo e máximo de caracteres;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+- OBS: Discutir sobre a necessidade de conversão.
+
+*Gênero*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    - Masculino;
+    - Feminino;
+    - N/C
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+### *Cônjuge*
+
+*Nome*
+
+-  Campo obrigatório;
+-  Campo aberto;
+-  Não é permitido caracteres especiais;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*CPF*
+
+- Campo obrigatório;
+- Campo aberto;
+- Limite mínimo e máximo de caracteres;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Gênero*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    - Masculino;
+    - Feminino;
+    - N/C
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+### *Localização*
+
+*Unidade da Federação*
+
+- Campo obrigatório;
+- Selecionar uma opção;
+- Opções de resposta:
+    - Acre;
+    - Amapá;
+    - Amazonas;
+    - Maranhão;
+    - Mato Grosso;
+    - Pará;
+    - Rondônia;
+    - Roraima;
+    - Tocantins;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Município*
+
+- Campo obrigatório;
+- Selecionar múltiplas opções;
+- Opções de resposta:
+    - A lista de municípios é carregada de acordo com a UF selecionada seguindo a listagem do IBGE;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Zona rural ou urbana*
+
+- Campo obrigatório
+- Selecionar uma opção;
+- Opções de resposta:
+    - Rural;
+    - Urbana.
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Nome do imóvel*
+
+- Campo obrigatório;
+- Selecionar uma opção;
+- Opções de resposta:
+    - A partir da UF selecionada, é carregada uma lista com o nome de todos os imóveis já coletados daquela UF.
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Nome do sítio*
+
+- Campo aberto;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Localização na gleba*
+        
+- Campo aberto;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Lote*
+
+- Campo aberto;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+### *Coordenadas*
+
+*Latitude*
+
+- Campo aberto;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Longitude*
+
+- Campo aberto;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Área*
+
+- Inserção do valor com no máximo de quatro casas decimais;
+- Separador de milhar: ponto;
+- Separador decimal: vírgula;
+- Caso a destinação seja da zona rural:
+    - A área inserida deve ser em Ha e ter até quatro casas decimais 
+- Caso a destinação seja da zona urbana:
+    - A área inserida deve ser em m² e ter até duas casas decimais.
+    - Obs: Fazer a conversão quando necessário.
+
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+### *Título*
+
+*Número do título*
+
+- Campo aberto;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Ano de emissão*
+
+- Campo aberto;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Liberação da cláusula resolutiva*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    - Sim;
+    - Não;
+    - N/C.
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Informação do pagamento*
+
+-  Selecionar uma opção;
+-  Opções de resposta:
+    - Sim;
+    - Não;
+    - N/C.
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Situação do título*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    - Emitido e entregue;
+    - Emitido e não entregue;
+    - Cancelado;
+    - N/C
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*O título é registrado*
+
+- Selecionar uma opção;
+- Opções de resposta:
+    - Sim;
+    - Não;
+    - N/C.
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+### *Matrícula*
+
+*Número da matrícula*
+
+- Campo aberto;
+- Fonte de Coleta Primária: Título de Domínio;
+- Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.
+
+*Número CNC do Cartório*
+
+- Campo Obrigatório para o caso de existir matrícula;
+- Fonte: Listagem do CNJ.
+

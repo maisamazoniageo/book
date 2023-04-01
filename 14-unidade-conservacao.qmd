@@ -1,0 +1,138 @@
+# Unidades de Consrvação.
+
+:::{.text-justify}
+
+## Unidade de Conservação
+
+Áreas naturais relevantes para o Brasil são conhecidas como Unidades de Conservação e são protegidas por Lei. Objetivo é garantir a preservação da biodiversidade
+
+Viver em um meio ambiente ecologicamente equilibrado é um direito de todo brasileiro, garantido na Constituição Federal. Há muito o ser humano reconhece a necessidade de proteger áreas naturais com características específicas, salvaguardando fauna, flora, rios e mares, elementos que precisam coexistir para haver equilíbrio na natureza. No Brasil, país considerado megabiodiverso, essas áreas são delimitadas, denominadas Unidades de Conservação (UC) e reguladas por lei.
+
+Todas as unidades de conservação são espaços territoriais, incluindo as águas jurisdicionais, com características naturais relevantes, que têm como objetivo a conservação da natureza. Cada uma delas recebe uma classificação diferente de acordo com suas características e objetivos a serem atingidos.
+
+Segundo o secretário de Ecoturismo do Ministério do Meio Ambiente (MMA), André Germanos, cada UC recebe uma denominação diferente, de acordo com seu nível de proteção exercida. “Temos locais, biomas, regiões que precisam ser preservadas por conta de alguma peculiaridade. Algumas delas, por exemplo, são protegidas simplesmente porque têm uma beleza cênica excepcional”, explica o secretário. “Se por um lado temos a beleza cênica, temos do outro a proteção ambiental de fato, que é a preocupação com a fauna e flora. Elas podem ser destinadas à exploração sustentável de recursos naturais, preservação total do ecossistema, realização de pesquisas, visitação para promover a educação ambiental, entre outras.”
+
+A Lei nº 9.985, de 2000, instituiu o Sistema Nacional de Unidades de Conservação (SNUC), que definiu a UC como um espaço territorial e seus recursos ambientais, incluindo as águas jurisdicionais, com características naturais relevantes. O SNUC também separou as áreas em dois tipos: Unidades de Proteção Integral e Unidades de Uso Sustentável. A primeira é subdividida em cinco categorias que possuem normas bastante restritas e são mais voltadas para a pesquisa e conservação da biodiversidade. Já as sete categorias de Unidades de Uso Sustentável são mais voltadas para visitação e atividades educativas e uso sustentável de seus recursos.
+
+As Unidades de Proteção Integral são unidades de conservação de fundamental importância para a preservação de ecossistemas, proporcionado pesquisas científicas, manejo e educação ambiental na busca pela conservação do meio ambiente. Elas são divididas em Unidades de Proteção Integral e de Uso Sustentável. Fazem parte da primeira categoria Estação Ecológica, Reserva Biológica, Parque Nacional, Monumento Natural e Refúgio da Vida Silvestre. A segunda categoria abrange Área de Proteção Ambiental, Floresta Nacional, Área de Relevante Interesse Ecológico, Reserva Extrativista, Reserva da Fauna, Reserva Extrativista, Reserva de Desenvolvimento Sustentável e Reserva Particular do Patrimônio Natural.
+
+Zoneamento – Ainda que as Unidades de Uso Sustentável aliem a preservação ambiental à exploração sustentável dos recursos naturais cada pedacinho das UCs recebe uma denominação diferente. É o chamado zoneamento, um processo que determina que usos serão dados às regiões que ficam dentro das áreas protegidas, como explica Ugo Vercillo, analista ambiental da Coordenação de Ações Integradas para Conservação de Espécies do Instituto Chico Mendes de Conservação da Biodiversidade (ICMBio), órgão ligado ao MMA e responsável pelas unidades de conservação. 
+
+“Depois que se delimita a área de conservação, outros zoneamentos são delimitados dentro dessa área protegida”, explica o biólogo. “Essa zona pode ser uma área intangível, ou seja, onde ninguém tem acesso, ou pode ser uma área de uso múltiplo. Cada uma dessas áreas dentro de uma UC tem aptidões diferentes.”
+
+O zoneamento é definido pelo Plano de Manejo, que também inclui medidas para promover a integração da UC à vida econômica e social das comunidades vizinhas, o que é essencial para que implementação da unidade seja mais eficiente.
+
+fonte:[Ministério do Meio Ambiente](https://antigo.mma.gov.br/informma/item/15713-o-que-s%C3%A3o-as-unidades-de-conserva%C3%A7%C3%A3o.html)
+
+
+:::
+
+:::{.analise}
+**Análises**
+
+**_Perguntas_**
+
+1. qual a UCs / uf ?
+2. qual a área total / uf ?
+3. Quais os tipos de UC ?
+4. Quantidade de área por tipo de UC?
+5. Quatidade de áreas de floresta publica?
+6. Florestas destinadas / não destinadas ?
+
+
+
+**_Problemas_**
+
+
+
+:::
+
+
+## Quantificação das Unidades de Conservação
+
+```{python}
+#| echo: false
+
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
+floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
+uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
+```
+:::{.column-page}
+```{python}
+#| echo: false
+fig_uc, ax_uc = plt.subplots(figsize=(13,8))
+area_estudo.plot(ax=ax_uc,facecolor="none", edgecolor="black")
+uf[uf['amaz_legal']==1].plot(ax=ax_uc,facecolor="none", edgecolor="grey")
+uc[uc['area-estudo']==1].plot(ax=ax_uc, alpha=0.5, column='categori3', legend=True,
+                                          legend_kwds={'loc': 'center left',
+                                          'bbox_to_anchor':(1,0.5)})
+plt.show()
+```
+:::
+
+
+## Quantificação das florestas publicas por tipo
+
+## Cadastro Nacional de Florestas Públicas (CNFP)
+
+:::{text-justify}
+O Cadastro Nacional de Florestas Públicas (CNFP) é um instrumento de planejamento da gestão florestal, que reúne dados georreferenciados sobre as florestas públicas brasileiras, de modo a oferecer aos gestores públicos e à população em geral uma base confiável de mapas, imagens e dados com informações relevantes para a gestão florestal. Os dados do CNFP auxiliam os processos de destinação das florestas públicas para uso comunitário, criação de unidades de conservação e realização de concessões florestais. O Cadastro contribui para a transparência, a participação social e unificação das informações sobre as florestas públicas.
+
+O CNFP é formado pelo Cadastro de Florestas Públicas da União, pelos Cadastros de Florestas Públicas dos estados, Distrito Federal e municípios e está em processo de interligação ao Sistema Nacional de Cadastro Rural (SNCR) do Instituto Nacional de Colonização e Reforma Agrária (INCRA).
+
+O cadastramento das florestas públicas segue três etapas:
+
+- Identificação - mapeamento das florestas localizadas em áreas públicas;
+- Delimitação- averbação (registro) do perímetro da floresta junto à matricula do imóvel público;
+- Demarcação - implantação de marcos topográficos e colocação de placas informativas no campo.
+
+Existem três tipos de florestas públicas federais:
+
+- Florestas Públicas do TIPO A (FPA) - São florestas que apresentam destinação e dominialidade específica como as Unidades de Conservação da Natureza, as Terras Indígenas, os Assentamentos Rurais Públicos, as áreas militares e outras formas de destinação previstas em lei. São destinadas à proteção e conservação do meio ambiente e uso de comunidades tradicionais
+- Florestas Públicas do TIPO B (FPB) - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas.
+- Florestas Públicas do TIPO C (FPC) - São as florestas localizadas em áreas de dominialidade indefinida, comumente chamadas de terras devolutas.
+
+fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assuntos/servico-florestal-brasileiro/cadastro-nacional-de-florestas-publicas)
+:::
+
+:::{.column-page}
+```{python}
+#| echo: false
+fig, ax = plt.subplots(figsize=(15,8))
+floresta[floresta['area-estudo']==1].plot(ax=ax, alpha=0.6, column='tipo', legend=True,  
+                                          legend_kwds={'loc': 'center left',
+                                          'bbox_to_anchor':(1,0.5)})
+area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
+uf[uf['amaz_legal']==1].plot(ax=ax,facecolor="none", edgecolor="grey")
+plt.show()
+
+```
+:::
+
+```{python}
+#| echo: false
+
+
+floresta[floresta['area-estudo']==1].groupby('tipo').agg({
+  'area_ha':'sum'
+}).to_html()
+```
+:::{.text-justify}
+A denominação de florestas publicas parece abranger integralmentes as poligonais já classificadas em outras atividades tais como áreas de assentamentos federais, assim, a denominação que pode remeter a uma área de vegetação nativa não é a realizada das poligonais existentes na base de dados.
+
+As áreas mensuradas como florestas publicas abrangem divérsos uso do solo distintos de vegetação nativa, levando à conclusões equivocadas quando do uso da totalização de área.
+
+Seguindo a definição do Serviço Florestal Brasileiro, as florestas publicas do *Tipo A - lorestas que apresentam destinação e dominialidade específica*, somariam 235.982.649 de hectares e as do *Tipo B - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas* somariam 62.989.475 de hectares. Porém esse número não corresponde à área ocupada por vergetação nativa nos respectivos polígonos.
+:::
+

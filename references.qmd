@@ -1,0 +1,24 @@
+# References {.unnumbered}
+
+::: {#refs}
+:::
+
+## Banco de dados espacial - geopackage
+
+As camadas utilizadas estão compiladas em um bando de dados espacial geopackage. A especificação GeoPackage descreve um conjunto de convenções para armazenamento de dados espaciais dentro de um banco de dados SQLite: Podem compor um gpkg: Vetores. Tiles, arquivos raster e matrizes em várias escalas.
+
+|Nome da Tabela                   |Geometria      |EPSG              |descrição|
+|--------------                   |---------      |----              |---------|
+|amazonia-legal                   |MULTIPOLYGON   |SIRGAS 2000 (4674)| 
+| area-estudo                     |MULTIPOLYGON   |SIRGAS 2000 (4674)| 
+| faixa-fronteira-150km           |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+| gleba-centroid-hub_sr           |MULTILINESTRING|SIRGAS 2000 (4674)|
+|glebas-centroid                  |POINT          |SIRGAS 2000 (4674)|
+|glebas-centroid-hub-menos-dist-sr|MULTILINESTRING|SIRGAS 2000 (4674)|
+|glebas-centroid-menor-dist-sr    |POINT          |SIRGAS 2000 (4674)|
+|glebas-mais-amazonia             |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+|municipios-area-estudo           |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+|sr_incra                         |POINT          |SIRGAS 2000 (4674)|
+|uf-brasil                        |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+
+

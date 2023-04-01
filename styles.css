@@ -1,0 +1,26 @@
+.table-center {
+    text-align: center;
+}
+
+.table-right {
+    text-align: right;
+}
+
+.column-body-outset {
+    text-align: center;
+    display: flex;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.analise {
+    text-align: left;
+    background-color:aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+}

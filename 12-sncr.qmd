@@ -1,0 +1,67 @@
+# Sistema Nacional de Cadastro Rural - SNCR.
+
+
+```{python}
+#| echo: false
+# Bibliotecas
+import geopandas as gpd
+import pandas as pd
+import polars as pl
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
+area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-maranhao.shp')
+uf = gpd.read_file('../drive/uf.shp')
+sr_ponto = gpd.read_file("../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp")
+```
+
+
+## Mapas de localização das glebas com código no Sistema Nacional de Cadsatro Rural - SNCR.
+
+Os mapas abaixo mostram as distribuições das gelbas federais com cadastro no SNCR por Superintendência Regional.
+
+:::{.column-body-outset}
+```{python}
+#| echo: false
+# Bibliotecas
+sr_incra = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp')
+sr_nome = sr_incra['sr_nome']
+for sr in sr_nome:
+    display(Markdown(f'### Superintendência Regional do {sr}.'))
+    fig1, ax1 = plt.subplots(figsize=(15,8))
+    uf[uf['amaz_legal']==1].plot(ax=ax1, alpha=0.2, color='grey',edgecolor='black')
+    glebas[(glebas['sr_nome']==sr) & (glebas['cod_imovel']!='0000000000000')].plot(ax=ax1, zorder=1, aspect=1)
+    sr_incra[sr_incra['sr_nome']==sr].plot(ax=ax1, color='red')
+    pto_sr_x = sr_incra[sr_incra['sr_nome']==sr]['geometry'].x
+    pto_sr_y = sr_incra[sr_incra['sr_nome']==sr]['geometry'].y
+    ax1.annotate(f'SR do {sr}', xy=(pto_sr_x,pto_sr_y), size=10,va="bottom", ha="left",
+                    xytext=((pto_sr_x+1),(pto_sr_y+1)),
+                    bbox=dict(boxstyle="round", pad=0.1, fc="w"),
+                    arrowprops=dict(arrowstyle="-|>",
+                    connectionstyle="arc3,rad=-0.5",
+                    fc="w"))
+    plt.xlabel('Longitude (°)')
+    plt.ylabel('Latitude (°)')
+    plt.grid()
+    plt.show()
+```
+:::
+
+
+### Contagem de Glebas com cadastro no SNCR por Superintendência Regional.
+
+:::{.table-center}
+```{python}
+#| echo: false
+
+gleba_sncr = glebas[glebas['cod_imovel']!='0000000000000'].groupby('sr_nome').agg({'cod_imovel':'count'}).reset_index().rename(columns={'sr_nome':'Superintendência', 'cod_imovel': 'Qt. SNCR'}).merge(glebas.groupby('sr_nome').agg({'cod_imovel':'count'}).reset_index().rename(columns={'sr_nome':'Superintendência', 'cod_imovel': 'Total'}))
+gleba_sncr['Perc. Cadastrado'] = gleba_sncr.apply(lambda x: round(x['Qt. SNCR']/x['Total']*100,2), axis=1)
+gleba_sncr.loc[10] = ['Roraima', 0, 3, 0.0000]
+gleba_sncr.sort_values('Superintendência').to_html(index=False)
+
+```
+:::

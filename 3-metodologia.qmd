@@ -1,0 +1,166 @@
+# Metodologia
+
+<div style="text-align: justify"> 
+
+## Identificação dos Imóveis.
+
+Conforme disposto na Lei nº 11.952/2009 (BRASIL, 2009) e no do Decreto nº 10.592/2020 (BRASIL, 2009), que delimitam as ações de regularização fundiária pelo INCRA em áreas urbanas e rurais na Amazônia Legal, será realizada coleta de informações utilizando as seguintes fontes: os processos administrativos referente aos imóveis, os atos de incorporação e destinação, bem como os mapas e as matrículas dos imóveis.
+
+## Variáveis Utilizadas na coleta dos dados.
+
+O enquadramento do imóvel nos dispositivos legais (atendendo ao Art. 40-A da Lei nº 11.952/2009 e ao Art. 2º do Decreto nº 10.592/2020)
+
+No que se refere ao enquadramento do imóvel, o recorte temporal foi a data de criação anterior a 10 de outubro de 1985, conforme descrito na própria Lei nº 11.952/2009 (BRASIL, 2009) e Decreto nº 10.592/2020 (BRASIL, 2020). Sendo essa a condição para análise dos imóveis nesse relatório.
+
+### *Confirmação do município ao qual o imóvel está localizado.*
+
+Quanto à busca pela confirmação do município em que se encontra o imóvel, essa se deve à possibilidade de o imóvel estar localizado em mais de um município, ao mesmo tempo que a unidade municipal deverá servir de métrica para os relatórios analíticos de número de imóveis, área, parcelas rurais e urbanas, e demanda por município. 
+
+### *Confirmação do nome do imóvel*
+
+Uma análise referente ao nome dos imóveis merece destaque devido à necessidade de averiguação de diferentes nomenclaturas utilizadas. Os bancos de dados do INCRA, as matrículas registradas em cartório, bem como decretos ou outros atos de incorporação e/ou destinação podem apresentar divergências de nome, inclusive, quanto ao seu uso coloquial local. Assim, faz-se necessária a análise conjunta de informações para certificar-se a qual imóvel está se referindo.
+
+### *Verificação do tamanho da área*
+
+Outro elemento importante de análise diz respeito a área dos imóveis. Deve ser utilizado o hectare (ha) como unidade de medida. Tal informação, em alguns casos, é caracterizada por significativas discrepâncias entre valores encontrados em cada uma das fontes de informação. Assim, tem-se a necessidade de comparar cada uma e apresentar elementos conclusivos para corrigir e/ou justificar tais diferenças. Para fins de consolidação da área a ser utilizada no estudo, devemos considerar primeiramente a informação cartográfica. Na falta dessa, a área utilizada é a do banco de dados. A consolidação da área total é fundamental para realizarmos as análises do que efetivamente foi destacado do patrimônio público, e o que ainda é remanescente e deverá sofrer processo de regularização fundiária.
+
+### *Verificação do número de parcelas rurais e urbanas*
+
+É indispensável a análise referente a cada um dos imóveis, o número de parcelas rurais e urbanas que constam nos sistemas de banco de dados do INCRA, bem como nas informações cartográficas e processuais localizadas junto à Superintendência Regional. O número de parcelas urbanas e rurais é o elemento central nesse manual, pois é a partir dele que poderemos identificar o que foi efetivamente destacado por meio de processos de titulação e o que se constitui de parcelas remanescentes. São estas parcelas remanescentes que buscamos identificar com objetivo de transformá-las em demanda imediata de titulação.   
+
+### *Identificação sobre processos de afetação*
+
+Ao se tratar de imóveis com dimensões de grande magnitude, pode-se observar polígonos com restrições e destinações de uso impeditivas aos processos de regularização, de forma parcial ou total. São as chamadas afetações, destacando-se para criação de terras indígenas, unidades de conservação, territórios quilombolas e de outros povos tradicionais. Além de serem prioritárias, essas áreas devem ser destacadas do imóvel, pois não são passíveis de regularização fundiária. A identificação das áreas afetadas deve ser feita por meio da consulta aos bancos de dados e fontes de informações do próprio INCRA.
+
+### *Coleta de informações gráficas*
+
+As informações gráficas precisam ser pesquisadas durante a coleta de dados dentro dos mais diferentes tipos de arquivos geoespacializados, sejam eles no formato digital ou físico, como os papéis disponíveis em mapotecas. Em caso de imóveis a serem analisados com mais de trinta anos de criação, a busca por meio desta informação poderá ser localizada em mapas topográficos, que trazem bases fundamentais para a pesquisa, com áreas de medidas, número de parcelas, sejam elas rurais ou urbanas. As informações obtidas devem ser identificadas junto ao serviço de cartografia da Superintendência Regional do INCRA. 
+
+### *Etapa de Confirmação Cartorial*
+
+Quanto às informações cartoriais, será realizado como piloto uma pesquisa cartorial amostral como forma de comprovação das informações coletadas na pesquisa de titulação consistindo em consultar 10 imóveis de até 50 parcelas, que tiveram seus processos de titulação conclusos. Será desenvolvida da maneira a seguir:
+
+- Solicitar ao cartório as matrículas dos títulos que foram levados a registro; 
+- Identificar os dados dos títulos registrados e se foram destacados da matrícula originária do INCRA.
+- Verificar junto ao cartório se existe algum título destacado da matrícula do imóvel do INCRA que não está na relação da pesquisa de titulação, identificando o nome do requerente, dados pessoais e cópia do instrumento titulatório que gerou a abertura da nova matrícula.
+
+Com a finalidade dessa etapa, objetivamos a elaboração de Relatório Técnico e Jurídico com os resultados obtidos na pesquisa cartorial.
+
+## Coleta e análise das variáveis
+
+### *Levantamento do número de títulos emitidos para cada imóvel*
+
+Metodologicamente, é necessário buscar a informação do número total de títulos emitidos por imóvel com o objetivo de compará-lo ao número de parcelas. Assim, deverá ser feita uma comparação, ainda que inicial, entre as parcelas, com suas respectivas áreas destinadas, e o que ainda é remanescente. 
+
+### *Identificação das diferentes situações dos títulos emitidos*
+
+No trâmite da coleta de dados podemos identificar alguns tipos diferentes de títulos emitidos, são eles:
+
+- Títulos emitidos e entregues; 
+- Títulos emitidos e não entregues; 
+- Títulos cancelados.
+
+Além disto, podemos identificar dentro dos títulos emitidos e entregues para fins de classificação, algumas situações, por exemplo: 
+
+- Título emitido, entregue com informação de pagamento e registro; 
+- Título emitido, entregue sem informação de pagamento, mas com informação de registro; 
+- Título emitido, entregue com informação de pagamento, mas sem informação de registro.
+
+Ademais, devem ser realizadas as análises de sobreposição dos títulos emitidos (entregues ou não) em uma mesma parcela, com objetivo de evitar a sobreposição de áreas, impactando, assim, o cálculo de área destinada. Tais divisões servem para que possamos entender o comportamento dos processos de titulação e qual o real impacto gerado pela ação. Novamente, essas informações nos permitem identificar pontos frágeis ou incompletos da ação, gerando, assim, uma condição de não finalização do processo de transferência de propriedade, ou seja, parcelas e suas respectivas áreas que deveriam ter sido repassadas a particulares ainda se encontram sobre condições de terras públicas.
+
+### *Identificação das informações de registro*
+
+Essa pesquisa tem como objetivo buscar junto à Superintendência Regional, dados referentes ao registro cartorial dos títulos emitidos visando ao atendimento da Lei nº 6.015/1973 (BRASIL, 1973). Vale destacar que a matrícula é peça fundamental para identificarmos a quantidade de destaques realizados, as quais os títulos efetivamente foram levados a registro e se houve averbação da liberação das cláusulas resolutivas. Esse atendimento é o que define o direito de propriedade, mudando a condição de posse para propriedade. Os títulos que não foram levados a registro, também são objetos desse trabalho, visando à sua renegociação ou reemissão, dependendo do enquadro legal no qual irá se encaixar.
+
+### *Identificação das informações de pagamento e liberação de cláusulas resolutivas*
+
+A emissão de um título de domínio constitui-se em um ato contratual entre o outorgante e o outorgado, ou seja, entre o INCRA detentor do imóvel público e o ocupante a ser titulado. Nesse momento cria-se um atrelamento jurídico entre ambas as partes, visto que uma compromete-se a repassar o domínio do bem ao ocupante, desde que esse cumpra com determinadas condições. Como os títulos a serem pesquisados são, em sua maioria, anteriores à década de 1980, a cláusula principal a ser cumprida era a do pagamento. Dessa forma, a busca por informações de pagamento e liberação de cláusula resolutiva tem como objetivo identificar o quantitativo de relações contratuais (títulos) finalizadas entre o outorgante e o outorgado. Ademais, busca observar se, de fato, houve pagamentos dos referidos títulos e se estes foram liberados, uma vez que foram emitidos sob condição resolutivas. 
+
+### *Consolidação de área titulada*
+
+Utilizando o hectare como unidade de medida padrão, é necessário realizar a análise das informações referentes aos valores unitários de área para cada uma das parcelas tituladas. A partir desses valores, obtemos a área total titulada, podendo assim estabelecer comparativos e analisar discrepâncias em relação às áreas observadas nos imóveis originários. O objetivo é identificar a diferença entre a área das parcelas do imóvel e a área das parcelas que foram tituladas, gerando, assim, a área remanescente. Da mesma forma, podemos individualizar o montante de área que foi titulada e que não foi destacada, diferenciando, assim, as três categorias de área: área titulada (quitação, liberação de cláusula e registro), área remanescente e área titulada, a qual os títulos apresentam problemas na execução contratual ou de registro. 
+
+### *Consolidação do número de parcelas tituladas por imóvel*
+
+A lógica da identificação das parcelas segue a mesma da área, diferenciando-se pela métrica, uma vez que a área é medida em hectares e as parcelas em unidade. O principal intuito é classificar as parcelas conforme a situação dos títulos emitidos, ou seja, saber quantas parcelas foram efetivamente tituladas e quantas dessas tiveram seus processos finalizados, assim como o bem efetivamente destacado. 
+
+Além disto, é imprescindível coletar informações de processo como o nome dos outorgados e seu Cadastro de Pessoa Física - CPF, nome do cônjuge, data em que foram encontrados, local em que a parcela se encontra no imóvel (gleba, agrovila ou setor), identificação do lote ou parcela titulada, número do título emitido, ano da emissão e, quando for o caso, número da matrícula da parcela titulada, bem como, quando encontrado, a situação do registro.
+
+Para a coleta de informações, devem ser consultados prioritariamente, os livros fundiários localizados no INCRA, os quais possibilitaram o acesso aos títulos emitidos. No acervo da Superintendência são encontrados comprovantes de pagamento, assim como informações sobre liberações de cláusulas resolutivas. A busca por informações gráficas, digitais ou em mapas antigos, devem ser feitas junto ao setor de cartografia.
+
+Sendo assim, com a experiência obtida nos resultados do GOVFUN-BR, a partir da implantação da metodologia de identificação, padronização, aplicação de filtros e limpeza de sobreposições, bem como da qualificação das informações a serem disponibilizadas na Superintendência Regional e em outras fontes consultadas, o presente manual tem como objetivo desenvolver um estudo detalhado sobre o processo de Regularização Fundiária dos imóveis incorporados ao patrimônio do INCRA dentro da Amazônia Legal.
+
+## Conceitos
+
+- **Regularização Fundiária:** é uma política pública de titulação constituída por conjunto de medidas de natureza administrativa, jurídica, ambiental e social com a finalidade de legalizar as ocupações em terras da União ou do INCRA por meio de processos titulatórios conforme legislação vigente, assegurando o direito de propriedade à pessoa natural que, com seu trabalho e de sua família, tenha tornado a terra pública produtiva. Ou seja, é a partir da titulação que o poder público reconhece a legitimidade da ocupação e promove a alienação da terra ao particular. 
+
+- **Título de Domínio Definitivo:** é um contrato administrativo firmado pelo INCRA ou pela União que, embora contenha condições ou cláusulas resolutivas, é documento apto a transferir o direito de propriedade da área ao outorgado. É um instrumento com força de escritura pública e deve ser levado a registro no Cartório. Ou seja, o INCRA emite Títulos de Domínio reconhecendo a ocupação e alienando a terra ao beneficiário. 
+
+- **Título Precário:** é um ato ou contrato administrativo firmado ou emitido pelo Incra ou pela União, que autoriza a ocupação regular de imóvel rural, com a perspectiva eventual e futura de emissão de título definitivo, mediante o cumprimento de cláusulas ou condições resolutivas. Ou seja, o INCRA emite documentos de propriedade precário através de contratos, como os Contratos de Alienação de Terras Públicas- CATPs, Contratos de Promessa de Compra e Venda- CPCVs ou os Contratos de Direito Real de Uso- CDRU. 
+
+- **Gleba Pública Federal:** é uma área urbana ou rural, sem proporções definidas em lei que ainda não foi parcelada em lotes, bem como não foi regulamentada em cartório. Ou seja, quando não existe nenhum tipo de legalização da área, seja por unificação, construção ou parcelamento, recebe- se o nome de gleba. 
+
+## Fluxo da Coordenação-Geral Acadêmica
+
+:::{.column-body-outset-right}
+```{mermaid}
+flowchart LR
+A[Coordenação-Geral Acadêmica] ---> B(Coordenação Técnica)
+A[Coordenação-Geral Acadêmica] ---> C(Administrativo CEGAFI)
+A[Coordenação-Geral Acadêmica] ---> D(Pesquisadores)
+B[Coordenação Técnica] ---> E(Equipe de Coleta)
+```
+:::
+
+O fluxo das informações deverá seguir impreterivelmente a hierarquia apresentada acima.
+
+### *Coordenação-Geral Acadêmica:*
+
+- Representa a universidade junto com a entidade parceira e possui relação institucional com o INCRA;
+- Gerencia as atuações da Coordenação-Técnica, Administrativo CEGAFI e Pesquisadores.
+
+### *Coordenação-Técnica:*
+ 
+- Responsável pelo planejamento das ações de campo, acompanhamento da execução física;
+
+- Gerencia o fornecimento de informações para a Coordenação-Geral, CEGAFI e Pesquisadores;
+
+- Responsável pela relação técnica com o INCRA e pela elaboração dos relatórios técnicos.
+
+### *Administrativo CEGAFI:*
+
+- Responsável pelas rotinas administrativas do projeto (Recursos Humanos, Fundação e outros);
+
+### *Pesquisadores:*
+
+- Responsável pelas análises de dados e produtos acadêmicos.
+
+### *Equipe de coleta:*
+
+- Responsável pela coleta de dados em campo.
+
+## Fluxo de Funcionamento das Coletas
+
+:::{.column-body-outset-right}
+```{mermaid}
+flowchart LR
+    A[Coordenação Técnica] -->|1ª Etapa|B(INCRA Sede)
+    B[INCRA Sede] -->|1ª Etapa|A(Coordenação Técnica)
+    B[INCRA Sede] -->|2ª Etapa|C(Superintendências Regionais)
+    A[Coordenação Técnica] -->|3ª Etapa|C(Superintendências Regionais)
+    A[Coordenação Técnica] -->|4ª Etapa|D(Equipe de Coleta)
+    D[Equipe de Coleta] -->|5ª Etapa|C(Superintendências Regionais)
+    style D fill:#f1ba20
+```
+:::
+
+**1º etapa:** A coordenação Técnica pactua junto com Incra as demandas e prioridades para o desenvolvimento do trabalho e solicita que o Incra Sede informe a atuação dos trabalhos para Superintendência Regional.
+
+**2º etapa:** O Incra entra em contato com a Regional para informar as demandas e prioridades.
+
+**3º etapa:** A Coordenação Técnica entra em contato com a Superintendência Regional com intuito de pactuar a atuação dos trabalhos, ajustar sala, entre outros.
+
+**4º etapa:** A Coordenação Técnica apresenta a atividade para a Equipe de Coleta.
+
+**5º etapa:** A Equipe é deslocada para Superintendência Regional para executar a coleta de dados.
+

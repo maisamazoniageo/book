@@ -1,0 +1,60 @@
+# Introdução {.unnumbered}
+
+<div style="text-align: justify"> 
+A UNB foi fundada em 21 de abril de 1962, como uma instituição idealizada para combinar o rigor da ciência com a ousadia da arte. A produção de conhecimento na UnB obedece ao modelo que articula ensino, pesquisa e extensão, o que favorece uma formação universitária de qualidade, apoiando todas as formas de saber e comprometida com a cidadania.
+
+Uma grande preocupação da Universidade de Brasília é manter o caráter social da instituição. Assim, os seus projetos beneficiam a sociedade de modo geral e captam recursos a fim de melhorar a própria Universidade. Isso contribui para que a UnB seja, atualmente, um dos melhores centros de pesquisa do País, com professores que desenvolvem pesquisas de ponta no âmbito nacional e internacional, ajudando no avanço do conhecimento científico, tecnológico, cultural e artístico, como pilares de desenvolvimento da sociedade.   
+
+O campus da Universidade de Brasília (FUP/UnB) em Planaltina foi oficialmente inaugurado no dia 16 de maio de 2006. Nesse dia, já abrigava 70 estudantes matriculados nos cursos de Licenciatura em Ciências Naturais e Bacharelado em Agronegócios e dez professores doutores. Em 2007 foi iniciada a Licenciatura em Educação do Campo e, em 2008, os cursos noturnos de Gestão Ambiental e Licenciatura em Ciências Naturais. Em 2012, cinco turmas de Licenciatura em Ciências Naturais e Bacharelado em Gestão do Agronegócio e uma turma de Licenciatura em Educação do Campo já haviam sido formadas.  
+
+Os cursos de graduação da Faculdade UnB Planaltina têm em comum o trabalho com a matriz produtiva da vida, pelo aspecto da produção agrícola, pelo trabalho com as formas cooperativas de vida no campo brasileiro, e pelo estudo da relação entre modo de produção e relação social de produção, sempre permeadas pela relação do ser humano com a natureza, e pela transmissão do conhecimento acerca dela, de sua história evolutiva e de sua importância para a vida e para a humanidade. As temáticas relativas à natureza, ao meio ambiente, ao trabalho, organização sociocultural e terra são, portanto, os eixos articuladores e agregadores do trabalho acadêmico da FUP. Além disso, a FUP possui quatro programas de pós-graduação em funcionamento: Gestão Pública (PPGP), Ciência dos Materiais (PPGCIMA), Meio Ambiente e Desenvolvimento Rural (PPGMADER) e Ciências Ambientais (PPGCA). 
+
+O Centro de Gestão e Inovação da Agricultura Familiar foi constituído no ano de 2013 pela Faculdade UnB de Planaltina motivado por um conjunto de ações em curso em parceria com órgãos do executivo federal voltadas para a avaliação e análise de políticas públicas ligadas à agricultura familiar, desenvolvimento rural e ambiental e inovações em metodologias e pesquisas. 
+
+Com todo o histórico de investimento de recursos orçamentários e humanos em pesquisa, a UnB buscou ampliar sua parceria com o INCRA ao logo dos anos e a temática de regularização fundiária está presente em três das cooperações firmadas entre as Instituições.
+
+O mais recente projeto tem como objeto a pesquisa em “Governança Fundiária em imóveis do Incra ou sob gestão do Incra nos estados da Amazônia Legal, a partir de bancos de dados oficiais e livros fundiários de ações de titulação já realizadas”. Essa cooperação entre o Instituto Nacional de Colonização e Reforma Agrária - INCRA e a Universidade de Brasília - UnB, por meio do Centro de Gestão e Inovação na Agricultura Familiar – Cegafi, tem como objetivo a realização de pesquisas em Governança Fundiária e Gestão Territorial na Amazônia Legal.
+
+O Projeto visa consolidar as informações de titulação já executadas nos estados da Amazônia Legal, com base nas informações referentes a duzentos mil documentos titulatórios, a serem levantadas nos acervos da Superintendência Regionais.
+
+É no bojo desse projeto que se apresentou a necessidade de elaboração do presente Manual de Coleta de Dados, entretanto, antes de definir metodologia e procedimentos, é de suma importância compreender todo caminho percorrido até aqui.
+
+As cooperações na temática de Regularização Fundiária tiveram início com GOVFUN-BR, fora da Amazônia Legal, em meados de 2017, que tinha por objetivo a pesquisa, estudos e extensão em Governança Fundiária em apoio as diferentes ações do Ordenamento Fundiário desenvolvidas pelo Incra nas regiões Sul, Sudeste, Centro Oeste, Nordeste e no Distrito Federal.  
+
+Uma importante modificação com a promulgação da Medida provisória 759/16 que incluiu o Art. 40-A na Lei 11.952/09, ampliou a legislação de regularização fundiária para os 17 estados e para o Distrito Federal, passando a ter um regramento completo para a aplicação da regularização fundiária pelo INCRA. Antes disso, eram passíveis de regularização somente terras da união localizadas na Amazônia legal.   
+
+A política de Regularização Fundiária antes da Lei 11.952/09 ser estendida no ano de 2016 para aplicação fora da Amazônia legal, deixava um remanescente de área federal em suposto limbo sem legislação especifica que abrangesse o atendimento para essas áreas com destinação distinta da reforma agrária, gerando uma insegurança jurídica por utilizarem um somatório da lei nº 6.383/76 e da lei n.º 4.504/64 (terras devolutas da União, Estatuto da terra e normativos) que eram insuficientes. 
+
+Com a ampliação dos efeitos da lei para fora da Amazônia Legal, o INCRA sente a necessidade de identificar e quantificar esse passivo incerto. Assim, surge a primeira cooperação com pesquisa no acervo fundiário dos 17 estados fora da Amazônia e do DF, o GOVFUN-BR. 
+
+Com o surgimento do GOVFUN-BR, mediante todo o resultado de pesquisa e coleta de dados nas superintendências regionais, a UNB consegue formatar um relatório por estado e trazer a luz esses dados para o INCRA e para a academia.  
+
+Em meados de 2020, a UNB firma uma nova parceria com o INCRA para aprofundar a pesquisa em atuais processos de titulação com foco nas análises dos requerimentos de regularização fundiária dentro da Amazônia Legal, ampliando a visão dos diagnósticos, com um olhar para dentro dos instrumentos, plataformas e procedimentos que concebem o processo de titulação.  
+
+Considerando as demandas de Regularização Fundiária na Amazônia Legal e a expertise adquirida durante a execução do Projeto Governança e Regularização Fundiária em Terras do INCRA e da União nas Regiões Sul, Sudeste, Centro-Oeste e Nordeste – GOVFUN-BR, parceria INCRA/UnB, foi firmado o Projeto Mais Amazônia para pesquisa e diagnóstico com análise de dados em 40.000 mil processos de regularização dentro da Amazônia Legal, aprofundando a pesquisa em atuais processos de titulação, identificando, analisando e organizando dados processuais de regularização dentro da Amazônia Legal. 
+
+Estudos do projeto GOVFUN-BR elaborado pela Universidade de Brasília, pesquisou os processos de titulação para fora da Amazônia Legal e identificou uma falta de comprovação sobre a finalização dos processos titulatórios em cerca de 80% das informações coletadas, restando a dúvida se para os títulos emitidos na Amazônia Legal os números serão os mesmos. 
+
+Ademais, os diagnósticos e dados levantados pelo GOVFUN-BR são utilizados como importante ferramenta de gestão e planejamento das ações emblemáticas do INCRA, auxiliando no próprio processo de titulação, uma vez que é possível identificar se de fato foi efetivado o devido destaque do patrimônio público para o privado, bem como, através dos resultados das análises dos processos de regularização fundiária do projeto Mais Amazônia é possÍvel identificar se o ciclo de emissão do título, pagamento, liberação das cláusulas resolutivas e registro foi totalmente realizado ou se de fato se faz necessária uma revisão dos processos ou a identificação de parcelas ou mesmo áreas remanescentes. Neste sentido, percebe-se a fragilidade da compilação do acervo fundiário também para dentro da Amazônia.  
+
+São muitas dificuldades operacionais encontradas, a falta de um sistema informatizado que atenda a necessidade da governança fundiária, falta de recursos orçamentários, número reduzido de servidores, a fortificação dos setores fundiários nos Estados, perda de informações precisas sobre ações realizadas e programações futuras, grande concentração de áreas remanescentes, além de antigos Projetos de Colonização espalhados por todos os estados. 
+
+Em todo esse contexto, desde o encadeamento e complementação das ações que é firmado esse presente TED e com o objetivo de recompor os dados do acervo fundiário dentro da Amazônia Legal. A região possui algumas iniciativas de controle, mas são esparsas, desconectadas com a gestão do Incra e distante do nosso objetivo que é transformar em um banco de dados geral, auxiliando o processo de governança fundiária. 
+
+O INCRA vislumbra na UnB um dos parceiros ideais para auxiliar no processo de governança e de regularização fundiária dentro Amazônia Legal.  A “expertise” na área de pesquisa e elaboração acadêmica, o conhecimento da temática proveniente de outras cooperações em andamento com o INCRA qualifica sobremaneira o parceiro, em especial o Projeto GOVFUN-BR que trata da mesma temática para fora da Amazônia Legal. 
+
+Assim, organizando os dados processuais de regularização dentro da Amazônia Legal, acreditamos ser possível avançar para uma nova frente de pesquisa que é a investigação a partir de bancos de dados oficiais e livros fundiários de antigas ações de titulação, elaborando e organizando informações e sistematizando dados em até duzentos mil documentos titulatórios de parcelas rurais e urbanas localizadas em imóveis do INCRA ou da União sob gestão do INCRA nos estados da Amazônia Legal. 
+
+Cabe salientar que os dados coletados pelos projetos anteriores colaboraram para o desenvolvimento de ações emblemáticas do INCRA, em alguns estados como o Paraná, Rio de Janeiro, Santa Catarina, Bahia, Piauí, Rio Grande do Sul e Distrito Federal e entorno.   
+
+Um exemplo é a Braviaco, sigla da Companhia Brasileira de Viação e Comércio, subsidiária da Brazil Railway Company, empresa pertencente a um antigo grupo inglês. No ano de 1928, a Brazil Railway Company/Braviaco assinou com o Estado do Paraná um contrato para a construção da Estrada de Ferro São Paulo-Rio Grande.  
+
+O governo estadual doou à Braviaco cerca de 1 milhão de hectares - a maior parte situada em faixa de fronteira (a exemplo dos terrenos Ocoy, Piquiri e Catanduvas abordados na IN 113/2021). Até então, não havia legislação específica sobre o tema. A regulamentação acerca dos limites determinados para a garantia da soberania nacional veio em 1980, sendo ratificada na Constituição de 1988.   
+
+Nesse contexto, o INCRA realizou ações emitindo a Instrução Normativa n. º 113/2021 visando regulamentar as ações previstas no Decreto-Lei nº 1.942, de 31 de maio de 1982 e os dados coletados pelo GOVFUN-BR foram primordiais para a retomada das ações de regularização na região. 
+
+Outro exemplo emblemático, é  a região do PEC Serra do Ramalho, em meados de 2011, voltou a compor o rol de áreas prioritárias para as políticas de desenvolvimento econômico do país, integrando a lista dos imóveis abrangidos pelas obras da Ferrovia de Integração Oeste-Leste - FIOL, obra do Programa de Aceleração do Crescimento - PAC do Governo Federal, onde os dados coletados pelo GOVFUN-BR também auxiliaram na retomada das ações de regularização na região. 
+
+Em resumo, os produtos e dados obtidos a partir dos projetos GOVFUN-BR e MAIS AMAZÔNIA contribuíram para a emissão de parte dos 21.505 documentos titulatórios no presente exercício. 
+
+\div

@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Análise Geográfica das Glebas Federais - 4&nbsp; Definição das variáveis coletadas.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./5-delimitacao.html" rel="next">
+<link href="./3-metodologia.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Definição das variáveis coletadas.</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Análise Geográfica das Glebas Federais</a> 
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introdução</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-contexto.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Contextualização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-objetivos.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objetivos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-metodologia.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Metodologia</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4-variaveis.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Definição das variáveis coletadas.</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5-delimitacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Delimitação Geográfica</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6-info.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações das Glebas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7-ctrf.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8-matricula.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Registros em Cartório</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9-sr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Glebas públicas federais por Superintendências Regionais do INCRA.</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-situacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Situação da gleba.</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-assentimento.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Glebas com Assentimento prévio do Concelho de Defesa Nacional - CDN.</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-sncr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sistema Nacional de Cadastro Rural - SNCR.</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-terra-indigena.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Sobreposição com Terras Indígenas.</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-unidade-conservacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Unidades de Consrvação.</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Definição das variáveis coletadas.</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div style="text-align: justify">
+
+<section id="informações-gerais." class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="informações-gerais."><span class="header-section-number">4.1</span> Informações gerais.</h2>
+<p>Com o intuito de padronizar o procedimento de coleta de dados e levantamento das informações referente aos documentos titulatórios, passamos a orientar os trabalhos com a finalidade de diminuir dúvidas e facilitar a execução. É necessário observar algumas padronizações gerais, são elas:</p>
+<ul>
+<li>Será obrigatório o preenchimento de todos os campos;</li>
+<li>Quando não localizar a informação de qualquer campo, é necessário preencher com <strong>“N/C”</strong>;</li>
+<li>Todos os campos deverão ser preenchidos em <strong>“CAIXA ALTA”</strong>. <em><strong>Ex: GLEBA XIRIRI”.</strong></em></li>
+<li>NÃO poderá preencher os campos com caracteres especiais TODO: definir quais são esses caracterers especiais, usando a regex seria [a-zA-Zà-úÀ-Ú0-9] que representa uma letra qualquer que pode estar no intervalo de a-z ou, de A-Z, ou de à-ú, ou de À-Ú, ou um número que pode estar entre 0 ou 9.;</li>
+</ul>
+</section>
+<section id="informação-sobre-os-imóveis" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="informação-sobre-os-imóveis"><span class="header-section-number">4.2</span> Informação sobre os imóveis</h2>
+<section id="identificação" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="identificação"><span class="header-section-number">4.2.1</span> <em>Identificação</em></h3>
+<p><em>Nome do imóvel</em></p>
+<ul>
+<li>Obrigatória;</li>
+<li>Campo aberto;</li>
+<li>Não aceita caracteres especiais; regex seria [a-zA-Zà-úÀ-Ú0-9] que representa uma letra qualquer que pode estar no intervalo de a-z ou, de A-Z, ou de à-ú, ou de À-Ú, ou um número que pode estar entre 0 ou 9.;</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Matrícula em Nome do Imóvel, Ato de Destinação ou Incorporação.</li>
+</ul>
+<p><em>Tipologia</em></p>
+<ul>
+<li>Obrigatória;</li>
+<li>Selecionar uma Opção</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Opções</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PC</td>
+</tr>
+<tr class="even">
+<td>PAR</td>
+</tr>
+<tr class="odd">
+<td>Projeto de Assentamento Conjunto</td>
+</tr>
+<tr class="even">
+<td>PEC</td>
+</tr>
+<tr class="odd">
+<td>PA</td>
+</tr>
+<tr class="even">
+<td>PF</td>
+</tr>
+<tr class="odd">
+<td>PIC</td>
+</tr>
+<tr class="even">
+<td>Núcleo colonial</td>
+</tr>
+<tr class="odd">
+<td>Registrada em nome do INCRA para fins de regularização fundiária</td>
+</tr>
+<tr class="even">
+<td>Registrada em nome da União para fins de regularização fundiária</td>
+</tr>
+<tr class="odd">
+<td>Convênio</td>
+</tr>
+<tr class="even">
+<td>N/C</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Fonte de Coleta Primária: Ato de Destinação ou Incorporação;</li>
+<li>Fonte de Coleta Secundária: Bases de Dados (SIPRA, SNCR, SRTT).</li>
+</ul>
+<p><em>Unidade da Federação</em></p>
+<ul>
+<li>Obrigatória;</li>
+<li>Selecionar uma Opção</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Opções</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Acre</td>
+</tr>
+<tr class="even">
+<td>Amapá</td>
+</tr>
+<tr class="odd">
+<td>Amazonas</td>
+</tr>
+<tr class="even">
+<td>Maranhão</td>
+</tr>
+<tr class="odd">
+<td>Mato Grosso</td>
+</tr>
+<tr class="even">
+<td>Pará</td>
+</tr>
+<tr class="odd">
+<td>Rondônia</td>
+</tr>
+<tr class="even">
+<td>Roraima</td>
+</tr>
+<tr class="odd">
+<td>Tocantins</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Fonte de Coleta Primária: IBGE;</li>
+<li>Fonte de Coleta Secundária: Dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.</li>
+</ul>
+<p><em>Município</em></p>
+<ul>
+<li>Obrigatória;</li>
+<li>Selecionar múltiplas opções;</li>
+<li>Opções de resposta: A lista de municípios é carregada de acordo com a UF selecionada seguindo a listagem do IBGE.</li>
+</ul>
+<p><em>Campos preenchidos automaticamente</em></p>
+<ul>
+<li>De acordo com a UF selecionada:
+<ul>
+<li>Região</li>
+</ul></li>
+<li>De acordo com o município selecionado:
+<ul>
+<li>Código do IBGE;</li>
+<li>Módulo fiscal do município;</li>
+<li>Fracionamento mínimo;</li>
+<li>Faixa de fronteira;</li>
+<li>Superintendência Regional (Falta relação dos municípios do Pará que pertencem a cada superintendência);</li>
+<li>Unidade avançada</li>
+</ul></li>
+<li>Obs: Esses campos não são exibidos em tela durante a coleta;</li>
+<li>Fonte de Coleta Primária: IBGE;</li>
+<li>Fonte de Coleta Secundária: Dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.</li>
+</ul>
+</section>
+<section id="afetação-e-características-quanto-a-alienação" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="afetação-e-características-quanto-a-alienação"><span class="header-section-number">4.2.2</span> <em>Afetação e características quanto a alienação</em></h3>
+<p><em>Possui afetação específica?</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Sim;</li>
+<li>Não;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Cruzamento de Banco de Dados do SIGEF.</li>
+</ul>
+<p><em>Tipo de afetação</em></p>
+<ul>
+<li>Selecionar uma opção</li>
+<li>Opções de resposta:
+<ul>
+<li>Terra indígena;</li>
+<li>Terreno de marinha e acrescidos;</li>
+<li>Terrenos marginais, ilhas fluviais e lacustres;</li>
+<li>Várzeas federais;</li>
+<li>Unidades de conservação;</li>
+<li>Reservada à administração militar federal;</li>
+<li>Florestas Públicas nos termos da Lei 11.284 de 02/03/2006;</li>
+<li>Contém acessão ou benfeitoria federal;</li>
+<li>Ocupada por Comunidade Quilombola;</li>
+<li>Outra finalidade pública ou interesse social da União;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Cruzamento de Banco de Dados do SIGEF;</li>
+<li>Fonte de Coleta Secundária: Processo do Imóvel, Atos ou Relatórios da Superintendência Regional;
+<ul>
+<li>OBS: Buscar dados dentro da Superintendência.</li>
+</ul></li>
+</ul>
+<p><em>Características quanto a alienação</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Totalmente Alienável;</li>
+<li>Parcialmente Alienável;</li>
+<li>Inalienável;</li>
+<li>N/C;</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Fazer uma análise do tipo de afetação e comparar com o tamanho da afetação da área.</li>
+</ul>
+</section>
+<section id="códigos-e-publicações" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="códigos-e-publicações"><span class="header-section-number">4.2.3</span> <em>Códigos e publicações</em></h3>
+<p><em>Código SIPRA</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Não é permitido caracteres especiais exceto: / e ,</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Matrícula do Imóvel, Bases de Dados (SNCR, SIPRA, SRTT), dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.</li>
+</ul>
+<p><em>Ato de incorporação</em></p>
+<ul>
+<li><p>Selecionar uma opção;</p></li>
+<li><p>Opções de resposta:</p>
+<ul>
+<li>Decreto;</li>
+<li>Portaria/Resolução;</li>
+<li>Concessão;</li>
+<li>Escritura de compra e venda;</li>
+<li>N/C.</li>
+</ul></li>
+<li><p>Fonte de Coleta Primária: Processo do Imóvel;</p></li>
+<li><p>Fonte de Coleta Secundária: Pesquisa nos documentos disponíveis e em sites como:</p>
+<ul>
+<li><a href="https://www.in.gov.br/servicos/diario-oficial-da-uniao">Diário Oficial da Unuão</a></li>
+<li><a href="https://www.camara.leg.br/legislacao">Câmara Federal</a></li>
+</ul></li>
+</ul>
+<p><em>Número do ato de incorporação</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Livre.</li>
+<li>Fonte de Coleta Primária: Ato de Incorporação;</li>
+<li>Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA, SRTT), dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.</li>
+</ul>
+<p><em>Data do ato</em></p>
+<ul>
+<li>Data no formato DD/MM/AAAA</li>
+<li>Fonte de Coleta Primária: Ato de Incorporação;</li>
+<li>Fonte de Coleta Secundária: Bases do Incra (SNCR, SIPRA, SRTT).</li>
+</ul>
+<p><em>Área do ato de incorporação (Ha)</em></p>
+<ul>
+<li>Inserção do valor com no máximo de quatro casas decimais;</li>
+<li>Após a coleta sempre será exibido o valor informado com quatro casas decimais;</li>
+<li>Separador de milhar: ponto;</li>
+<li>Separador decimal: vírgula;</li>
+<li>Fonte de Coleta Primária: Ato de Incorporação;</li>
+<li>Fonte de Coleta Secundária: Pesquisas em sites, Bases de Dados (SIPRA, SNCR, SRTT), dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.</li>
+</ul>
+<p><em>Forma de aquisição/obtenção</em></p>
+<ul>
+<li>Selecionar uma opção</li>
+<li>Opções de resposta</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Opções</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Adjudicação</td>
+</tr>
+<tr class="even">
+<td>Arrecadação Sumária</td>
+</tr>
+<tr class="odd">
+<td>Cessão</td>
+</tr>
+<tr class="even">
+<td>Cessão Gratuita</td>
+</tr>
+<tr class="odd">
+<td>Compra</td>
+</tr>
+<tr class="even">
+<td>Confisco</td>
+</tr>
+<tr class="odd">
+<td>Dação em Pagamento</td>
+</tr>
+<tr class="even">
+<td>Desafetação</td>
+</tr>
+<tr class="odd">
+<td>Desapropriação</td>
+</tr>
+<tr class="even">
+<td>Doação</td>
+</tr>
+<tr class="odd">
+<td>Esc. Pública de Doação</td>
+</tr>
+<tr class="even">
+<td>Herança Jacente</td>
+</tr>
+<tr class="odd">
+<td>Incorporação</td>
+</tr>
+<tr class="even">
+<td>Reversão de Domínio</td>
+</tr>
+<tr class="odd">
+<td>Sub-Júdice</td>
+</tr>
+<tr class="even">
+<td>Transf. INCRA/UNIÃO</td>
+</tr>
+<tr class="odd">
+<td>Transf. UNIÃO/INCRA</td>
+</tr>
+<tr class="even">
+<td>Vacância</td>
+</tr>
+<tr class="odd">
+<td>N/C</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Fonte de Coleta Primária: Processo do Imóvel</li>
+<li>Fonte de Coleta Secundária: Ato de Incorporação, dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão, Bases de Dados (SIPRA, SNCR, SRTT).</li>
+</ul>
+<p><em>Ato de destinação</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Decreto;</li>
+<li>Portaria;</li>
+<li>Resolução;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Processo do Imóvel</li>
+<li>Fonte de Coleta Secundária: Ato de Incorporação, dialogar com o Chefe de Divisão na Superintendência Regional, dialogar com os servidores da Divisão de Obtenção, Divisão do Desenvolvimento Pesquisas em sites, Bases de Dados (SNCR, SIPRA, SRTT).</li>
+</ul>
+<p><em>Tipo de destinação</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>opções</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assentamento</td>
+</tr>
+<tr class="even">
+<td>Cadastro histórico</td>
+</tr>
+<tr class="odd">
+<td>Colonização</td>
+</tr>
+<tr class="even">
+<td>Experimentação</td>
+</tr>
+<tr class="odd">
+<td>Núcleo urbano</td>
+</tr>
+<tr class="even">
+<td>Quilombola</td>
+</tr>
+<tr class="odd">
+<td>Reserva biológica</td>
+</tr>
+<tr class="even">
+<td>Reserva ecológica</td>
+</tr>
+<tr class="odd">
+<td>Reserva Florestal</td>
+</tr>
+<tr class="even">
+<td>Reserva indígena</td>
+</tr>
+<tr class="odd">
+<td>Reserva técnica</td>
+</tr>
+<tr class="even">
+<td>Sem destinação</td>
+</tr>
+<tr class="odd">
+<td>Utilidade pública</td>
+</tr>
+<tr class="even">
+<td>N/C</td>
+</tr>
+<tr class="odd">
+<td>Outros</td>
+</tr>
+</tbody>
+</table>
+<p><em>Qual</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Questão condicional, caso responda “Outros” no item anterior.</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Ato de Destinação.</li>
+</ul>
+<p><em>Área do imóvel destinado (Ha)</em></p>
+<ul>
+<li>Inserção do valor com no máximo de quatro casas decimais;</li>
+<li>Após a coleta sempre será exibido o valor informado com quatro casas decimais;</li>
+<li>Separador de milhar: ponto;</li>
+<li>Separador decimal: vírgula;</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel,</li>
+<li>Fonte de Coleta Secundária: Plantas, Memorial Descritivo, Setor de Cartografia.</li>
+</ul>
+</section>
+<section id="matrícula" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="matrícula"><span class="header-section-number">4.2.4</span> <em>Matrícula</em></h3>
+<p><em>Número</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Sem formatação.</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), dialogar com Servidores do Setor de Cadastro da Superintendência Regional, Divisão de Obtenção, Divisão do Desenvolvimento. e Chefe de Divisão.</li>
+</ul>
+<p><em>Área (ha)</em></p>
+<ul>
+<li>Inserção do valor com no máximo de quatro casas decimais;</li>
+<li>Após a coleta sempre será exibido o valor informado com quatro casas decimais;</li>
+<li>Separador de milhar: ponto;</li>
+<li>Separador decimal: vírgula;</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Plantas, Memorial Descritivo, Setor de Cartografia, Relatório das Divisões.</li>
+</ul>
+<p><em>Data</em></p>
+<ul>
+<li>Data no formato DD/MM/AAAA</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.</li>
+</ul>
+<p><em>Titular</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>INCRA;</li>
+<li>UNIÃO;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.</li>
+</ul>
+<p><em>Comarca</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Sem formatação.</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.</li>
+</ul>
+</section>
+<section id="capacidade-do-imóvel" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="capacidade-do-imóvel"><span class="header-section-number">4.2.5</span> <em>Capacidade do imóvel</em></h3>
+<p><em>Número de parcelas urbanas</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Somente números.</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.</li>
+</ul>
+<p><em>Número de parcelas rurais</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Somente números.</li>
+<li>Fonte de Coleta Primária: Processo do Imóvel;</li>
+<li>Fonte de Coleta Secundária: Bases de Dados (SNCR, SIPRA,SRTT), Relatório das Divisões.</li>
+</ul>
+</section>
+<section id="cartografia" class="level3" data-number="4.2.6">
+<h3 data-number="4.2.6" class="anchored" data-anchor-id="cartografia"><span class="header-section-number">4.2.6</span> <em>Cartografia</em></h3>
+<p><em>Perímetro georreferenciado</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Sim;</li>
+<li>Não;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: SIGEF;</li>
+<li>Fonte de Coleta Secundária: Dialogar com o Setor de Cartografia.</li>
+</ul>
+<p><em>Perímetro certificado</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Sim;</li>
+<li>Não;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: SIGEF;</li>
+<li>Fonte de Coleta Secundária: Dialogar com o Setor de Cartografia.</li>
+</ul>
+</section>
+</section>
+<section id="informação-das-destinações." class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="informação-das-destinações."><span class="header-section-number">4.3</span> Informação das Destinações.</h2>
+<section id="informações-individuais-sobre-a-titulação" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="informações-individuais-sobre-a-titulação"><span class="header-section-number">4.3.1</span> <em>Informações individuais sobre a titulação</em></h3>
+<p><em>Número do processo</em></p>
+<ul>
+<li>Campo obrigatório;</li>
+<li>Campo aberto;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Incluso no SEI?</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Sim;</li>
+<li>Não;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+</section>
+<section id="outorgado" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="outorgado"><span class="header-section-number">4.3.2</span> <em>Outorgado</em></h3>
+<p><em>Nome</em></p>
+<ul>
+<li>Campo obrigatório;</li>
+<li>Campo aberto;</li>
+<li>Não é permitido caracteres especiais;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>CPF/CNPJ</em></p>
+<ul>
+<li>Campo obrigatório;</li>
+<li>Campo aberto;</li>
+<li>Limite mínimo e máximo de caracteres;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+<li>OBS: Discutir sobre a necessidade de conversão.</li>
+</ul>
+<p><em>Gênero</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Masculino;</li>
+<li>Feminino;</li>
+<li>N/C</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+</section>
+<section id="cônjuge" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="cônjuge"><span class="header-section-number">4.3.3</span> <em>Cônjuge</em></h3>
+<p><em>Nome</em></p>
+<ul>
+<li>Campo obrigatório;</li>
+<li>Campo aberto;</li>
+<li>Não é permitido caracteres especiais;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>CPF</em></p>
+<ul>
+<li>Campo obrigatório;</li>
+<li>Campo aberto;</li>
+<li>Limite mínimo e máximo de caracteres;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Gênero</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Masculino;</li>
+<li>Feminino;</li>
+<li>N/C</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+</section>
+<section id="localização" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="localização"><span class="header-section-number">4.3.4</span> <em>Localização</em></h3>
+<p><em>Unidade da Federação</em></p>
+<ul>
+<li>Campo obrigatório;</li>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Acre;</li>
+<li>Amapá;</li>
+<li>Amazonas;</li>
+<li>Maranhão;</li>
+<li>Mato Grosso;</li>
+<li>Pará;</li>
+<li>Rondônia;</li>
+<li>Roraima;</li>
+<li>Tocantins;</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Município</em></p>
+<ul>
+<li>Campo obrigatório;</li>
+<li>Selecionar múltiplas opções;</li>
+<li>Opções de resposta:
+<ul>
+<li>A lista de municípios é carregada de acordo com a UF selecionada seguindo a listagem do IBGE;</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Zona rural ou urbana</em></p>
+<ul>
+<li>Campo obrigatório</li>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Rural;</li>
+<li>Urbana.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Nome do imóvel</em></p>
+<ul>
+<li>Campo obrigatório;</li>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>A partir da UF selecionada, é carregada uma lista com o nome de todos os imóveis já coletados daquela UF.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Nome do sítio</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Localização na gleba</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Lote</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+</section>
+<section id="coordenadas" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="coordenadas"><span class="header-section-number">4.3.5</span> <em>Coordenadas</em></h3>
+<p><em>Latitude</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Longitude</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Área</em></p>
+<ul>
+<li>Inserção do valor com no máximo de quatro casas decimais;</li>
+<li>Separador de milhar: ponto;</li>
+<li>Separador decimal: vírgula;</li>
+<li>Caso a destinação seja da zona rural:
+<ul>
+<li>A área inserida deve ser em Ha e ter até quatro casas decimais</li>
+</ul></li>
+<li>Caso a destinação seja da zona urbana:
+<ul>
+<li>A área inserida deve ser em m² e ter até duas casas decimais.</li>
+<li>Obs: Fazer a conversão quando necessário.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+</section>
+<section id="título" class="level3" data-number="4.3.6">
+<h3 data-number="4.3.6" class="anchored" data-anchor-id="título"><span class="header-section-number">4.3.6</span> <em>Título</em></h3>
+<p><em>Número do título</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Ano de emissão</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Liberação da cláusula resolutiva</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Sim;</li>
+<li>Não;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Informação do pagamento</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Sim;</li>
+<li>Não;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Situação do título</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Emitido e entregue;</li>
+<li>Emitido e não entregue;</li>
+<li>Cancelado;</li>
+<li>N/C</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>O título é registrado</em></p>
+<ul>
+<li>Selecionar uma opção;</li>
+<li>Opções de resposta:
+<ul>
+<li>Sim;</li>
+<li>Não;</li>
+<li>N/C.</li>
+</ul></li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+</section>
+<section id="matrícula-1" class="level3" data-number="4.3.7">
+<h3 data-number="4.3.7" class="anchored" data-anchor-id="matrícula-1"><span class="header-section-number">4.3.7</span> <em>Matrícula</em></h3>
+<p><em>Número da matrícula</em></p>
+<ul>
+<li>Campo aberto;</li>
+<li>Fonte de Coleta Primária: Título de Domínio;</li>
+<li>Fonte de Coleta Secundária: Anexos do Título, tais como: Planta, Memorial Descritivo, Certidão de Liberação de Cláusula, Certidão de Quitação, Certidão de Inteiro Teor do Imóvel.</li>
+</ul>
+<p><em>Número CNC do Cartório</em></p>
+<ul>
+<li>Campo Obrigatório para o caso de existir matrícula;</li>
+<li>Fonte: Listagem do CNJ.</li>
+</ul>
+
+
+</section>
+</section>
+
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="./3-metodologia.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Metodologia</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./5-delimitacao.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Delimitação Geográfica</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,96 @@
+
+# Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.
+
+
+
+```{python}
+#| echo: false
+# Bibliotecas
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+```
+
+```{python}
+#| echo: false
+glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
+area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-maranhao.shp')
+uf = gpd.read_file('../drive/uf.shp')
+```
+
+<div style="text-align: justify">
+
+O Decreto nº 10.592, de 24 de dezembro de 2020, que Regulamenta a Lei nº 11.952, de 25 de junho de 2009, para dispor sobre a regularização fundiária das áreas rurais situadas em terras da União, no âmbito da Amazônia Legal, e em terras do Instituto Nacional de Colonização e Reforma Agrária, por meio de alienação e concessão de direito real de uso de imóveis, estabeleceu em ser Artigo 11° que:
+
+> Art. 11.  Fica instituída a Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais, com as seguintes finalidades:
+>
+>   I - atuar, de maneira articulada, na gestão do patrimônio público; e
+>
+>   II - convergir ações de destinação e promoção de políticas públicas.
+
+---
+
+## Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação.
+:::{.column-body-outset}
+```{python}
+#| echo: false
+# Contagem de áreas com Consulta à Câmara Técnica Fundiária
+glebas_consult = pd.DataFrame(glebas[glebas['amaz_legal']==1][['uf','status_con']].value_counts())
+glebas_consult.rename(columns={0:'qt'}, inplace=True)
+glebas_consult.reset_index(inplace=True)
+# Linha de valores sem consulta em uf=RR para acrescentar
+RR_sem_consulta = pd.DataFrame({'uf':'RR', 'status_con': 'Sem Consulta', 'qt':0}, index=[0])
+glebas_consult = pd.concat([glebas_consult,RR_sem_consulta]).reset_index(drop=True)
+glebas_consult.sort_values(['uf', 'status_con'])
+fig, ax = plt.subplots(nrows=3, ncols=3, figsize=(12,12))
+ax[0,0].pie(glebas_consult[glebas_consult['uf']=='AC']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[0,1].pie(glebas_consult[glebas_consult['uf']=='AM']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[0,2].pie(glebas_consult[glebas_consult['uf']=='AP']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[1,0].pie(glebas_consult[glebas_consult['uf']=='MA']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[1,1].pie(glebas_consult[glebas_consult['uf']=='MT']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[1,2].pie(glebas_consult[glebas_consult['uf']=='PA']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[2,0].pie(glebas_consult[glebas_consult['uf']=='RO']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[2,1].pie(glebas_consult[glebas_consult['uf']=='RR']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[2,2].pie(glebas_consult[glebas_consult['uf']=='TO']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[0,0].set_title('Acre')
+ax[0,1].set_title('Amazonas')
+ax[0,2].set_title('Amapá')
+ax[1,0].set_title('Maranhão')
+ax[1,1].set_title('Mato Grosso')
+ax[1,2].set_title('Pará')
+ax[2,0].set_title('Roraima')
+ax[2,1].set_title('Rondônia')
+ax[2,2].set_title('Tocantins')
+plt.show()
+```
+:::
+
+## Glebas Federais por unidade da federação com consulta na  Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.
+
+
+
+:::{.column-body-outset}
+```{python}
+#| echo: false
+for estado in glebas[glebas['amaz_legal']==1]['uf'].unique():
+    
+    fig, ax = plt.subplots(figsize=(13,6))
+    uf[uf['SIGLA']==estado].plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
+    #area_estudo.plot(ax=ax, alpha=0.2, color='blue')
+    glebas[(glebas['amaz_legal']==1) & (glebas['uf']==estado)].plot(ax=ax, column='status_con', categorical=True, figsize=(8,20), legend=True, zorder=2,
+                                               legend_kwds={'loc': 'center left',
+                                                           'bbox_to_anchor':(1,0.5)})
+    plt.xlabel('Longitude (°)')
+    plt.ylabel('Latitude (°)')
+    plt.grid()
+    plt.title(f"Glebas Federais consultas na Câmara Técnica de Regularização Fundiária - {estado}.")
+    plt.show()
+```
+:::
+
+

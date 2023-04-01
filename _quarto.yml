@@ -1,0 +1,56 @@
+project:
+  type: book
+  output-dir: docs
+
+
+book:
+  sidebar:
+    search: false
+  title: "Análise Geográfica das Glebas Federais"
+  author: "+ Amazônia"
+  date: "03/10/2023"
+  cover-image: img/mais_amazonia.png
+  chapters:
+    - index.qmd
+    - 1-contexto.qmd
+    - 2-objetivos.qmd
+    - 3-metodologia.qmd
+    - 4-variaveis.qmd
+    - 5-delimitacao.qmd
+    - 6-info.qmd
+    - 7-ctrf.qmd
+    - 8-matricula.qmd
+    - 9-sr.qmd
+    - 10-situacao.qmd
+    - 11-assentimento.qmd
+    - 12-sncr.qmd
+    - 13-terra-indigena.qmd
+    - 14-unidade-conservacao.qmd
+    - summary.qmd
+    - references.qmd
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    default-image-extension: png
+    page-layout: full
+    css: styles.css
+    toc: false
+
+  pdf:
+    documentclass: report
+    default-image-extension: tex
+    margin-left: 30mm
+    margin-right: 20mm
+    margin-top: 20mm
+    margin-bottom: 20mm
+    toc: true
+    number-sections: true
+    number-depth: 3
+
+lenguage:
+  leng: pt-BR
+
+plugins:
+  - mkquartodocs

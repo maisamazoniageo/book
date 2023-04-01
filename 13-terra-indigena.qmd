@@ -1,0 +1,67 @@
+# Sobreposição com Terras Indígenas.
+
+:::{.text-justify}
+
+**Terra Indígena (TI)** é uma porção dentro do território nacional, habitada por uma ou mais comunidades indígenas, a qual após regular processo administrativo, respeitado o devido processo legal, de demarcação e homologação por Decreto Presidencial, é levado à registro imobiliário como propriedade da União (artigo 20, XI, da CF/88), perfectibilizando a área formalmente como de usufruto indígena. Assim sendo, se trata de um bem de uso especial da União, afetado administrativamente por uma finalidade pública.
+
+Nos termos da legislação vigente (CF/88, Lei 6001/73 – Estatuto do Índio, Decreto n.º 1775/96), as terras indígenas podem ser classificadas nas seguintes modalidades:
+
+**Terras Indígenas Tradicionalmente Ocupadas:** São as terras habitadas pelos indígenas em caráter permanente, utilizadas para atividades produtivas, culturais, bem-estar e reprodução física, segundo seus usos, costumes e tradições.
+
+Para que seja considerada Terra Indígena, é necessário seguir procedimento administrativo específico, no qual se observa o devido processo legal como dito anteriormente, sendo que tal procedimento está dividido por fases.
+Reservas Indígenas: São terras doadas por terceiros, adquiridas ou desapropriadas pela União, que se destinam à posse permanente dos indígenas. São terras que também pertencem ao patrimônio da União, mas que não se confundem com as terras de ocupação tradicional.
+
+**Terras Dominiais:** São as terras de propriedade das comunidades indígenas, havidas por qualquer das formas de aquisição do domínio, nos termos da legislação civil.
+
+:::
+
+:::{.analise}
+**Análises**
+
+**_Perguntas_**
+
+1. qual a quantidade / uf ?
+2. qual a área total / uf ?
+
+**_Problemas_**
+
+- terra indígena localizadas em mais de um estado;
+  - contagem: repetir a contagem da terra indígena nos estados de ocorrência ou separar em uma tabela e mapa com apenas as terras que estão em mais de um estado;
+  - área: calcular a área da terra indígena em cada estado;
+  - fases da TI: no arquivo baixado da FUNIAI existem 06 tipos de fases nas terras indígenas, como utilizar essa informação nas análises? Há casos de sobreposição de polígonos da mesma terra indígena em fases distintas.
+    - Declarada [30 poligonos]
+    - Delimitada [11 poligonos]
+    - Em estudo [06 poligonos]
+    - Encaminhada RI [07 poligonos]
+    - Homologada [03 poligonos]
+    - Regularizada [328 poligonos]
+
+:::
+
+
+## Quantificação das terras indígenas por unidade da federação
+
+```{python}
+#| echo: false
+
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
+ti=gpd.read_file('../glebas-federais.gpkg', layer='ti-portarias')
+fig, ax = plt.subplots(figsize=(15,8))
+ti[ti['area-estudo']==1].plot(ax=ax, alpha=0.6, column='fase_ti', legend=True)
+area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
+uf[uf['amaz_legal']==1].plot(ax=ax,facecolor="none", edgecolor="grey")
+plt.show()
+```
+
+## Mapa de terras indígenas por unidade da federação

@@ -1,0 +1,94 @@
+# Glebas com Assentimento prévio do Concelho de Defesa Nacional - CDN.
+
+<div style="text-align: justify">
+
+A Lei Nº 6.634, de 2 de maio de 1979, dispõe sobre a Faixa de Fronteira, altera o Decreto-lei nº 1.135, de 3 de dezembro de 1970, e dá outras providências.
+
+> Art. 1º. - É considerada área indispensável à Segurança Nacional a faixa interna de 150 Km (cento e cinqüenta quilômetros) de largura, paralela à linha divisória terrestre do território nacional, que será designada como Faixa de Fronteira.
+> Art. 2º. - Salvo com o assentimento prévio do Conselho de Segurança Nacional, será vedada, na Faixa de Fronteira, a prática dos atos referentes a:
+>
+>   I - alienação e concessão de terras públicas, abertura de vias de transporte e instalação de meios de comunicação destinados à exploração de serviços de radiodifusão de sons ou radiodifusão de sons e imagens;
+>
+>   II - Construção de pontes, estradas internacionais e campos de pouso;
+>   
+>   III - estabelecimento ou exploração de indústrias que interessem à Segurança Nacional, assim relacionadas em decreto do Poder Executivo.
+>   
+>   IV - instalação de empresas que se dedicarem às seguintes atividades:
+>   
+>   a) pesquisa, lavra, exploração e aproveitamento de recursos minerais, salvo aqueles de imediata aplicação na construção civil, assim classificados no Código de Mineração;
+>   
+>   b) colonização e loteamento rurais;
+>   
+>   V - transações com imóvel rural, que impliquem a obtenção, por estrangeiro, do domínio, da posse ou de qualquer direito real sobre o imóvel;
+>   
+>   VI - participação, a qualquer título, de estrangeiro, pessoa natural ou jurídica, em pessoa jurídica que seja titular de direito real sobre imóvel rural;
+
+## Glebas Federais na Faixa de Fronteira.
+
+### Mapa de glebas federais na faixa de fronteira por unidade da federação.
+
+```{python}
+#| echo: false
+# Bibliotecas
+import geopandas as gpd
+import pandas as pd
+import polars as pl
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
+uf = gpd.read_file('../drive/uf.shp')
+fx_fronteira = gpd.read_file('../drive/BR_FaixaFronteira_150km/i3geomap_faixa150km.shp')
+glebas_assentimento = glebas[glebas['faixa_fron']==1]
+fig, ax = plt.subplots(figsize=(15,8))
+uf.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
+fx_fronteira.plot(ax=ax, alpha=0.2, color='orange', edgecolor='red')
+glebas_assentimento.plot(ax=ax, column='sr_nome', categorical=True, figsize=(8,20), legend=True, zorder=2,
+                                           legend_kwds={'loc': 'center left',
+                                                       'bbox_to_anchor':(1,0.5)})
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.grid()
+plt.show()
+```
+
+### Tabela de glebas federais na faixa de fronteira por unidade da federação
+
+:::{.table-center}
+```{python}
+#| echo: false
+glebas_assentimento.groupby('uf_nome').agg({'uf':'count'}).reset_index().rename(columns={'uf_nome':'UF', 'uf':'Quantidade'}).to_html(index=False)
+```
+:::
+
+
+
+
+## Glebas com assentimento prévio por Superintendência.
+
+### Mapa de glebas federais com assentimento.
+
+```{python}
+#| echo: false
+fig1, ax1 = plt.subplots(figsize=(15,8))
+uf.plot(ax=ax1, alpha=0.2, color='grey',edgecolor='black')
+fx_fronteira.plot(ax=ax1, alpha=0.2, color='orange', edgecolor='red')
+glebas_assentimento[glebas_assentimento['assent_pre']==1].plot(ax=ax1, column='sr_nome', categorical=True, figsize=(8,20), legend=True, zorder=2,
+                                           legend_kwds={'loc': 'center left',
+                                                       'bbox_to_anchor':(1,0.5)})
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.grid()
+plt.show()
+```
+### Tabela de glebas federais com assentimento
+
+:::{.table-center}
+```{python}
+#| echo: false
+glebas_assentimento[glebas_assentimento['assent_pre']==1].groupby('uf_nome').agg({'uf':'count'}).reset_index().rename(columns={'uf_nome':'UF', 'uf':'Quantidade'}).to_html(index=False)
+```
+:::

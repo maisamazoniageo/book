@@ -1,0 +1,11 @@
+# Objetivos
+
+<div style="text-align: justify"> 
+O presente Manual de Coleta de Dados tem por objetivo central a padronização de conceitos, metodologia e procedimentos no levantamento das informações referentes aos duzentos mil documentos titulatórios dentro da Amazônia Legal.
+
+## Objetivos Específicos.
+
+1. Padronizar conceitos;
+2. Estabelecer metodologia de coleta;
+3. Definir procedimentos para levantamento dos dados;
+4. Orientar os trabalhos, dirimir dúvidas e definir fluxos.

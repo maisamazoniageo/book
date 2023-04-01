@@ -1,0 +1,56 @@
+
+# Detalhamento das Informações das Glebas
+
+
+
+```{python}
+#| echo: false
+# Bibliotecas
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+```
+## Listagem dos campos da tabela de atributos.
+```{python}
+#| echo: false
+glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
+area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-maranhao.shp')
+uf = gpd.read_file('../drive/uf.shp')
+display(glebas[glebas['amaz_legal']==1].info())
+```
+
+- **cod_imovel**  - código da gleba no Sistema Nacional de Cadastro Rural composto por 13 dígitos (000.000.000.000-0);
+- **matricula**   - matrícula da gleba registrada em cartório, informação de texto com o número da matrícula, livro e cartório de registro;
+- **cartorio**    - campo para armazenar o Código Nacional de Serventia do cartório de registro da gleba;
+- **nome_gleba**  - nome da gleba, informação de texto; 
+- **nome_comp**   - coluna provisória para nomear as glebas aindas sem denominação;
+- **sr**          - superintendência responsável pela gleba;  
+- **uf**          - unidade da federação onde a gleba está localizada;  
+- **situacao**    - descrever o campo. opções [null, Aprovação Fiscal, Arrecadada, Certificada, Registrada, Titulação];
+- **area_ha**     - área da glebas em hectares.
+- **data_certi**  - data da certificação da gleba.
+- **num_certif**  - código de certificação da gleba.
+- **status_con**  - aparenta ser a consulta da gleba na câmara técnica de regularização fundiária. opções [sem consulta, Consultada], não está claro sobre o sentido da informação, se é aprovada ou não.
+- **assent_pre**  -
+- **ano_assent**  -
+- **data_dou**    -
+- **ato**         -
+- **ciclo**       -   
+- **documento**   -
+- **data_doc**    -
+- **data_encam**  - 
+- **area_sobre**  -
+- **gl_fora_am**  - se a gleba está fora da amazônia legal
+- **ind_area_s**  -
+- **codigo_gle**  -
+- **amaz_legal**  - se a área encontra-se dentro da área de estudo, 1 para sim e 0 para não.
+- **lat**         - latitude do centróide da poligonal
+- **lon**         - longitude do centróide da poligonal
+- **geometry**    - contém a geometria da gleba do tipo polígono.
+
+ ---

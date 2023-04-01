@@ -1,0 +1,90 @@
+# Delimitação Geográfica
+
+<div style="text-align: justify"> 
+Análise dos dados literais e espaciais das Glebas Públicas Federais do INCRA dentro da Amazônia Legal e do estado do Maranhão.
+
+A área de estudo esté dentro dos limites da Amazônia Legal incluindo-se a parte do estado do Maranhão que encontra-se fora da delimitação aficial (@fig-area-estudo).
+
+```{python}
+#| echo: false
+# Bibliotecas
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.0f}'.format
+pd.set_option('display.precision', 4)
+```
+
+![Mapa de Área de Estudo](./img/a6-geral.jpg){fig-align="center" fig-pos="H" #fig-area-estudo}
+
+## Mapa das Glebas Públicas Federais dentro da área de estudo.
+
+```{python}
+#| echo: false
+glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
+area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-maranhao.shp')
+uf = gpd.read_file('../drive/uf.shp')
+#glebas.info()
+```
+:::{.column-body-outset}
+```{python}
+#| echo: false
+fig, ax = plt.subplots(figsize=(15,8))
+uf.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
+area_estudo.plot(ax=ax, alpha=0.2, color='blue')
+glebas[glebas['amaz_legal']==1].plot(ax=ax, column='uf', categorical=True, figsize=(8,20), legend=True, zorder=2,
+                                           legend_kwds={'loc': 'center left',
+                                                       'bbox_to_anchor':(1,0.5)})
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.grid()
+plt.title("Glebas Federais dentro da Área de Estudo")
+plt.show()
+```
+:::
+
+
+
+## Total de área das Gebas Federais por Unidade da Federação
+
+::: {.table-right}
+```{python}
+#| echo: false
+# Totalizando as áreas das glebas por UF
+glebas_area_uf = glebas[glebas['amaz_legal']==1][['uf']].copy()
+glebas_area_uf['area_km'] = glebas['area_ha'].apply(lambda x: x/100)
+glebas_area_tot_uf = glebas_area_uf[['uf','area_km']].groupby('uf').sum('area_km').reset_index()
+glebas_area_tot_uf['area_km'] = glebas_area_tot_uf['area_km'].apply(lambda x: str(f'{x:.4f}'))
+glebas_area_tot_uf.rename(columns={'uf':'UF', 'area_km': 'Área (km²)'}, inplace=True)
+def formatar_numero(numero):
+    num = f'{float(numero):,.4f}'
+    return str(num.replace(',',';').replace('.',',').replace(';','.'))
+glebas_area_tot_uf['Área (km²)'] = glebas_area_tot_uf['Área (km²)'].apply(lambda x: formatar_numero(x))
+display(glebas_area_tot_uf.to_html(index=False))
+```
+:::
+*1km² = 100ha*
+
+## Mapa de glebas federais por unidade da federação.
+
+:::{.column-body-outset}
+```{python}
+#| echo: false
+for estado in glebas[glebas['amaz_legal']==1]['uf'].unique():
+    
+    fig, ax = plt.subplots(figsize=(13,6))
+    uf[uf['SIGLA']==estado].plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
+    #area_estudo.plot(ax=ax, alpha=0.2, color='blue')
+    glebas[(glebas['amaz_legal']==1) & (glebas['uf']==estado)].plot(ax=ax, column='uf', categorical=True, figsize=(8,20), legend=True, zorder=2,
+                                               legend_kwds={'loc': 'center left',
+                                                           'bbox_to_anchor':(1,0.5)})
+    plt.xlabel('Longitude (°)')
+    plt.ylabel('Latitude (°)')
+    plt.grid()
+    plt.title(f"Glebas Federais por unidade da federação - {estado}.")
+    plt.show()
+```
+:::

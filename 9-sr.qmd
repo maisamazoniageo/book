@@ -1,0 +1,177 @@
+# Glebas públicas federais por Superintendências Regionais do INCRA.
+
+```{python}
+#| echo: false
+# Bibliotecas
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+```
+
+## Localização das superintendências Regionais do INCRA dentro da área de estudo.
+
+```{python}
+#| echo: false
+glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
+area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-maranhao.shp')
+uf = gpd.read_file('../drive/uf.shp')
+sr_ponto = gpd.read_file("../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp")
+fig, ax = plt.subplots(figsize=(15,8))
+uf.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
+area_estudo.plot(ax=ax, alpha=0.2, color='blue')
+sr_ponto.plot(ax=ax, column='sr_nome', categorical=True, figsize=(8,20), legend=True, zorder=2,
+                                           legend_kwds={'loc': 'center left',
+                                                       'bbox_to_anchor':(1,0.5)})
+ax.text(-44.226720338867125,(-2.4950805857184273-0.5),'São Luís', va='top', ha='center')
+ax.text(-48.33094554232819, (-10.170087541451577-0.5),'Palmas', va='top', ha='center')
+ax.text(-48.44698105026646, (-1.4331949032486335-0.5),'Belém', va='top', ha='center')
+ax.text(-49.12177879629733, ( -5.361485812588075-0.5),'Marabá', va='top', ha='center')
+ax.text(-51.05674264417953, (0.07755050891249074-0.5),'Macapá', va='top', ha='center')
+ax.text(-54.729082203702674,( -2.427104778611262-0.5),'Santarém', va='top', ha='center')
+ax.text(-56.07139483068725,  (-15.56283571997163-0.5),'Cuiabá', va='top', ha='center')
+ax.text(-59.99082354232821,  (-3.095309782832047-0.5),'Manaus', va='top', ha='center')
+ax.text(-60.656308813491194, (  2.84036362628825-0.5),'Boa Vista', va='top', ha='center')
+ax.text(-63.901595746362474, (-8.736368896927914-0.5),'Porto Velho', va='top', ha='center')
+ax.text(-67.80235935582047,   (-9.96542462090482-0.5),'Rio Branco', va='top', ha='center')
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.grid()
+plt.title("Superintendências Regiionais do INCRA dentro da área de estudo")
+plt.show()
+```
+
+## Superintendências Regionais do INCRA.
+
+| Superintendência         | Endereço                                                        | Cidade      | UF | CEP        | Telefone                             |
+|:------------------------:|:---------------------------------------------------------------:|:------------:|:---:|:-----------|:-------------------------------------:|:----------------------------------------:|
+| Acre                    | Rua Santa Inês, nº 135 - Bairro Aviário                         | Rio Branco  | AC   | 69.900-878 | (68) 3214-3013/ 3086                 |
+| Amapá                   | Rua Adilson José Pinto Pereira, 1409 - Bairro São Lázaro        | Macapá      | AP   | 68.908-571 | (96) 99107-6937 e (96) 98101-3828    |
+| Amazonas                | Av. André Araújo, 901 - Aleixo                                  | Manaus      | AM   | 69.060-001 | (92) 3194-1303                       |
+| Maranhão                | Rua H, Quadra E, Lote 01, N° 12 - Bairro Turu                   | São Luís    | MA   | 65067-150  | (98) 3878-7450                       |
+| Mato Grosso             | Rua E, s/n - Centro Político Administrativo                     | Cuiabá      | MT   | 78.050-970 | (65) 3644-1104                       |
+| Pará - Nordeste (Belém) | Rodovia Murucutum, s/nº - Bairro: Curió-Utinga Estrada da Ceasa | Belém       | PA   | 66.610-903 | (91) 3202-3820                       |
+| Pará - Oeste (Santarém) | Av. Presidente Vargas, s/nº - Bairro Fátima                     | Santarém    | PA   | 68.040-060 | (93) 3523-1296                       |
+| Pará - Sudeste (Marabá) | Avenida Amazônia, s/nº, Agropólis do Incra - Bairro Amapá       | Marabá      | PA   | 68.502-090 | (94) 3324-1752                       |
+| Rondônia                | Av. Lauro Sodré, nº 3050 - Bairro Costa e Silva                 | Porto Velho | RO   | 76.803-488 | (69) 3229-1545 (69) 3229-1691 / 1876 |
+| Tocantins               | 302 Norte, Alameda 01, Lote 01 A, Palmas                        | Palmas      | TO   | 77.006-336 | (63) 3219-5200/ 5201/ 5240           |
+
+## Mapas de ligação entre as glebas e as Superintendências Regionais.
+
+Os mapas abaixo mostram as distribuições de distâncias dos centroides das gelbas federais em relação à superintendência regional do INCRA na qual está sua sede administrativa.
+
+:::{.column-body-outset}
+```{python}
+#| echo: false
+# Bibliotecas
+sr_incra = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp')
+sr_nome = sr_incra['sr_nome']
+hub_original_lnh = gpd.read_file('../drive/hub/hub_lin_sr.shp')
+hub_cent_origem = gpd.read_file('../drive/hub/hub_pto_sr.shp')
+for sr in sr_nome:
+    display(Markdown(f'### Superintendência Regional do {sr}.'))
+    fig1, ax1 = plt.subplots(figsize=(15,8))
+    uf[uf['amaz_legal']==1].plot(ax=ax1, alpha=0.2, color='grey',edgecolor='black')
+    hub_original_lnh[hub_original_lnh['sr_nome']==sr].plot(ax=ax1, zorder=1, aspect=1)
+    sr_incra[sr_incra['sr_nome']==sr].plot(ax=ax1, color='red')
+    pto_sr_x = sr_incra[sr_incra['sr_nome']==sr]['geometry'].x
+    pto_sr_y = sr_incra[sr_incra['sr_nome']==sr]['geometry'].y
+    ax1.annotate(f'SR do {sr}', xy=(pto_sr_x,pto_sr_y), size=10,va="bottom", ha="left",
+                    xytext=((pto_sr_x+1),(pto_sr_y+1)),
+                    bbox=dict(boxstyle="round", pad=0.1, fc="w"),
+                    arrowprops=dict(arrowstyle="-|>",
+                    connectionstyle="arc3,rad=-0.5",
+                    fc="w"))
+
+    hub_cent_origem[hub_cent_origem['sr_nome']==sr].plot(ax=ax1, alpha=0.2, color='orange', marker='+', zorder=1, aspect=1)
+
+    plt.xlabel('Longitude (°)')
+    plt.ylabel('Latitude (°)')
+    plt.grid()
+    plt.show()
+```
+:::
+
+
+### Distâncias médias e máximas das glebas em relação à sua Superintendência Regional do INCRA.
+
+:::{.table-center}
+```{python}
+#| echo: false
+
+hub_original = hub_original_lnh[['sr_nome', 'dis_hub_km']].copy()
+hub_original_agg = hub_original.groupby('sr_nome').max()
+hub_original_agg['dist-mean'] = hub_original.groupby('sr_nome').agg({
+    'dis_hub_km':'mean',
+})
+hub_original_agg.reset_index(inplace=True)
+hub_original_agg.rename(columns={
+    'sr_nome':'Superintendência',
+    'dis_hub_km': 'Distância Máxima (km)',
+    'dist-mean': 'Distância Média (km)'
+}).to_html(index=False)
+```
+:::
+
+## Redistribuição das glebas nas Superintendências por menor distânica.
+
+Os mapa abaixos foram criados levando-se em conta a distribuição das glebas fedrais nas superintendências mais próximas numa distância em linha reta, outros fatores devem ser considerados numa possível redistribuição das unidades administrativas das glebas tais como: forma de acesso, quantidades de servidores em cada suerintendência, ...
+
+Uma camada de acessoas roteáveis pode aumentar a precisão na tomada de decisões tornando possível a utilização de algorítimos para determinar trajeto mais curto ou mais eficiente.
+
+A redistribuição das glebas em locais administrativos mais próximos pode, não só, beneficiar o INCRA na economia de recursos e diminuição nos prazos de atendimento quento aos beneficiários que terão o local para solicitações e atendimento mais próximo.
+
+:::{.column-body-outset}
+```{python}
+#| echo: false
+# Bibliotecas
+sr_incra = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp')
+sr_nome = sr_incra['sr_nome']
+hub_calculado_lnh = gpd.read_file('../drive/hub/hub_lin_calc_menor_dist_sr.shp')
+hub_cent_calculado = gpd.read_file('../drive/hub/hub_pto_calc_menor_dist_sr.shp')
+for sr in sr_nome:
+    display(Markdown(f'### Superintendência Regional do {sr}.'))
+    fig1, ax1 = plt.subplots(figsize=(15,8))
+    uf[uf['amaz_legal']==1].plot(ax=ax1, alpha=0.2, color='grey',edgecolor='black')
+    hub_calculado_lnh[hub_calculado_lnh['sr_nome']==sr].plot(ax=ax1, zorder=1, aspect=1)
+    sr_incra[sr_incra['sr_nome']==sr].plot(ax=ax1, color='red')
+    pto_sr_x = sr_incra[sr_incra['sr_nome']==sr]['geometry'].x
+    pto_sr_y = sr_incra[sr_incra['sr_nome']==sr]['geometry'].y
+    ax1.annotate(f'SR do {sr}', xy=(pto_sr_x,pto_sr_y), size=10,va="bottom", ha="left",
+                    xytext=((pto_sr_x+1),(pto_sr_y+1)),
+                    bbox=dict(boxstyle="round", pad=0.1, fc="w"),
+                    arrowprops=dict(arrowstyle="-|>",
+                    connectionstyle="arc3,rad=-0.5",
+                    fc="w"))
+
+    hub_cent_calculado[hub_cent_calculado['sr_nome']==sr].plot(ax=ax1, alpha=0.2, color='orange', marker='+', zorder=1, aspect=1)
+
+    plt.xlabel('Longitude (°)')
+    plt.ylabel('Latitude (°)')
+    plt.grid()
+    plt.show()
+```
+:::
+
+### Distâncias médias e máximas das glebas em relação à sua Superintendência Regional do INCRA recalculada.
+
+:::{.table-center}
+```{python}
+#| echo: false
+hub_recalculado = gpd.read_file("../drive/hub/hub_lin_calc_menor_dist_sr.shp")
+hub_recalculado_agg = hub_recalculado.drop(['sr', 'endereço', 'cidade', 'uf', 'cep', 'tel', 'local', 'nome_gleba', 'nome_comp','uf_nome', 'geometry'], axis=1).copy().groupby('sr_nome').max()
+hub_recalculado_agg['dis-mean'] = hub_recalculado.groupby('sr_nome').agg({
+    'HubDist':'mean',
+})
+hub_recalculado_agg.reset_index(inplace=True)
+hub_recalculado_agg.rename(columns={
+    'sr_nome':'Superintendência',
+    'HubDist': 'Distância Máxima (km)',
+    'dis-mean': 'Distância Média (km)'
+}).to_html(index=False)
+```
+:::

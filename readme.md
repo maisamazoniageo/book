@@ -1,3 +1,3 @@
-# Anaĺise de Glebas Federais
+# Análise de Glebas Federais
 
 Acesso: [book](https://maisamazoniageo.github.io/book/)

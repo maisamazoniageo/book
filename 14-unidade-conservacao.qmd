@@ -134,9 +134,15 @@ plt.show()
 ```{python}
 #| echo: false
 
-floresta[floresta['area-estudo']==1].groupby('tipo').agg({
+floresta_tipo = floresta[floresta['area-estudo']==1].groupby('tipo').agg({
   'area_ha':'sum'
-}).to_html()
+})
+floresta_tipo.reset_index(inplace=True)
+floresta_tipo.rename(columns={
+  'tipo':'Tipo de Floresta Publica',
+  'area_ha': 'Área (ha)'
+})
+
 ```
 :::{.text-justify}
 A denominação de florestas publicas parece abranger integralmentes as poligonais já classificadas em outras atividades tais como áreas de assentamentos federais, assim, a denominação que pode remeter a uma área de vegetação nativa não é a realizada das poligonais existentes na base de dados.

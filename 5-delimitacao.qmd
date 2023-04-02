@@ -22,6 +22,7 @@ pd.set_option('display.precision', 4)
 
 ## Mapa das Glebas Públicas Federais dentro da área de estudo.
 
+:::{.column-body-outset}
 ```{python}
 #| echo: false
 glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
@@ -29,6 +30,8 @@ area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-ma
 uf = gpd.read_file('../drive/uf.shp')
 #glebas.info()
 ```
+:::
+
 :::{.column-body-outset}
 ```{python}
 #| echo: false

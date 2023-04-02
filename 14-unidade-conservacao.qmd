@@ -77,6 +77,8 @@ plt.show()
 ```
 :::
 
+### Unidade de Conservação por Categoria
+
 ```{python}
 #| echo: false
 
@@ -92,7 +94,22 @@ uc_tab.rename(columns={'categori3':'Categoria da Unidade de Conservação',
           }).to_html(index=False)
 ```
 
+### Unidade de Conservação por unidade da federação
 
+```{python}
+#| echo: false
+
+uc_tab = uc[uc['area-estudo']==1].groupby('categori3').agg({
+  'id_uc0':'count',
+  'area_km':'sum'
+})
+
+uc_tab.reset_index(inplace=True)
+uc_tab.rename(columns={'categori3':'Categoria da Unidade de Conservação',
+                      'id_uc0':'Quantidade',
+                      'area_km':'Área (km²)'
+          }).to_html(index=False)
+```
 ## Cadastro Nacional de Florestas Públicas (CNFP)
 
 :::{text-justify}

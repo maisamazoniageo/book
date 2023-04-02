@@ -2,7 +2,7 @@ project:
   type: book
   output-dir: docs
 
-
+jupyter: python3
 
 book:
   sidebar:
@@ -28,6 +28,7 @@ book:
     - 12-sncr.qmd
     - 13-terra-indigena.qmd
     - 14-unidade-conservacao.qmd
+    - 15-municipio-1.qmd
     - summary.qmd
     - references.qmd
 bibliography: references.bib
@@ -52,7 +53,7 @@ format:
     number-depth: 3
 
 lenguage:
-  leng: pt-BR
+  leng: pt
 
 plugins:
   - mkquartodocs

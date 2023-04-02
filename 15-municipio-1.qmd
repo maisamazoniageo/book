@@ -1,0 +1,69 @@
+# Análise de município - Maués-AM.
+
+::: {.callout-note}
+**Análises**
+
+**_Perguntas_**
+
+1. área do município em km²
+2. área com gleba
+3. listagem de glebas no município
+4. percentual de gleba no município
+5. área de TI no município
+6. lista de TI no município 
+7. percentual de área ocupada po TI
+8. área de UC no município
+9. lista de UC no município
+10. percentual de UC no município
+11. área de PA no município
+12. lista de PA no município
+13. percentual de PA no município
+14. 
+
+
+
+**_Problemas_**
+:::
+
+
+```{python}
+#| echo: false
+
+municipio = 'Maués'
+cod_ibge = '1302900'
+
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
+uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
+mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
+mun = mun[mun['cd_mun']==cod_ibge]
+```
+
+## Informações Gerais.
+
+O município de `python  municipio` 
+
+:::{.column-page}
+```{python}
+#| echo: false
+fig_uc, ax_uc = plt.subplots(figsize=(13,8))
+area_estudo.plot(ax=ax_uc,facecolor="none", edgecolor="black")
+uf[uf['amaz_legal']==1].plot(ax=ax_uc,facecolor="none", edgecolor="grey")
+uc[uc['area-estudo']==1].plot(ax=ax_uc, alpha=0.5, column='categori3', legend=True,
+                                          legend_kwds={'loc': 'center left',
+                                          'bbox_to_anchor':(1,0.5)})
+plt.show()
+```
+:::
+
+

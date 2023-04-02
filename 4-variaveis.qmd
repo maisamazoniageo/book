@@ -9,7 +9,7 @@ Com o intuito de padronizar o procedimento de coleta de dados e levantamento das
 - Será obrigatório o preenchimento de todos os campos; 
 - Quando não localizar a informação de qualquer campo, é necessário preencher com **“N/C”**;
 - Todos os campos deverão ser preenchidos em **“CAIXA ALTA”**. _**Ex: GLEBA XIRIRI”.**_
-- NÃO poderá preencher os campos com caracteres especiais TODO: definir quais são esses caracterers especiais, usando a regex seria [a-zA-Zà-úÀ-Ú0-9] que representa uma letra qualquer que pode estar no intervalo de a-z ou, de A-Z, ou de à-ú, ou de À-Ú, ou um número que pode estar entre 0 ou 9.;
+- NÃO poderá preencher os campos com caracteres especiais;
 
 ## Informação sobre os imóveis
 
@@ -150,8 +150,8 @@ Com o intuito de padronizar o procedimento de coleta de dados e levantamento das
 - Fonte de Coleta Primária: Processo do Imóvel;
 - Fonte de Coleta Secundária: Pesquisa nos documentos disponíveis e em sites como:
 
-    - [Diário Oficial da Unuão](https://www.in.gov.br/servicos/diario-oficial-da-uniao)
-    - [Câmara Federal](https://www.camara.leg.br/legislacao)
+    - [Diário Oficial da Unuão](https://www.in.gov.br/servicos/diario-oficial-da-uniao){target="_blank"}
+    - [Câmara Federal](https://www.camara.leg.br/legislacao){target="_blank"}
 
 *Número do ato de incorporação*
 

@@ -10,15 +10,24 @@ As camadas utilizadas estão compiladas em um bando de dados espacial geopackage
 |Nome da Tabela                   |Geometria      |EPSG              |descrição|
 |--------------                   |---------      |----              |---------|
 |amazonia-legal                   |MULTIPOLYGON   |SIRGAS 2000 (4674)| 
-| area-estudo                     |MULTIPOLYGON   |SIRGAS 2000 (4674)| 
-| faixa-fronteira-150km           |MULTIPOLYGON   |SIRGAS 2000 (4674)|
-| gleba-centroid-hub_sr           |MULTILINESTRING|SIRGAS 2000 (4674)|
+|area-estudo                      |MULTIPOLYGON   |SIRGAS 2000 (4674)| 
+|faixa-fronteira-150km            |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+|florestas-publicas               |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+|gleba-centroid-hub_sr            |MULTILINESTRING|SIRGAS 2000 (4674)|
 |glebas-centroid                  |POINT          |SIRGAS 2000 (4674)|
 |glebas-centroid-hub-menos-dist-sr|MULTILINESTRING|SIRGAS 2000 (4674)|
 |glebas-centroid-menor-dist-sr    |POINT          |SIRGAS 2000 (4674)|
 |glebas-mais-amazonia             |MULTIPOLYGON   |SIRGAS 2000 (4674)|
 |municipios-area-estudo           |MULTIPOLYGON   |SIRGAS 2000 (4674)|
 |sr_incra                         |POINT          |SIRGAS 2000 (4674)|
+|ti-geral                         |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+|ti-geral-pts                     |POINT          |SIRGAS 2000 (4674)|
+|ti-portarias                     |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+|ti-portarias-pts                 |POINT          |SIRGAS 2000 (4674)|
+|uc                               |MULTIPOLYGON   |SIRGAS 2000 (4674)|
 |uf-brasil                        |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+
+
+
 
 

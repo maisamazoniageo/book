@@ -217,20 +217,6 @@
     "text": "14.2 Cadastro Nacional de Florestas Públicas (CNFP)\n\nO Cadastro Nacional de Florestas Públicas (CNFP) é um instrumento de planejamento da gestão florestal, que reúne dados georreferenciados sobre as florestas públicas brasileiras, de modo a oferecer aos gestores públicos e à população em geral uma base confiável de mapas, imagens e dados com informações relevantes para a gestão florestal. Os dados do CNFP auxiliam os processos de destinação das florestas públicas para uso comunitário, criação de unidades de conservação e realização de concessões florestais. O Cadastro contribui para a transparência, a participação social e unificação das informações sobre as florestas públicas.\nO CNFP é formado pelo Cadastro de Florestas Públicas da União, pelos Cadastros de Florestas Públicas dos estados, Distrito Federal e municípios e está em processo de interligação ao Sistema Nacional de Cadastro Rural (SNCR) do Instituto Nacional de Colonização e Reforma Agrária (INCRA).\nO cadastramento das florestas públicas segue três etapas:\n\nIdentificação - mapeamento das florestas localizadas em áreas públicas;\nDelimitação- averbação (registro) do perímetro da floresta junto à matricula do imóvel público;\nDemarcação - implantação de marcos topográficos e colocação de placas informativas no campo.\n\nExistem três tipos de florestas públicas federais:\n\nFlorestas Públicas do TIPO A (FPA) - São florestas que apresentam destinação e dominialidade específica como as Unidades de Conservação da Natureza, as Terras Indígenas, os Assentamentos Rurais Públicos, as áreas militares e outras formas de destinação previstas em lei. São destinadas à proteção e conservação do meio ambiente e uso de comunidades tradicionais\nFlorestas Públicas do TIPO B (FPB) - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas.\nFlorestas Públicas do TIPO C (FPC) - São as florestas localizadas em áreas de dominialidade indefinida, comumente chamadas de terras devolutas.\n\nfonte: Serviço Florestal Brasileiro\n\n\n14.2.1 Quantificação das florestas publicas por tipo\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipo de Floresta Publica\n\n\n\nÁrea (ha)\n\n\n\n\n\n\n\n\n\n\n\nTIPO A\n\n\n\n235982649\n\n\n\n\n\n\n\nTIPO B\n\n\n\n62989475\n\n\n\n\n\n\n\n\n\n\n\nA denominação de florestas publicas parece abranger integralmentes as poligonais já classificadas em outras atividades tais como áreas de assentamentos federais, assim, a denominação que pode remeter a uma área de vegetação nativa não é a realizada das poligonais existentes na base de dados.\nAs áreas mensuradas como florestas publicas abrangem divérsos uso do solo distintos de vegetação nativa, levando à conclusões equivocadas quando do uso da totalização de área.\nSeguindo a definição do Serviço Florestal Brasileiro, as florestas publicas do Tipo A - lorestas que apresentam destinação e dominialidade específica, somariam 235.982.649 de hectares e as do Tipo B - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas somariam 62.989.475 de hectares. Porém esse número não corresponde à área ocupada por vergetação nativa nos respectivos polígonos."
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "15  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever."
-  },
-  {
-    "objectID": "references.html#banco-de-dados-espacial---geopackage",
-    "href": "references.html#banco-de-dados-espacial---geopackage",
-    "title": "References",
-    "section": "Banco de dados espacial - geopackage",
-    "text": "Banco de dados espacial - geopackage\nAs camadas utilizadas estão compiladas em um bando de dados espacial geopackage. A especificação GeoPackage descreve um conjunto de convenções para armazenamento de dados espaciais dentro de um banco de dados SQLite: Podem compor um gpkg: Vetores. Tiles, arquivos raster e matrizes em várias escalas.\n\n\n\n\n\n\n\n\n\nNome da Tabela\nGeometria\nEPSG\ndescrição\n\n\n\n\namazonia-legal\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\narea-estudo\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nfaixa-fronteira-150km\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nflorestas-publicas\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\ngleba-centroid-hub_sr\nMULTILINESTRING\nSIRGAS 2000 (4674)\n\n\n\nglebas-centroid\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nglebas-centroid-hub-menos-dist-sr\nMULTILINESTRING\nSIRGAS 2000 (4674)\n\n\n\nglebas-centroid-menor-dist-sr\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nglebas-mais-amazonia\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nmunicipios-area-estudo\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nsr_incra\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nti-geral\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nti-geral-pts\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nti-portarias\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nti-portarias-pts\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nuc\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nuf-brasil\nMULTIPOLYGON\nSIRGAS 2000 (4674)"
-  },
-  {
     "objectID": "15-municipio-1.html#informações-gerais.",
     "href": "15-municipio-1.html#informações-gerais.",
     "title": "15  Análise de município - Maués-AM.",
@@ -257,5 +243,19 @@
     "title": "15  Análise de município - Maués-AM.",
     "section": "15.4 Terras Indígenas no Município",
     "text": "15.4 Terras Indígenas no Município\n\n15.4.1 Mapa de Terras Indígenas"
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "16  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever."
+  },
+  {
+    "objectID": "references.html#banco-de-dados-espacial---geopackage",
+    "href": "references.html#banco-de-dados-espacial---geopackage",
+    "title": "References",
+    "section": "Banco de dados espacial - geopackage",
+    "text": "Banco de dados espacial - geopackage\nAs camadas utilizadas estão compiladas em um bando de dados espacial geopackage. A especificação GeoPackage descreve um conjunto de convenções para armazenamento de dados espaciais dentro de um banco de dados SQLite: Podem compor um gpkg: Vetores. Tiles, arquivos raster e matrizes em várias escalas.\n\n\n\n\n\n\n\n\n\nNome da Tabela\nGeometria\nEPSG\ndescrição\n\n\n\n\namazonia-legal\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\narea-estudo\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nfaixa-fronteira-150km\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nflorestas-publicas\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\ngleba-centroid-hub_sr\nMULTILINESTRING\nSIRGAS 2000 (4674)\n\n\n\nglebas-centroid\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nglebas-centroid-hub-menos-dist-sr\nMULTILINESTRING\nSIRGAS 2000 (4674)\n\n\n\nglebas-centroid-menor-dist-sr\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nglebas-mais-amazonia\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nmunicipios-area-estudo\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nsr_incra\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nti-geral\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nti-geral-pts\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nti-portarias\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nti-portarias-pts\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nuc\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nuf-brasil\nMULTIPOLYGON\nSIRGAS 2000 (4674)"
   }
 ]

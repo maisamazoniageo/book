@@ -25,6 +25,7 @@
 **_Problemas_**
 :::
 
+## Informações Gerais.
 
 ```{python}
 #| echo: false
@@ -45,25 +46,66 @@ area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
 uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
 sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
 uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
+ti=gpd.read_file('../glebas-federais.gpkg', layer='ti-portarias')
+ti = ti.set_crs(4674, allow_override=True)
 mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
 mun = mun[mun['cd_mun']==cod_ibge]
+fig, ax = plt.subplots(figsize=(13,8))
+area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
+uf[uf['amaz_legal']==1].plot(ax=ax, facecolor='none', edgecolor='red')
+mun.plot(ax=ax)
+ax.annotate(f'{municipio}', xy=(mun.x, mun.y), size=12)
+plt.show()
+mun[['nm_uf','sigla','cd_mun','nm_mun','area_tot']].rename(columns={
+    'nm_uf':'Estado',
+    'sigla':'UF',
+    'cd_mun':'Código do Município',
+    'nm_mun':'Nome do Município',
+    'area_tot':'Área do Município (km²)'
+})
 ```
 
-## Informações Gerais.
+## Glebas Federais no Município
 
-O município de `python  municipio` 
-
-:::{.column-page}
+### Mapa de Glebas
 ```{python}
 #| echo: false
-fig_uc, ax_uc = plt.subplots(figsize=(13,8))
-area_estudo.plot(ax=ax_uc,facecolor="none", edgecolor="black")
-uf[uf['amaz_legal']==1].plot(ax=ax_uc,facecolor="none", edgecolor="grey")
-uc[uc['area-estudo']==1].plot(ax=ax_uc, alpha=0.5, column='categori3', legend=True,
-                                          legend_kwds={'loc': 'center left',
-                                          'bbox_to_anchor':(1,0.5)})
+fig1, ax1 = plt.subplots(figsize=(13,8))
+gleba_mun = glebas.sjoin(mun, how='inner')
+mun.plot(ax=ax1, facecolor='none', edgecolor='black')
+gleba_mun.plot(ax=ax1, column='nome_gleba', alpha=0.7, cmap='Pastel2', legend=True,
+legend_kwds={'loc': 'center left',
+'bbox_to_anchor':(1,0.5)})
+plt.show()
+
+```
+
+## Unidades de Conservação no Município
+
+### Mapa de Unidades de Conservação
+```{python}
+#| echo: false
+fig2, ax2 = plt.subplots(figsize=(13,8))
+uc_mun = uc.sjoin(mun, how='inner')
+mun.plot(ax=ax2, facecolor='none', edgecolor='black')
+uc_mun.plot(ax=ax2, column='nome_uc1', alpha=0.7, cmap='Pastel2', legend=True,
+legend_kwds={'loc': 'center left',
+'bbox_to_anchor':(1,0.5)})
+plt.show()
+
+```
+
+
+## Terras Indígenas no Município
+
+### Mapa de Terras Indígenas
+```{python}
+#| echo: false
+fig3, ax3 = plt.subplots(figsize=(13,8))
+ti_mun = ti.sjoin(mun, how='inner')
+mun.plot(ax=ax3, facecolor='none', edgecolor='black')
+ti_mun.plot(ax=ax3, column='terrai_nom', alpha=0.7, cmap='Pastel2', legend=True,
+legend_kwds={'loc': 'center left',
+'bbox_to_anchor':(1,0.5)})
 plt.show()
 ```
-:::
-
-

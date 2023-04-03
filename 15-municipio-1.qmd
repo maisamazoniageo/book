@@ -22,6 +22,9 @@
 
 
 **_Problemas_**
+
+1. Glebas com nomes semelhantes com grafias diferentes resultando em um agrupamento de cálculo de somatóriao de áreas com possibilidade de erro caso seja a mesma área;
+2. 
 :::
 
 ## Informações Gerais.
@@ -34,12 +37,14 @@ cod_ibge = '1302900'
 
 import geopandas as gpd
 import pandas as pd
+import locale
 import numpy as np
 import os
 import matplotlib.pyplot as plt
 from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.4f}'.format
 pd.set_option('display.precision', 4)
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
 area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
 uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
@@ -49,19 +54,28 @@ ti=gpd.read_file('../glebas-federais.gpkg', layer='ti-portarias')
 ti = ti.set_crs(4674, allow_override=True)
 mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
 mun = mun[mun['cd_mun']==cod_ibge]
+```
+
+```{python}
+#| echo: false
+
 fig, ax = plt.subplots(figsize=(13,8))
 area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
 uf[uf['amaz_legal']==1].plot(ax=ax, facecolor='none', edgecolor='red')
 mun.plot(ax=ax)
 ax.annotate(f'{municipio}', xy=(mun.x, mun.y), size=12)
+plt.grid(visible=True)
 plt.show()
+
+
+
 mun[['nm_uf','sigla','cd_mun','nm_mun','area_tot']].rename(columns={
     'nm_uf':'Estado',
     'sigla':'UF',
     'cd_mun':'Código do Município',
     'nm_mun':'Nome do Município',
     'area_tot':'Área do Município (km²)'
-})
+}).to_html(index=False)
 ```
 
 ## Glebas Federais no Município
@@ -75,8 +89,47 @@ mun.plot(ax=ax1, facecolor='none', edgecolor='black')
 gleba_mun.plot(ax=ax1, column='nome_gleba', alpha=0.7, cmap='Pastel2', legend=True,
 legend_kwds={'loc': 'center left',
 'bbox_to_anchor':(1,0.5)})
+plt.grid(visible=True)
+plt.show()
+```
+
+### Área do município com Glebas Federais
+
+```{python}
+#| echo: false
+gleba_mun_clip = gleba_mun.overlay(mun, how='intersection')
+gleba_mun_clip.plot(column='nome_gleba', alpha=0.7, cmap='Pastel2', legend=True,
+legend_kwds={'loc': 'center left',
+'bbox_to_anchor':(1,0.5)})
+plt.grid(visible=True)
 plt.show()
 
+gleba_mun_clip['area_clip']= (gleba_mun_clip.to_crs(5880).area)/1000000
+
+display(Markdown('### Tabela de Glebas Federais no Município e suas áreas'))
+gleba_mun_clip.groupby('nome_gleba').agg({
+    'area_clip':'sum'
+}).rename(columns={
+    'nome_gleba':'Nome da Gleba Federal',
+    'area_clip':'Área (km²)'
+}).to_html()
+```
+
+```{python}
+#| echo: false
+
+display(Markdown('### Área total de Glebas Federais no Município'))
+area_municipal = round(mun['area_tot'],4)
+area_total_glebas = round(gleba_mun_clip['area_clip'].sum(),4)
+percentual_glebas = round((area_total_glebas/area_municipal)*100,2)
+percentual_glebas = locale.currency(percentual_glebas.values[0], grouping=True, symbol=None)
+area_total_glebas = locale.currency(area_total_glebas, grouping=True, symbol=None)
+
+display(Markdown(f"**{area_total_glebas} km²**"))
+
+display(Markdown('### Percentual do município ocupado por glebas federais'))
+
+display(Markdown(f"**{percentual_glebas} %**"))
 ```
 
 ## Unidades de Conservação no Município
@@ -90,6 +143,7 @@ mun.plot(ax=ax2, facecolor='none', edgecolor='black')
 uc_mun.plot(ax=ax2, column='nome_uc1', alpha=0.7, cmap='Pastel2', legend=True,
 legend_kwds={'loc': 'center left',
 'bbox_to_anchor':(1,0.5)})
+plt.grid(visible=True)
 plt.show()
 
 ```
@@ -103,8 +157,10 @@ plt.show()
 fig3, ax3 = plt.subplots(figsize=(13,8))
 ti_mun = ti.sjoin(mun, how='inner')
 mun.plot(ax=ax3, facecolor='none', edgecolor='black')
+#ax3.set_xlim(-60, -55)
 ti_mun.plot(ax=ax3, column='terrai_nom', alpha=0.7, cmap='Pastel2', legend=True,
 legend_kwds={'loc': 'center left',
 'bbox_to_anchor':(1,0.5)})
+plt.grid(visible=True)
 plt.show()
 ```

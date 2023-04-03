@@ -60,9 +60,6 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -238,41 +235,80 @@ Note
 <li>percentual de PA no município</li>
 </ol>
 <p><strong><em>Problemas</em></strong></p>
+<ol type="1">
+<li>Glebas com nomes semelhantes com grafias diferentes resultando em um agrupamento de cálculo de somatóriao de áreas com possibilidade de erro caso seja a mesma área;</li>
+<li></li>
+</ol>
 </div>
 </div>
 <section id="informações-gerais." class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="informações-gerais."><span class="header-section-number">15.1</span> Informações Gerais.</h2>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<p><img src="15-municipio-1_files/figure-html/cell-2-output-1.png" width="870" height="633"></p>
+<p><img src="15-municipio-1_files/figure-html/cell-3-output-1.png" width="870" height="633"></p>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-
-<div>
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Estado</th>
-      <th>UF</th>
-      <th>Código do Município</th>
-      <th>Nome do Município</th>
-      <th>Área do Município (km²)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>199</th>
-      <td>Amazonas</td>
-      <td>AM</td>
-      <td>1302900</td>
-      <td>Maués</td>
-      <td>39991.0660</td>
-    </tr>
-  </tbody>
+
+<thead>
+
+<tr>
+
+<th>
+Estado
+</th>
+
+<th>
+UF
+</th>
+
+<th>
+Código do Município
+</th>
+
+<th>
+Nome do Município
+</th>
+
+<th>
+Área do Município (km²)
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+Amazonas
+</td>
+
+<td>
+AM
+</td>
+
+<td>
+1302900
+</td>
+
+<td>
+Maués
+</td>
+
+<td>
+39991.0660
+</td>
+
+</tr>
+
+</tbody>
+
+
 </table>
-</div>
 </div>
 </div>
 </section>
@@ -280,20 +316,250 @@ Note
 <h2 data-number="15.2" class="anchored" data-anchor-id="glebas-federais-no-município"><span class="header-section-number">15.2</span> Glebas Federais no Município</h2>
 <section id="mapa-de-glebas" class="level3" data-number="15.2.1">
 <h3 data-number="15.2.1" class="anchored" data-anchor-id="mapa-de-glebas"><span class="header-section-number">15.2.1</span> Mapa de Glebas</h3>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
-<p><img src="15-municipio-1_files/figure-html/cell-3-output-1.png" width="582" height="633"></p>
+<p><img src="15-municipio-1_files/figure-html/cell-4-output-1.png" width="582" height="633"></p>
 </div>
 </div>
 </section>
+<section id="área-do-município-com-glebas-federais" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="área-do-município-com-glebas-federais"><span class="header-section-number">15.2.2</span> Área do município com Glebas Federais</h3>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<p><img src="15-municipio-1_files/figure-html/cell-5-output-1.png" width="424" height="411"></p>
+</div>
+<section id="tabela-de-glebas-federais-no-município-e-suas-áreas" class="level3 cell-output cell-output-display" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="tabela-de-glebas-federais-no-município-e-suas-áreas"><span class="header-section-number">15.2.3</span> Tabela de Glebas Federais no Município e suas áreas</h3>
+</section>
+<div class="cell-output cell-output-display" data-execution_count="4">
+
+<table class="dataframe table table-sm table-striped">
+
+<thead>
+
+<tr>
+
+<th>
+</th>
+
+<th>
+Área (km²)
+</th>
+
+</tr>
+
+<tr>
+
+<th>
+nome_gleba
+</th>
+
+<th>
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+ABACAXIS
+</th>
+
+<td>
+2.5745
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+GLEBA GUARANOPOLIS
+</th>
+
+<td>
+0.0368
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+GLEBA GUARANÓPOLIS
+</th>
+
+<td>
+973.4844
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+GLEBA PARAUARI
+</th>
+
+<td>
+1.8713
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+GLEBA SÃO BENEDITO
+</th>
+
+<td>
+488.2878
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+GLEBA_GUARANOPOLIS
+</th>
+
+<td>
+0.7982
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+GLEBA_PARAUARI
+</th>
+
+<td>
+4702.3993
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+IMÓVEL BUIUÇÚ
+</th>
+
+<td>
+3891.8419
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+MARI-MARI
+</th>
+
+<td>
+18.6758
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+PARACONI
+</th>
+
+<td>
+12868.3575
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+PIRAQUARA
+</th>
+
+<td>
+0.1318
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+SUCUNDURI
+</th>
+
+<td>
+1.5496
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+SÃO BENEDITO
+</th>
+
+<td>
+1153.0266
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+URUPADI
+</th>
+
+<td>
+4739.3712
+</td>
+
+</tr>
+
+</tbody>
+
+
+</table>
+</div>
+</div>
+</section>
+<div class="cell" data-execution_count="5">
+<section id="área-total-de-glebas-federais-no-município" class="level3 cell-output cell-output-display" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="área-total-de-glebas-federais-no-município"><span class="header-section-number">15.2.4</span> Área total de Glebas Federais no Município</h3>
+</section>
+<div class="cell-output cell-output-display">
+<p><strong>28.842,41 km²</strong></p>
+</div>
+<section id="percentual-do-município-ocupado-por-glebas-federais" class="level3 cell-output cell-output-display" data-number="15.2.5">
+<h3 data-number="15.2.5" class="anchored" data-anchor-id="percentual-do-município-ocupado-por-glebas-federais"><span class="header-section-number">15.2.5</span> Percentual do município ocupado por glebas federais</h3>
+</section>
+<div class="cell-output cell-output-display">
+<p><strong>72,12 %</strong></p>
+</div>
+</div>
 </section>
 <section id="unidades-de-conservação-no-município" class="level2" data-number="15.3">
 <h2 data-number="15.3" class="anchored" data-anchor-id="unidades-de-conservação-no-município"><span class="header-section-number">15.3</span> Unidades de Conservação no Município</h2>
 <section id="mapa-de-unidades-de-conservação" class="level3" data-number="15.3.1">
 <h3 data-number="15.3.1" class="anchored" data-anchor-id="mapa-de-unidades-de-conservação"><span class="header-section-number">15.3.1</span> Mapa de Unidades de Conservação</h3>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
-<p><img src="15-municipio-1_files/figure-html/cell-4-output-1.png" width="716" height="633"></p>
+<p><img src="15-municipio-1_files/figure-html/cell-7-output-1.png" width="716" height="633"></p>
 </div>
 </div>
 </section>
@@ -302,9 +568,9 @@ Note
 <h2 data-number="15.4" class="anchored" data-anchor-id="terras-indígenas-no-município"><span class="header-section-number">15.4</span> Terras Indígenas no Município</h2>
 <section id="mapa-de-terras-indígenas" class="level3" data-number="15.4.1">
 <h3 data-number="15.4.1" class="anchored" data-anchor-id="mapa-de-terras-indígenas"><span class="header-section-number">15.4.1</span> Mapa de Terras Indígenas</h3>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
-<p><img src="15-municipio-1_files/figure-html/cell-5-output-1.png" width="531" height="633"></p>
+<p><img src="15-municipio-1_files/figure-html/cell-8-output-1.png" width="531" height="633"></p>
 </div>
 </div>
 

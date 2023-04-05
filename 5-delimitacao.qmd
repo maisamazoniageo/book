@@ -35,7 +35,7 @@ uf = gpd.read_file('../drive/uf.shp')
 :::{.column-body-outset}
 ```{python}
 #| echo: false
-fig, ax = plt.subplots(figsize=(15,8))
+fig, ax = plt.subplots()
 uf.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
 area_estudo.plot(ax=ax, alpha=0.2, color='blue')
 glebas[glebas['amaz_legal']==1].plot(ax=ax, column='uf', categorical=True, figsize=(8,20), legend=True, zorder=2,
@@ -78,7 +78,7 @@ display(glebas_area_tot_uf.to_html(index=False))
 #| echo: false
 for estado in glebas[glebas['amaz_legal']==1]['uf'].unique():
     
-    fig, ax = plt.subplots(figsize=(13,6))
+    fig, ax = plt.subplots()
     uf[uf['SIGLA']==estado].plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
     #area_estudo.plot(ax=ax, alpha=0.2, color='blue')
     glebas[(glebas['amaz_legal']==1) & (glebas['uf']==estado)].plot(ax=ax, column='uf', categorical=True, figsize=(8,20), legend=True, zorder=2,

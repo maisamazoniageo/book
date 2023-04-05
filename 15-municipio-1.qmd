@@ -59,7 +59,7 @@ mun = mun[mun['cd_mun']==cod_ibge]
 ```{python}
 #| echo: false
 
-fig, ax = plt.subplots(figsize=(13,8))
+fig, ax = plt.subplots()
 area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
 uf[uf['amaz_legal']==1].plot(ax=ax, facecolor='none', edgecolor='red')
 mun.plot(ax=ax)
@@ -80,39 +80,31 @@ mun[['nm_uf','sigla','cd_mun','nm_mun','area_tot']].rename(columns={
 
 ## Glebas Federais no Município
 
-### Mapa de Glebas
-```{python}
-#| echo: false
-fig1, ax1 = plt.subplots(figsize=(13,8))
-gleba_mun = glebas.sjoin(mun, how='inner')
-mun.plot(ax=ax1, facecolor='none', edgecolor='black')
-gleba_mun.plot(ax=ax1, column='nome_gleba', alpha=0.7, cmap='Pastel2', legend=True,
-legend_kwds={'loc': 'center left',
-'bbox_to_anchor':(1,0.5)})
-plt.grid(visible=True)
-plt.show()
-```
-
 ### Área do município com Glebas Federais
-
 ```{python}
 #| echo: false
+gleba_mun = glebas.sjoin(mun, how='inner')
+fig_gleba2, ax_gleba2 = plt.subplots()
 gleba_mun_clip = gleba_mun.overlay(mun, how='intersection')
-gleba_mun_clip.plot(column='nome_gleba', alpha=0.7, cmap='Pastel2', legend=True,
+gleba_mun_clip.plot(ax=ax_gleba2, column='nome_gleba', alpha=0.7, cmap='Pastel2', legend=True,
 legend_kwds={'loc': 'center left',
 'bbox_to_anchor':(1,0.5)})
+mun.plot(ax=ax_gleba2, facecolor='none', edgecolor='black')
 plt.grid(visible=True)
 plt.show()
 
 gleba_mun_clip['area_clip']= (gleba_mun_clip.to_crs(5880).area)/1000000
 
 display(Markdown('### Tabela de Glebas Federais no Município e suas áreas'))
-gleba_mun_clip.groupby('nome_gleba').agg({
+gleba_mun_fim = gleba_mun_clip.groupby('nome_gleba').agg({
     'area_clip':'sum'
-}).rename(columns={
+})
+gleba_mun_fim.reset_index(inplace=True)
+
+gleba_mun_fim.rename(columns={
     'nome_gleba':'Nome da Gleba Federal',
     'area_clip':'Área (km²)'
-}).to_html()
+}).to_html(index=False)
 ```
 
 ```{python}
@@ -137,30 +129,156 @@ display(Markdown(f"**{percentual_glebas} %**"))
 ### Mapa de Unidades de Conservação
 ```{python}
 #| echo: false
-fig2, ax2 = plt.subplots(figsize=(13,8))
+fig_uc1, ax_uc1  = plt.subplots()
 uc_mun = uc.sjoin(mun, how='inner')
-mun.plot(ax=ax2, facecolor='none', edgecolor='black')
-uc_mun.plot(ax=ax2, column='nome_uc1', alpha=0.7, cmap='Pastel2', legend=True,
+uc_mun_clip = uc_mun.overlay(mun, how='intersection')
+uc_mun_clip.plot(ax=ax_uc1, column='nome_uc1', alpha=0.7, cmap='Pastel2', legend=True,
 legend_kwds={'loc': 'center left',
 'bbox_to_anchor':(1,0.5)})
+mun.plot(ax=ax_uc1, facecolor='none', edgecolor='black')
 plt.grid(visible=True)
 plt.show()
 
+uc_mun_clip['area_clip']= (uc_mun_clip.to_crs(5880).area)/1000000
+
+display(Markdown('### Tabela de Unidades de Conservação no Município e suas áreas'))
+uc_mun_fim = uc_mun_clip.groupby('nome_uc1').agg({
+    'area_clip':'sum'
+})
+uc_mun_fim.reset_index(inplace=True)
+uc_mun_fim.rename(columns={
+    'nome_uc1':'Nome da Unidade de Conservação',
+    'area_clip':'Área (km²)'
+}).to_html(index=False)
 ```
 
+```{python}
+#| echo: false
+
+display(Markdown('### Área total de Unidades de Conservação no Município'))
+area_municipal = round(mun['area_tot'],4)
+area_total_uc = round(uc_mun_clip['area_clip'].sum(),4)
+percentual_uc = round((area_total_uc/area_municipal)*100,2)
+percentual_uc = locale.currency(percentual_uc.values[0], grouping=True, symbol=None)
+area_total_uc = locale.currency(area_total_uc, grouping=True, symbol=None)
+
+display(Markdown(f"**{area_total_uc} km²**"))
+
+display(Markdown('### Percentual do município ocupado por Unidades de Conservação'))
+
+display(Markdown(f"**{percentual_uc} %**"))
+```
 
 ## Terras Indígenas no Município
 
 ### Mapa de Terras Indígenas
 ```{python}
 #| echo: false
-fig3, ax3 = plt.subplots(figsize=(13,8))
+fig_ti, ax_ti1 = plt.subplots()
 ti_mun = ti.sjoin(mun, how='inner')
-mun.plot(ax=ax3, facecolor='none', edgecolor='black')
+ti_mun_clip = ti_mun.overlay(mun, how='intersection')
+mun.plot(ax=ax_ti1, facecolor='none', edgecolor='black')
 #ax3.set_xlim(-60, -55)
-ti_mun.plot(ax=ax3, column='terrai_nom', alpha=0.7, cmap='Pastel2', legend=True,
+ti_mun_clip.plot(ax=ax_ti1, column='terrai_nom', alpha=0.7, cmap='Pastel2', legend=True,
 legend_kwds={'loc': 'center left',
 'bbox_to_anchor':(1,0.5)})
 plt.grid(visible=True)
 plt.show()
+
+
+ti_mun_clip['area_clip']= (ti_mun_clip.to_crs(5880).area)/1000000
+
+display(Markdown('### Tabela de Terras Indígenas no Município e suas áreas'))
+ti_mun_fim = ti_mun_clip.groupby('terrai_nom').agg({
+    'area_clip':'sum'
+})
+ti_mun_fim.reset_index(inplace=True)
+ti_mun_fim.rename(columns={
+    'terrai_nom':'Nome da Terra Indígena',
+    'area_clip':'Área (km²)'
+}).to_html(index=False)
+```
+
+```{python}
+#| echo: false
+
+display(Markdown('### Área total de Terras Indígenas no Município'))
+area_municipal = round(mun['area_tot'],4)
+area_total_ti = round(ti_mun_clip['area_clip'].sum(),4)
+percentual_ti = round((area_total_ti/area_municipal)*100,2)
+percentual_ti = locale.currency(percentual_ti.values[0], grouping=True, symbol=None)
+area_total_ti = locale.currency(area_total_ti, grouping=True, symbol=None)
+
+display(Markdown(f"**{area_total_ti} km²**"))
+
+display(Markdown('### Percentual do município ocupado por Terras Indígenas'))
+
+display(Markdown(f"**{percentual_ti} %**"))
+```
+
+## Análise de Sobreposição sobre as Glebas Federais
+
+### Unidades de Conservação sobre Glebas Federais.
+```{python}
+#| echo: false
+fig_glb_inter_uc, ax_glb_inter_uc = plt.subplots()
+
+glb_inter_uc_clip = gleba_mun_clip.overlay(uc_mun_clip, how='intersection')
+glb_inter_uc_clip.plot(ax=ax_glb_inter_uc, column='nome_uc1', alpha=0.7, cmap='Pastel2', legend=True,
+legend_kwds={'loc': 'center left',
+'bbox_to_anchor':(1,0.5)})
+mun.plot(ax=ax_glb_inter_uc, facecolor='none', edgecolor='black')
+uc_mun_clip.plot(ax=ax_glb_inter_uc, facecolor='none', edgecolor='red')
+plt.grid(visible=True)
+plt.show()
+
+glb_inter_uc_clip['area_clip']= (glb_inter_uc_clip.to_crs(5880).area)/1000000
+
+display(Markdown('### Tabela de Unidades de Conservação sobrepostas às Glebas Federais no Município'))
+glb_inter_uc_fim = glb_inter_uc_clip.groupby('nome_uc1').agg({
+    'area_clip':'sum'
+})
+glb_inter_uc_fim.reset_index(inplace=True)
+display(glb_inter_uc_fim.rename(columns={
+    'nome_uc1':'Nome da Unidade de Conservação',
+    'area_clip':'Área (km²)'
+}).to_html(index=False))
+
+display(Markdown('### Área total de Unidades de Conservação sobrepostas às Glebas Federais no Município'))
+
+display(f'{round(glb_inter_uc_clip["area_clip"].sum(),2)} km²')
+```
+
+### Terras Indígenas sobre Glebas Federais.
+
+
+```{python}
+#| echo: false
+
+fig_glb_inter_ti, ax_glb_inter_ti = plt.subplots()
+glb_inter_ti_clip = gleba_mun_clip.overlay(ti_mun_clip, how='intersection')
+glb_inter_ti_clip.plot(ax=ax_glb_inter_ti, column='terrai_nom', alpha=0.9, cmap='Pastel2', legend=True,
+legend_kwds={'loc': 'center left',
+'bbox_to_anchor':(1,0.5)})
+mun.plot(ax=ax_glb_inter_ti, facecolor='none', edgecolor='black')
+ti_mun_clip.plot(ax=ax_glb_inter_ti, facecolor='none', edgecolor='red')
+plt.grid(visible=True)
+plt.show()
+
+
+glb_inter_ti_clip['area_clip']= (glb_inter_ti_clip.to_crs(5880).area)/1000000
+
+display(Markdown('### Tabela de Terras Indígenas sobrepostas às Glebas Federais no Município'))
+glb_inter_ti_fim = glb_inter_ti_clip.groupby('terrai_nom').agg({
+    'area_clip':'sum'
+})
+glb_inter_ti_fim.reset_index(inplace=True)
+display(glb_inter_ti_fim.rename(columns={
+    'terrai_nom':'Nome da Terra Indígena',
+    'area_clip':'Área (km²)'
+}).to_html(index=False))
+
+display(Markdown('### Área total de Terras Indígenas sobrepostas às Glebas Federais no Município'))
+
+display(f'{round(glb_inter_ti_clip["area_clip"].sum(),2)} km²')
 ```

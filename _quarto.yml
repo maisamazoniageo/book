@@ -41,6 +41,8 @@ format:
     page-layout: full
     css: styles.css
     toc: false
+    fig-width: 9
+    fig-height: 6.5
 
   pdf:
     documentclass: report

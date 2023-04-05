@@ -32,7 +32,7 @@ sr_incra = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.
 sr_nome = sr_incra['sr_nome']
 for sr in sr_nome:
     display(Markdown(f'### Superintendência Regional do {sr}.'))
-    fig1, ax1 = plt.subplots(figsize=(15,8))
+    fig1, ax1 = plt.subplots()
     uf[uf['amaz_legal']==1].plot(ax=ax1, alpha=0.2, color='grey',edgecolor='black')
     glebas[(glebas['sr_nome']==sr) & (glebas['cod_imovel']!='0000000000000')].plot(ax=ax1, zorder=1, aspect=1)
     sr_incra[sr_incra['sr_nome']==sr].plot(ax=ax1, color='red')

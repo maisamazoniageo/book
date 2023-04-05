@@ -1,5 +1,19 @@
 # Glebas com Assentimento prévio do Concelho de Defesa Nacional - CDN.
 
+::: {.callout-note}
+**Análises**
+
+**_Perguntas_**
+
+1. Área de glebas dentro da faixa de fronteira
+
+
+
+**_Problemas_**
+
+1. 
+:::
+
 <div style="text-align: justify">
 
 A Lei Nº 6.634, de 2 de maio de 1979, dispõe sobre a Faixa de Fronteira, altera o Decreto-lei nº 1.135, de 3 de dezembro de 1970, e dá outras providências.
@@ -43,7 +57,7 @@ glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23
 uf = gpd.read_file('../drive/uf.shp')
 fx_fronteira = gpd.read_file('../drive/BR_FaixaFronteira_150km/i3geomap_faixa150km.shp')
 glebas_assentimento = glebas[glebas['faixa_fron']==1]
-fig, ax = plt.subplots(figsize=(15,8))
+fig, ax = plt.subplots()
 uf.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
 fx_fronteira.plot(ax=ax, alpha=0.2, color='orange', edgecolor='red')
 glebas_assentimento.plot(ax=ax, column='sr_nome', categorical=True, figsize=(8,20), legend=True, zorder=2,
@@ -73,7 +87,7 @@ glebas_assentimento.groupby('uf_nome').agg({'uf':'count'}).reset_index().rename(
 
 ```{python}
 #| echo: false
-fig1, ax1 = plt.subplots(figsize=(15,8))
+fig1, ax1 = plt.subplots()
 uf.plot(ax=ax1, alpha=0.2, color='grey',edgecolor='black')
 fx_fronteira.plot(ax=ax1, alpha=0.2, color='orange', edgecolor='red')
 glebas_assentimento[glebas_assentimento['assent_pre']==1].plot(ax=ax1, column='sr_nome', categorical=True, figsize=(8,20), legend=True, zorder=2,

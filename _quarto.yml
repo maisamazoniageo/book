@@ -28,8 +28,11 @@ book:
     - 12-sncr.qmd
     - 13-terra-indigena.qmd
     - 14-unidade-conservacao.qmd
-    - 15-municipio-1.qmd
-    - 16-municipio-2.qmd
+    - 15-municipios.qmd
+    - 15-ac-rodrigues-alves.qmd
+    - 15-ac-xapuri.qmd
+    - 15-am-maues.qmd
+    - 15-am-borba.qmd
     - summary.qmd
     - references.qmd
 bibliography: references.bib

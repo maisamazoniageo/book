@@ -1,0 +1,54 @@
+# Análise dos Municípios na área de estudo.
+
+:::{.text-justify}
+A área de estudo contempla 808 municípios nos nas 09 unidades da federação. Destes, 512 possuem áreas de glebas publicas federais em seu território.
+
+:::
+
+
+```{python}
+#| echo: false
+
+import geopandas as gpd
+import pandas as pd
+import locale
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
+```
+
+## Mapa dos Municípios na área de estudo.
+
+```{python}
+#| echo: false
+fig_mun1, ax_mun1  = plt.subplots()
+mun.columns
+
+mun['glebas'] = mun['tem_gleba'].apply(lambda x: 'Com Glebas' if x==1 else 'Sem Glebas')
+mun.plot(ax=ax_mun1, facecolor='none', edgecolor='black')
+
+mun.plot(ax=ax_mun1, column='glebas', cmap='Pastel2', legend=True)
+plt.grid(visible=True)
+plt.show()
+```
+
+## Tabela dos Municípios com glebas publicas federais.
+
+:::{.table-center}
+```{python}
+#| echo: false
+
+mun_com_gleba = mun[mun['tem_gleba']==1][['nm_uf', 'cd_mun', 'nm_mun']].rename(columns={
+    'nm_uf':'Estado',
+    'cd_mun': 'Código do Município',
+    'nm_mun': 'Nome do Município'
+})
+
+mun_com_gleba.sort_values('Estado').to_html(index=False)
+```
+:::

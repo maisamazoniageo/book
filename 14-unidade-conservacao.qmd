@@ -176,8 +176,15 @@ Seguindo a definição do Serviço Florestal Brasileiro, as florestas publicas d
 ```{python}
 floresta.columns
 floresta_ac = floresta[floresta['uf']=='AC'].copy()
-m =floresta_ac[['OBJECTID', 'nome', 'orgao', 'classe', 'estagio', 'governo', 'codigo','ano', 'uf', 'protecao', 'tipo','categoria', 'observacao', 'sobreposic', 'bioma', 'area_ha', 'area-estudo', 'geometry']].explore(name='Florestas Publicas')
-glebas[glebas['uf']=='AC'].explore(m=m, name='Glebas', color="red")
+m =floresta_ac[['OBJECTID', 'nome', 'orgao', 'classe', 'estagio', 'governo', 'codigo','ano', 'uf', 'protecao', 'tipo','categoria', 'observacao', 'sobreposic', 'bioma', 'area_ha', 'area-estudo', 'geometry']].explore(
+  name='Florestas Publicas',
+  tooltip=False,
+  popup=['nome', 'orgao', 'classe','protecao', 'tipo','categoria'])
+glebas[glebas['uf']=='AC'].explore(m=m, 
+name='Glebas', 
+color="red",
+tooltip=False,
+popup=['nome_gleba'])
 folium.LayerControl().add_to(m)
 m
 ```

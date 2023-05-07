@@ -15,7 +15,7 @@ Reservas Indígenas: São terras doadas por terceiros, adquiridas ou desapropria
 
 :::
 
-:::{.analise}
+:::{.callout-note}
 **Análises**
 
 **_Perguntas_**

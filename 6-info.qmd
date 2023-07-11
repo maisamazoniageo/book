@@ -54,3 +54,57 @@ display(glebas[glebas['amaz_legal']==1].info())
 - **geometry**    - contém a geometria da gleba do tipo polígono.
 
  ---
+
+## Variáveis dentro do estudo das Glebas Federais.
+
+Para o prosseguimento do estudo há uma necessidade de delimitação das variáveis que irão compor a coleta de informações e como estas interagem com outros temas sensíveis à delimitação e destinação das Glebas Federais. Os tipos de destinação das glebas, seja para áreas indígenas, unidades de conservação, assentamentos ou regularização fundiária dos seus ocupantes, requer informações que orientem de forma racional essa destinação.
+
+### Código de identificação da Gleba Federal
+
+De forma mais sensível ao cruzamento das glebas com os demais temas, está sua identificação de forma única e inequívoca através de uma codificação. Atualmente não há um sistema que identifique essas glebas, muitas vezes tratadas por nomes locais que se repetem em deferentes regiões da Amazônia, mesmo quando tratamos uma mesma gleba, esta pode ser composta de vários polígonos que recebem o mesmo nome, causando uma ambiguidade nas análises espaciais e de fatores que podem ocorrer de forma particular em áreas específicas.
+
+O Sistema de Gestão Fundiária (SIGEF) traz um código de certificação que é dado a um polígono certificado sendo, a princípio, um candidato. Porém, uma análise rápida de como o processo de certificação ocorre descarta o uso desta chave para identificação de uma gleba ou parte dela. Isso se dá pelo fato do código da parcela certificada ser mutável, ou seja, toda vez que um polígono é desmembrado ou dois polígonos são remembrados, há a atribuição de novos códigos, podendo gerar incongruência nas comparações de análises temporais de um gleba.
+
+O Sistema de Cadastro Rural (SNCR) traz o código do imóvel rural, sendo também um candidato, porém o conceito de imóvel rural adotado pelo cadastro rural atribui o mesmo código a divérsos polígonos que podem compor um único imóvel rural. Esta abordagem não resolve a identificação única de glebas com mais de polígono, os quais receberiam a mesma codificação.
+
+Assim, o INCRA deve considerar a criação de um código único e inequívoco que seja atribuído a cada polígono de uma gleba, sendo este imutável para a área remanescente até que toda a área seja destinada e desafetada do patrimônio do INCRA permitindo um balanço eficiente das áreas ainda sob sua tutela e permitindo cruzamentos de forma clara e rápida com os outros temas abordados neste estudo e outros que venham a surgir.
+
+### Matrícula e Código Nacional de Serventia (CNS)
+
+A informação registral das glabas é de suma importância no processo de regularização fundiária e ajuda na identificação das glebas federais e no seu regular desmembramento para um beneficiário, seja ele qual for, estando dentro de uma das principais atribuições do INCRA que é o gerenciamento da malha fundiária do país. As gelbas necessitam ter cadastrado sua matrícula e o cartório no qual o registro foi efetuado para que possamos sanar os procedimentos registrais das áreas remanescentes e das já dentinadas.
+
+### Município e Unidade da Federação
+
+A localização das Glebas Federais em relação ao território municipal onde estão localizadas e consequentimento ao estado da federação a que pertencem causam confusão. As dimensões de algumas glebas e sua localização nas fronteiras de entes federados acaba por gerar uma disputa sobre seus recursos territoriais.
+
+A certificação das peligonais atreladas ao correto registro cartorário pode sanar este problema à mesdida que os polígonos respeitem os limites político-administrativos e localizado cada porção da gleba no seu município correspondente e comarca.
+
+### Situação
+
+Esta variável apresenta-se amorfa, não sendo possível extrair qual seu objetivo dentro das informações atribuídas à gleba. Atualmente as informações consignadas nesta varíável são:
+
+- Sem informações
+- Certificada
+- Arrecadada
+- Titulação
+- Registrada
+- Aprovação Fiscal 
+
+Faz-se necessário a definição do objetivo desta variável e a hierarquia das informações consignadas na mesma, ou o desdobramento dos itens acima relacionados em outras variáveis, para que possam expressar a informação de fase ou estado da gleba de forma clara.
+
+### Consulta da gleba na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.
+
+A informação disponpivel marca se a gelba foi consultada ou não, porém não consta se foi aprovada para entrar no processo de regularização.
+
+Outra informação que deve ser relacionada, seja como atributo nas informações da gleba ou como uma outra camada com as área que foram requeridas ou interditadas por outros integrantes da câmara.
+
+### Glebas com Assentimento prévio do Concelho de Defesa Nacional - CDN.
+
+Nesta variável está a informação das gelbas que necessitam de Assentimento prévio do Concelho de Defesa Nacional pois encontram-se na faixa de 150 quilômetros da fronteira.
+
+### Geometria da gleba
+
+As poligonais das glebas representam uma das maiores informações para a sua administração. A certificação das glebas vem estabelecer um perímetro que obedece a critários tecnicos de precisão cartográfica possibilitando a sua correta localização, retificação e retificação registral, bem como a área real disponível para regularização fundiária.
+
+As glebas que não encontram-se certificadas necessitam de uma verificação mínima nos polígonos que a representam para que possam ter uma topologia válida o que possibilita cruzamentos espaciais com outras entidades. Nas poligonais analizadas foram encontradas uma série de vértices sobrepostos e outros tipos de geometrias inválidas como micropolígonos, ou polígonos com área zero gerando inconsistências e erros durante as análises.
+

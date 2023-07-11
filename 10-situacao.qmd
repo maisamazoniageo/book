@@ -1,1 +1,31 @@
 # Situação da gleba.
+
+:::{.text-justify}
+As informações da situação das glebas estão classificadas com as seguintes categorias:
+
+- Sem informações
+- Certificada
+- Arrecadada
+- Titulação
+- Registrada
+- Aprovação Fiscal
+
+:::
+
+
+```{python}
+#| echo: false
+
+import geopandas as gpd
+import pandas as pd
+import locale
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+```

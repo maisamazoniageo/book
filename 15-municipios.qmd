@@ -20,6 +20,7 @@ pd.options.display.float_format = '{:.4f}'.format
 pd.set_option('display.precision', 4)
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
 ```
 
 ## Mapa dos Municípios na área de estudo.
@@ -52,3 +53,19 @@ mun_com_gleba = mun[mun['tem_gleba']==1][['nm_uf', 'cd_mun', 'nm_mun']].rename(c
 mun_com_gleba.sort_values('Estado').to_html(index=False)
 ```
 :::
+
+
+```{python}
+#| echo: false
+
+glb_inter_municipio = glebas.overlay(mun, how='intersection')
+
+glb_inter_municipio.plot()
+
+```
+
+
+```{python}
+glb_inter_municipio.columns
+
+```

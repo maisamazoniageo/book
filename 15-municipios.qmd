@@ -54,18 +54,3 @@ mun_com_gleba.sort_values('Estado').to_html(index=False)
 ```
 :::
 
-
-```{python}
-#| echo: false
-
-glb_inter_municipio = glebas.overlay(mun, how='intersection')
-
-glb_inter_municipio.plot()
-
-```
-
-
-```{python}
-glb_inter_municipio.columns
-
-```

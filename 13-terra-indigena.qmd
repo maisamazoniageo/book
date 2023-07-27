@@ -1,4 +1,4 @@
-# Sobreposição com Terras Indígenas.
+# Terras Indígenas.
 
 :::{.text-justify}
 
@@ -42,3 +42,28 @@ plt.show()
 ```
 
 ## Mapa de terras indígenas por unidade da federação
+
+
+:::{.column-body-outset}
+```{python}
+#| echo: false
+for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
+    
+    fig, ax = plt.subplots(figsize=(13,6))
+    uf_alvo = uf[uf['nm_uf']==estado]
+    uf_alvo.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
+    ti_uf = ti[ti['area-estudo']==1].sjoin(uf_alvo, how='inner')
+    ti_uf_clip = ti_uf.overlay(uf_alvo, how='intersection').dissolve()
+    ti_uf_clip.plot(ax=ax, alpha=0.7)
+    plt.xlabel('Longitude (°)')
+    plt.ylabel('Latitude (°)')
+    plt.grid()
+    plt.title(f"Terras Indígenas - {estado}.")
+    plt.show()
+
+    display(Markdown(f'### Quantida de área ocupada com Terra Indígena - {estado}.'))
+    area_temp = (ti_uf_clip.to_crs(5880).area)/1000000
+    display(Markdown(f'*{round(area_temp.iloc[0], 2)}km²*'))
+```
+:::
+

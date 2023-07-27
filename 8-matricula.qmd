@@ -77,7 +77,7 @@ _CNS_: é o Código do Cartório de Registro de Imóveis em que o imóvel vizinh
 
 ## Chave de identificação registral dos imóveis.
 
-Conforme descrito acima, a identificação registral de um imóvel é composta por uma chave dupla sendo o número da matrícula (qua vai de 1 ao infinito) e o Código Nacional de Serventias - CNS que identifica o cartório no qual a matrícula foi registrada. Assim, na tabela de informações sobre as gelbas, duas colunas são necessárias para identificação registral da gleba.
+Conforme descrito acima, a identificação registral de um imóvel é composta por uma chave dupla sendo composta pelo número da matrícula (que vai de 1 ao infinito) e o Código Nacional de Serventias - CNS, que identifica o cartório no qual a matrícula foi registrada. Assim, na tabela de informações sobre as gelbas, duas colunas são necessárias para identificação registral da gleba.
 
 _**Matrícula:**_ receberá o número da matrícula, R ou AV, livro e página;
 

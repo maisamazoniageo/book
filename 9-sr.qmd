@@ -1,4 +1,4 @@
-# Glebas públicas federais por Superintendências Regionais do INCRA.
+# Glebas públicas federais por Superintendência Regional do INCRA.
 
 ```{python}
 #| echo: false
@@ -9,7 +9,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 from IPython.display import display, Markdown
-pd.options.display.float_format = '{:.4f}'.format
+pd.options.display.float_format = '{:.0f}'.format
 pd.set_option('display.precision', 4)
 ```
 
@@ -119,11 +119,11 @@ hub_original_agg.rename(columns={
 
 ## Redistribuição das glebas nas Superintendências por menor distânica.
 
-Os mapa abaixos foram criados levando-se em conta a distribuição das glebas fedrais nas superintendências mais próximas numa distância em linha reta, outros fatores devem ser considerados numa possível redistribuição das unidades administrativas das glebas tais como: forma de acesso, quantidades de servidores em cada suerintendência, ...
+Os mapas abaixo foram criados levando-se em conta a distribuição das glebas fedrais nas superintendências mais próximas numa distância em linha reta, outros fatores devem ser considerados numa possível redistribuição das unidades administrativas das glebas tais como: forma de acesso, quantidades de servidores em cada suerintendência, ...
 
-Uma camada de acessoas roteáveis pode aumentar a precisão na tomada de decisões tornando possível a utilização de algorítimos para determinar trajeto mais curto ou mais eficiente.
+Uma camada de acessoas roteáveis pode aumentar a precisão na tomada de decisões tornando possível a utilização de algorítimos para determinar trajeto mais curto ou mais eficiente, impactando também **na diminuição da pegada de carbono** dos trabalhos.
 
-A redistribuição das glebas em locais administrativos mais próximos pode, não só, beneficiar o INCRA na economia de recursos e diminuição nos prazos de atendimento quento aos beneficiários que terão o local para solicitações e atendimento mais próximo.
+A redistribuição das glebas em locais administrativos mais próximos pode, não só, beneficiar o INCRA na economia de recursos e diminuição nos prazos de atendimento quanto aos beneficiários que terão o local para solicitações e atendimento mais próximo.
 
 :::{.column-body-outset}
 ```{python}

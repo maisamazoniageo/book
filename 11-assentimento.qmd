@@ -1,18 +1,5 @@
 # Glebas com Assentimento prévio do Concelho de Defesa Nacional - CDN.
 
-::: {.callout-note}
-**Análises**
-
-**_Perguntas_**
-
-1. Área de glebas dentro da faixa de fronteira
-
-
-
-**_Problemas_**
-
-1. 
-:::
 
 <div style="text-align: justify">
 
@@ -77,8 +64,6 @@ plt.show()
 glebas_assentimento.groupby('uf_nome').agg({'uf':'count'}).reset_index().rename(columns={'uf_nome':'UF', 'uf':'Quantidade'}).to_html(index=False)
 ```
 :::
-
-
 
 
 ## Glebas com assentimento prévio por Superintendência.

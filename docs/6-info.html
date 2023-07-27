@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Análise Geográfica das Glebas Federais - 6&nbsp; Detalhamento das Informações das Glebas</title>
+<title>Análise Geográfica das Glebas Federais - 6&nbsp; Detalhamento das Informações dos atributos relacionados às geometrias das Glebas Federais.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações das Glebas</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações dos atributos relacionados às geometrias das Glebas Federais.</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -124,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./6-info.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações das Glebas</span></a>
+  <a href="./6-info.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações dos atributos relacionados às geometrias das Glebas Federais.</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -139,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./9-sr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Glebas públicas federais por Superintendências Regionais do INCRA.</span></a>
+  <a href="./9-sr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Glebas públicas federais por Superintendência Regional do INCRA.</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -202,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações das Glebas</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações dos atributos relacionados às geometrias das Glebas Federais.</span></h1>
 </div>
 
 
@@ -217,92 +217,106 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="listagem-dos-campos-da-tabela-de-atributos." class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="listagem-dos-campos-da-tabela-de-atributos."><span class="header-section-number">6.1</span> Listagem dos campos da tabela de atributos.</h2>
-<div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'geopandas.geodataframe.GeoDataFrame'&gt;
-Int64Index: 2101 entries, 0 to 2100
-Data columns (total 34 columns):
- #   Column      Non-Null Count  Dtype   
----  ------      --------------  -----   
- 0   gid         2101 non-null   int64   
- 1   cod_imovel  2101 non-null   object  
- 2   matricula   1122 non-null   object  
- 3   cartorio    835 non-null    object  
- 4   mat_recons  345 non-null    object  
- 5   nome_gleba  2101 non-null   object  
- 6   nome_comp   2101 non-null   object  
- 7   sr          2101 non-null   object  
- 8   uf          2101 non-null   object  
- 9   situacao    2094 non-null   object  
- 10  area_ha     2099 non-null   float64 
- 11  data_certi  1080 non-null   object  
- 12  num_certif  1230 non-null   object  
- 13  status_con  2101 non-null   object  
- 14  assent_pre  2101 non-null   int64   
- 15  ano_assent  44 non-null     float64 
- 16  data_dou    44 non-null     object  
- 17  ato         0 non-null      object  
- 18  ciclo       0 non-null      object  
- 19  documento   0 non-null      object  
- 20  data_doc    0 non-null      object  
- 21  data_encam  0 non-null      object  
- 22  id_gid      1977 non-null   float64 
- 23  area_sobre  0 non-null      object  
- 24  gl_fora_am  2017 non-null   object  
- 25  ind_area_s  2018 non-null   object  
- 26  codigo_gle  2082 non-null   object  
- 27  amaz_legal  2101 non-null   int64   
- 28  lat         2101 non-null   float64 
- 29  lon         2101 non-null   float64 
- 30  sr_nome     2101 non-null   object  
- 31  uf_nome     2101 non-null   object  
- 32  faixa_fron  2101 non-null   int64   
- 33  geometry    2101 non-null   geometry
-dtypes: float64(5), geometry(1), int64(4), object(24)
-memory usage: 574.5+ KB</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre><code>None</code></pre>
-</div>
-</div>
+<!-- ```{python}
+#| echo: false
+# Bibliotecas
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+```
+## Listagem dos campos da tabela de atributos.
+
+glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
+area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-maranhao.shp')
+uf = gpd.read_file('../drive/uf.shp')
+display(glebas[glebas['amaz_legal']==1].info())
+``` -->
 <ul>
 <li><strong>cod_imovel</strong> - código da gleba no Sistema Nacional de Cadastro Rural composto por 13 dígitos (000.000.000.000-0);</li>
 <li><strong>matricula</strong> - matrícula da gleba registrada em cartório, informação de texto com o número da matrícula, livro e cartório de registro;</li>
 <li><strong>cartorio</strong> - campo para armazenar o Código Nacional de Serventia do cartório de registro da gleba;</li>
 <li><strong>nome_gleba</strong> - nome da gleba, informação de texto;</li>
-<li><strong>nome_comp</strong> - coluna provisória para nomear as glebas aindas sem denominação;</li>
+<li><strong>nome_comp</strong> - coluna provisória para nomear as glebas sem denominação;</li>
 <li><strong>sr</strong> - superintendência responsável pela gleba;<br>
 </li>
 <li><strong>uf</strong> - unidade da federação onde a gleba está localizada;<br>
 </li>
-<li><strong>situacao</strong> - descrever o campo. opções [null, Aprovação Fiscal, Arrecadada, Certificada, Registrada, Titulação];</li>
-<li><strong>area_ha</strong> - área da glebas em hectares.</li>
+<li><strong>situacao</strong> - descrição não obtida. opções encontradas [null, Aprovação Fiscal, Arrecadada, Certificada, Registrada, Titulação];</li>
+<li><strong>area_ha</strong> - área da gleba em hectares.</li>
 <li><strong>data_certi</strong> - data da certificação da gleba.</li>
 <li><strong>num_certif</strong> - código de certificação da gleba.</li>
 <li><strong>status_con</strong> - aparenta ser a consulta da gleba na câmara técnica de regularização fundiária. opções [sem consulta, Consultada], não está claro sobre o sentido da informação, se é aprovada ou não.</li>
-<li><strong>assent_pre</strong> -</li>
-<li><strong>ano_assent</strong> -</li>
-<li><strong>data_dou</strong> -</li>
-<li><strong>ato</strong> -</li>
-<li><strong>ciclo</strong> -<br>
-</li>
-<li><strong>documento</strong> -</li>
-<li><strong>data_doc</strong> -</li>
-<li><strong>data_encam</strong> -</li>
-<li><strong>area_sobre</strong> -</li>
+<li><strong>assent_pre</strong> - assentimento prévio do Concelho de Defesa Nacional - CDN</li>
+<li><strong>ano_assent</strong> - ano do assentimento</li>
+<li><strong>data_dou</strong> - data de publicação no Diário Oficial da União</li>
+<li><strong>ato</strong> - descrição não obtida</li>
+<li><strong>ciclo</strong> - descrição não obtida</li>
+<li><strong>documento</strong> - descrição não obtida</li>
+<li><strong>data_doc</strong> - descrição não obtida</li>
+<li><strong>data_encam</strong> - descrição não obtida</li>
+<li><strong>area_sobre</strong> - descrição não obtida</li>
 <li><strong>gl_fora_am</strong> - se a gleba está fora da amazônia legal</li>
-<li><strong>ind_area_s</strong> -</li>
-<li><strong>codigo_gle</strong> -</li>
+<li><strong>ind_area_s</strong> - descrição não obtida</li>
+<li><strong>codigo_gle</strong> - descrição não obtida</li>
 <li><strong>amaz_legal</strong> - se a área encontra-se dentro da área de estudo, 1 para sim e 0 para não.</li>
 <li><strong>lat</strong> - latitude do centróide da poligonal</li>
 <li><strong>lon</strong> - longitude do centróide da poligonal</li>
 <li><strong>geometry</strong> - contém a geometria da gleba do tipo polígono.</li>
 </ul>
 <hr>
+<section id="variáveis-dentro-do-estudo-das-glebas-federais." class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="variáveis-dentro-do-estudo-das-glebas-federais."><span class="header-section-number">6.1</span> Variáveis dentro do estudo das Glebas Federais.</h2>
+<p>Para o prosseguimento do estudo, há uma necessidade de delimitação das variáveis que irão compor a coleta de informações e como estas interagem com outros temas sensíveis à delimitação e destinação das mesmas, seja para áreas indígenas, unidades de conservação, assentamentos ou regularização fundiária dos seus ocupantes. Isso requer informações que orientem de forma racional dessa destinação.</p>
+<section id="código-de-identificação-da-gleba-federal" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="código-de-identificação-da-gleba-federal"><span class="header-section-number">6.1.1</span> Código de identificação da Gleba Federal</h3>
+<p>De forma mais sensível ao cruzamento das glebas com os demais temas, está sua identificação de forma única e inequívoca através de uma codificação. Atualmente não há um sistema que identifique essas glebas, muitas vezes tratadas por nomes locais que se repetem nas diferentes regiões da Amazônia. Mesmo quando tratamos da mesma gleba, esta pode ser composta de vários polígonos que recebem o mesmo nome, causando uma ambiguidade nas análises espaciais e de fatores que podem ocorrer de forma particular para cada polígono específico.</p>
+<p>O Sistema de Gestão Fundiária (SIGEF) traz um código de certificação que é dado a um polígono. Uma análise rápida de como o processo de certificação ocorre, descarta o uso desta chave para identificação de uma gleba ou parte dela, pelo fato do código da parcela certificada ser mutável, ou seja, toda vez que um polígono é desmembrado ou dois polígonos são remembrados, há a atribuição de novos códigos, podendo gerar incongruência nas comparações de análises temporais de um gleba.</p>
+<p>O Sistema de Cadastro Rural (SNCR) traz o código do imóvel rural, sendo que o conceito de imóvel rural adotado pelo SNCR, atribui o mesmo código a divérsos polígonos que podem compor um único imóvel rural. Esta abordagem não resolve a identificação única de glebas com mais de um polígono, os quais receberiam a mesma codificação.</p>
+<p>Assim, com base na análise dos códigos já existentes e acima descritos, o INCRA deve considerar a criação de um código único e inequívoco que seja atribuído a cada polígono de uma gleba, sendo este imutável para a área remanescente até que toda a gleba seja destinada e retirada do patrimônio do INCRA, permitindo um balanço eficiente das áreas ainda sob a tutela desta autarquia e permitindo cruzamentos de forma clara e rápida com os outros temas abordados neste estudo e outros que venham a surgir.</p>
+</section>
+<section id="matrícula-e-código-nacional-de-serventia-cns" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="matrícula-e-código-nacional-de-serventia-cns"><span class="header-section-number">6.1.2</span> Matrícula e Código Nacional de Serventia (CNS)</h3>
+<p>A informação registral das glabas é de suma importância no processo de regularização fundiária e ajuda na identificação das glebas federais e no seu regular desmembramento para um beneficiário, seja ele qual for.</p>
+<p>As gelbas necessitam ter sua matrícula e o cartório no qual o registro foi efetuado para que possamos sanar os procedimentos registrais das áreas remanescentes e das já dentinadas, acompanhando o saldo remanescente de cada matrídula.</p>
+</section>
+<section id="município-e-unidade-da-federação" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="município-e-unidade-da-federação"><span class="header-section-number">6.1.3</span> Município e Unidade da Federação</h3>
+<p>A localização das Glebas Federais em relação ao território municipal onde estão localizadas e consequentimente ao estado da federação a que pertencem causam confusão. As dimensões de algumas glebas e sua localização nas fronteiras de entes federados acaba por gerar uma disputa sobre seus recursos territoriais.</p>
+<p>A certificação das peligonais atreladas ao correto registro cartorário pode sanar este problema à medida que os polígonos respeitem os limites político-administrativos e localizando cada porção da gleba no seu município correspondente e comarca.</p>
+</section>
+<section id="situação" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="situação"><span class="header-section-number">6.1.4</span> Situação</h3>
+<p>Esta variável apresenta-se amorfa, não sendo possível extrair qual seu objetivo dentro das informações atribuídas à gleba. Atualmente as informações consignadas nesta varíável são:</p>
+<ul>
+<li>Sem informações</li>
+<li>Certificada</li>
+<li>Arrecadada</li>
+<li>Titulação</li>
+<li>Registrada</li>
+<li>Aprovação Fiscal</li>
+</ul>
+<p>Faz-se necessário a definição do objetivo desta variável e a hierarquia das informações consignadas na mesma, ou o desdobramento dos itens acima relacionados em outras variáveis para que possam expressar a informação de fase ou estado da gleba de forma clara.</p>
+</section>
+<section id="consulta-da-gleba-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais." class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="consulta-da-gleba-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais."><span class="header-section-number">6.1.5</span> Consulta da gleba na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</h3>
+<p>A informação disponpivel marca se a gelba foi consultada ou não, porém não consta se foi aprovada para entrar no processo de regularização. Outra informação que deve ser relacionada, seja como atributo nas informações da gleba ou como uma outra camada espacial são as área que foram requeridas ou interditadas por outros integrantes da câmara (interesse concorrente).</p>
+</section>
+<section id="glebas-com-assentimento-prévio-do-concelho-de-defesa-nacional---cdn." class="level3" data-number="6.1.6">
+<h3 data-number="6.1.6" class="anchored" data-anchor-id="glebas-com-assentimento-prévio-do-concelho-de-defesa-nacional---cdn."><span class="header-section-number">6.1.6</span> Glebas com assentimento prévio do Concelho de Defesa Nacional - CDN.</h3>
+<p>Nesta variável está a informação das gelbas que necessitam de assentimento prévio do Concelho de Defesa Nacional pois encontram-se na faixa de 150 quilômetros da fronteira.</p>
+</section>
+<section id="geometria-da-gleba" class="level3" data-number="6.1.7">
+<h3 data-number="6.1.7" class="anchored" data-anchor-id="geometria-da-gleba"><span class="header-section-number">6.1.7</span> Geometria da gleba</h3>
+<p>As poligonais das glebas representam uma das informações mais importantes para a sua administração. A certificação das glebas visa estabelecer um perímetro que obedece a critérios tecnicos de precisão cartográfica, possibilitando a sua correta localização, retificação e ratificação registral, bem como a área real disponível para regularização fundiária.</p>
+<p>As glebas que não encontram-se certificadas necessitam de uma verificação mínima nos polígonos que a representam para que possam ter uma topologia válida, possibilitando cruzamentos espaciais com outras entidades. Nas poligonais analizadas, foram encontradas uma série de vértices sobrepostos e outros tipos de geometrias inválidas como micropolígonos, ou polígonos com área zero, gerando inconsistências e erros durante as análises espaciais.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

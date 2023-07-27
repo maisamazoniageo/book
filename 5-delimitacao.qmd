@@ -1,9 +1,7 @@
 # Delimitação Geográfica
 
 <div style="text-align: justify"> 
-Análise dos dados literais e espaciais das Glebas Públicas Federais do INCRA dentro da Amazônia Legal e do estado do Maranhão.
-
-A área de estudo esté dentro dos limites da Amazônia Legal incluindo-se a parte do estado do Maranhão que encontra-se fora da delimitação aficial (@fig-area-estudo).
+Nos capiyulos a seguir faremos uma análise dos dados literais e espaciais das Glebas Públicas Federais do INCRA dentro da Amazônia Legal e do estado do Maranhão. A área de estudo contempla os limites da Amazônia Legal incluindo-se todo o estado do Maranhão, mesmo a porção que encontra-se fora da delimitação oficial da amazônia legal (@fig-area-estudo).
 
 ```{python}
 #| echo: false

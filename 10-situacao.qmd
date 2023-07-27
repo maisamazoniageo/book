@@ -1,5 +1,7 @@
 # Situação da gleba.
 
+Esta variável não possui informações que a descrevam de forma a viabilizar sua utilização neste estudo.
+ 
 :::{.text-justify}
 As informações da situação das glebas estão classificadas com as seguintes categorias:
 

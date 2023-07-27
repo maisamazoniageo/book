@@ -15,29 +15,6 @@ Reservas Indígenas: São terras doadas por terceiros, adquiridas ou desapropria
 
 :::
 
-:::{.callout-note}
-**Análises**
-
-**_Perguntas_**
-
-1. qual a quantidade / uf ?
-2. qual a área total / uf ?
-
-**_Problemas_**
-
-- terra indígena localizadas em mais de um estado;
-  - contagem: repetir a contagem da terra indígena nos estados de ocorrência ou separar em uma tabela e mapa com apenas as terras que estão em mais de um estado;
-  - área: calcular a área da terra indígena em cada estado;
-  - fases da TI: no arquivo baixado da FUNIAI existem 06 tipos de fases nas terras indígenas, como utilizar essa informação nas análises? Há casos de sobreposição de polígonos da mesma terra indígena em fases distintas.
-    - Declarada [30 poligonos]
-    - Delimitada [11 poligonos]
-    - Em estudo [06 poligonos]
-    - Encaminhada RI [07 poligonos]
-    - Homologada [03 poligonos]
-    - Regularizada [328 poligonos]
-
-:::
-
 
 ## Quantificação das terras indígenas por unidade da federação
 

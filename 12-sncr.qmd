@@ -11,7 +11,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 from IPython.display import display, Markdown
-pd.options.display.float_format = '{:.4f}'.format
+pd.options.display.float_format = '{:.2f}'.format
 pd.set_option('display.precision', 4)
 glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
 area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-maranhao.shp')
@@ -22,7 +22,7 @@ sr_ponto = gpd.read_file("../drive/Shapes Bases de Glebas e Projetos data 01.03.
 
 ## Mapas de localização das glebas com código no Sistema Nacional de Cadsatro Rural - SNCR.
 
-Os mapas abaixo mostram as distribuições das gelbas federais com cadastro no SNCR por Superintendência Regional.
+Os mapas abaixo mostram a distribuição das gelbas federais com cadastro no SNCR por Superintendência Regional.
 
 :::{.column-body-outset}
 ```{python}

@@ -78,20 +78,19 @@ uc_tab.rename(columns={'categori3':'Categoria da Unidade de Conservação',
 
 ### Unidade de Conservação por estado
 
-```{python}
+<!-- ```{python}
 #| echo: false
+uc_uf_area_list = []
+uc_uf_estados_list = []
+estados = glebas[glebas['amaz_legal']==1]['uf_nome'].unique()
+for estado in estados:
+  #fig_uf, ax_uf = plt.subplots(figsize=(13,6))
+  uf_alvo = uf[uf['nm_uf']==estado]
+  uc_uf_temp = uc.overlay(uf_alvo, how='intersection').dissolve()
+  uc_uf_area_list.append(((uc_uf_temp.to_crs(5880).area)/1000000).iloc[0])
+  uc_uf_estados_list.append[estado]
 
-uc_tab = uc[uc['area-estudo']==1].groupby('categori3').agg({
-  'id_uc0':'count',
-  'area_km':'sum'
-})
-
-uc_tab.reset_index(inplace=True)
-uc_tab.rename(columns={'categori3':'Categoria da Unidade de Conservação',
-                      'id_uc0':'Quantidade',
-                      'area_km':'Área (km²)'
-          }).to_html(index=False)
-```
+``` -->
 
 ## Cadastro Nacional de Florestas Públicas (CNFP)
 

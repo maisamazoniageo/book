@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.4.367">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -48,6 +48,12 @@ ul.task-list li input[type="checkbox"] {
   "panel-placement": "start",
   "type": "textbox",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -57,7 +63,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -69,24 +76,26 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Terras Indígenas.</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-terra-indigena.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Terras Indígenas.</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Análise Geográfica das Glebas Federais</a> 
         <div class="sidebar-tools-main">
-    <a href="https://maisamazoniageo.github.io/book/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-git"></i></a>
+    <a href="https://maisamazoniageo.github.io/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -94,107 +103,128 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Introdução</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introdução</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1-contexto.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Contextualização</span></a>
+  <a href="./1-contexto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Contextualização</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2-objetivos.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objetivos</span></a>
+  <a href="./2-objetivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objetivos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3-metodologia.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Metodologia</span></a>
+  <a href="./3-metodologia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Metodologia</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-variaveis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Definição das variáveis coletadas.</span></a>
+  <a href="./4-variaveis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Definição das variáveis coletadas.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5-delimitacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Delimitação Geográfica</span></a>
+  <a href="./5-delimitacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Delimitação Geográfica</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./6-info.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações dos atributos relacionados às geometrias das Glebas Federais.</span></a>
+  <a href="./6-info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações dos atributos relacionados às geometrias das Glebas Federais.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./7-ctrf.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</span></a>
+  <a href="./7-ctrf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./8-matricula.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Registros em Cartório</span></a>
+  <a href="./8-matricula.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Registros em Cartório</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./9-sr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Glebas públicas federais por Superintendência Regional do INCRA.</span></a>
+  <a href="./9-sr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Glebas públicas federais por Superintendência Regional do INCRA.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-situacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Situação da gleba.</span></a>
+  <a href="./10-situacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Situação da gleba.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-assentimento.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Glebas com Assentimento prévio do Concelho de Defesa Nacional - CDN.</span></a>
+  <a href="./11-assentimento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Glebas com Assentimento prévio do Concelho de Defesa Nacional - CDN.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-sncr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sistema Nacional de Cadastro Rural - SNCR.</span></a>
+  <a href="./12-sncr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sistema Nacional de Cadastro Rural - SNCR.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-terra-indigena.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Terras Indígenas.</span></a>
+  <a href="./13-terra-indigena.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Terras Indígenas.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-unidade-conservacao.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Unidades de Consrvação.</span></a>
+  <a href="./14-unidade-conservacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Unidades de Consrvação.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-municipios.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Análise dos Municípios na área de estudo.</span></a>
+  <a href="./15-municipios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Análise dos Municípios na área de estudo.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-am-maues.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Análise de município - Maués-AM.</span></a>
+  <a href="./15-am-maues.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Análise de município - Maués-AM.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-am-borba.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Análise de município - Borba-AM.</span></a>
+  <a href="./15-am-borba.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Análise do Estado do Amazonas.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -202,18 +232,19 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Terras Indígenas.</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Terras Indígenas.</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
     
   </div>
   
+
 
 </header>
 
@@ -226,18 +257,30 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="quantificação-das-terras-indígenas-por-unidade-da-federação" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="quantificação-das-terras-indígenas-por-unidade-da-federação"><span class="header-section-number">13.1</span> Quantificação das terras indígenas por unidade da federação</h2>
-<div class="cell" data-execution_count="1">
+<div id="13d25b1e" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-2-output-1.png" width="716" height="522"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" height="522" width="716">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-2-output-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="716" height="522" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="mapa-de-terras-indígenas-por-unidade-da-federação" class="level2 page-columns page-full" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="mapa-de-terras-indígenas-por-unidade-da-federação"><span class="header-section-number">13.2</span> Mapa de terras indígenas por unidade da federação</h2>
 <div class="column-body-outset">
-<div class="cell" data-execution_count="2">
+<div id="e0f8dfb3" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-3-output-1.png" width="341" height="524"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" height="524" width="341">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-3-output-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="341" height="524" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 <section id="quantida-de-área-ocupada-com-terra-indígena---tocantins." class="level3 cell-output cell-output-display" data-number="13.2.1">
 <h3 data-number="13.2.1" class="anchored" data-anchor-id="quantida-de-área-ocupada-com-terra-indígena---tocantins."><span class="header-section-number">13.2.1</span> Quantida de área ocupada com Terra Indígena - Tocantins.</h3>
@@ -246,7 +289,13 @@ ul.task-list li input[type="checkbox"] {
 <p><em>25978.27km²</em></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-3-output-4.png" width="611" height="524"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored" height="524" width="611">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-3-output-4.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="611" height="524" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 <section id="quantida-de-área-ocupada-com-terra-indígena---rondônia." class="level3 cell-output cell-output-display" data-number="13.2.2">
 <h3 data-number="13.2.2" class="anchored" data-anchor-id="quantida-de-área-ocupada-com-terra-indígena---rondônia."><span class="header-section-number">13.2.2</span> Quantida de área ocupada com Terra Indígena - Rondônia.</h3>
@@ -255,7 +304,13 @@ ul.task-list li input[type="checkbox"] {
 <p><em>50650.06km²</em></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-3-output-7.png" width="725" height="524"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center anchored" height="524" width="725">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-3-output-7.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="725" height="524" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 <section id="quantida-de-área-ocupada-com-terra-indígena---amazonas." class="level3 cell-output cell-output-display" data-number="13.2.3">
 <h3 data-number="13.2.3" class="anchored" data-anchor-id="quantida-de-área-ocupada-com-terra-indígena---amazonas."><span class="header-section-number">13.2.3</span> Quantida de área ocupada com Terra Indígena - Amazonas.</h3>
@@ -264,7 +319,13 @@ ul.task-list li input[type="checkbox"] {
 <p><em>467570.5km²</em></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-3-output-10.png" width="887" height="524"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center anchored" height="524" width="887">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-3-output-10.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" width="887" height="524" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 <section id="quantida-de-área-ocupada-com-terra-indígena---acre." class="level3 cell-output cell-output-display" data-number="13.2.4">
 <h3 data-number="13.2.4" class="anchored" data-anchor-id="quantida-de-área-ocupada-com-terra-indígena---acre."><span class="header-section-number">13.2.4</span> Quantida de área ocupada com Terra Indígena - Acre.</h3>
@@ -273,7 +334,13 @@ ul.task-list li input[type="checkbox"] {
 <p><em>25509.4km²</em></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-3-output-13.png" width="532" height="524"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center anchored" height="524" width="532">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-3-output-13.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" width="532" height="524" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 <section id="quantida-de-área-ocupada-com-terra-indígena---pará." class="level3 cell-output cell-output-display" data-number="13.2.5">
 <h3 data-number="13.2.5" class="anchored" data-anchor-id="quantida-de-área-ocupada-com-terra-indígena---pará."><span class="header-section-number">13.2.5</span> Quantida de área ocupada com Terra Indígena - Pará.</h3>
@@ -282,7 +349,13 @@ ul.task-list li input[type="checkbox"] {
 <p><em>309407.22km²</em></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-3-output-16.png" width="538" height="524"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center anchored" height="524" width="538">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-3-output-16.png" id="fig-539a35d47e664c97a50115a146a7f1bd-7" width="538" height="524" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 <section id="quantida-de-área-ocupada-com-terra-indígena---mato-grosso." class="level3 cell-output cell-output-display" data-number="13.2.6">
 <h3 data-number="13.2.6" class="anchored" data-anchor-id="quantida-de-área-ocupada-com-terra-indígena---mato-grosso."><span class="header-section-number">13.2.6</span> Quantida de área ocupada com Terra Indígena - Mato Grosso.</h3>
@@ -291,7 +364,13 @@ ul.task-list li input[type="checkbox"] {
 <p><em>148058.27km²</em></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-3-output-19.png" width="409" height="524"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="quarto-figure quarto-figure-center anchored" height="524" width="409">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-3-output-19.png" id="fig-539a35d47e664c97a50115a146a7f1bd-8" width="409" height="524" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 <section id="quantida-de-área-ocupada-com-terra-indígena---maranhão." class="level3 cell-output cell-output-display" data-number="13.2.7">
 <h3 data-number="13.2.7" class="anchored" data-anchor-id="quantida-de-área-ocupada-com-terra-indígena---maranhão."><span class="header-section-number">13.2.7</span> Quantida de área ocupada com Terra Indígena - Maranhão.</h3>
@@ -300,7 +379,13 @@ ul.task-list li input[type="checkbox"] {
 <p><em>23062.55km²</em></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-3-output-22.png" width="452" height="524"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="quarto-figure quarto-figure-center anchored" height="524" width="452">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-3-output-22.png" id="fig-539a35d47e664c97a50115a146a7f1bd-9" width="452" height="524" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 <section id="quantida-de-área-ocupada-com-terra-indígena---amapá." class="level3 cell-output cell-output-display" data-number="13.2.8">
 <h3 data-number="13.2.8" class="anchored" data-anchor-id="quantida-de-área-ocupada-com-terra-indígena---amapá."><span class="header-section-number">13.2.8</span> Quantida de área ocupada com Terra Indígena - Amapá.</h3>
@@ -309,7 +394,13 @@ ul.task-list li input[type="checkbox"] {
 <p><em>11841.39km²</em></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="13-terra-indigena_files/figure-html/cell-3-output-25.png" width="451" height="524"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-10" class="quarto-figure quarto-figure-center anchored" height="524" width="451">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="13-terra-indigena_files/figure-html/cell-3-output-25.png" id="fig-539a35d47e664c97a50115a146a7f1bd-10" width="451" height="524" class="figure-img">
+</div>
+</figure>
+</div>
 </div>
 <section id="quantida-de-área-ocupada-com-terra-indígena---roraima." class="level3 cell-output cell-output-display" data-number="13.2.9">
 <h3 data-number="13.2.9" class="anchored" data-anchor-id="quantida-de-área-ocupada-com-terra-indígena---roraima."><span class="header-section-number">13.2.9</span> Quantida de área ocupada com Terra Indígena - Roraima.</h3>
@@ -351,9 +442,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -389,10 +494,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -402,8 +506,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -418,6 +531,195 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -470,6 +772,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

@@ -1,0 +1,159 @@
+# Análise do Estado do Amazonas.
+
+
+## Informações Gerais.
+
+```{python}
+#| echo: false
+
+
+uf_analise = 'Amazonas'
+
+import geopandas as gpd
+import pandas as pd
+import locale
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
+uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
+ti=gpd.read_file('../glebas-federais.gpkg', layer='ti-portarias')
+ti = ti.set_crs(4674, allow_override=True)
+floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
+mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
+```
+
+```{python}
+#| echo: false
+
+fig, ax = plt.subplots()
+area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
+uf[uf['amaz_legal']==1].plot(ax=ax, facecolor='none', edgecolor='red')
+uf_select = uf[uf['nm_uf']==uf_analise]
+uf_select.plot(ax=ax, alpha=0.5)
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+
+# Verificar a necessidade de dados sobre o estado
+
+```
+
+## Glebas Federais na Unidade da Federação.
+
+### Área com Glebas Federais.
+```{python}
+#| echo: false
+gleba_uf = glebas.sjoin(uf_select, how='inner')
+fig_gleba2, ax_gleba2 = plt.subplots()
+gleba_uf_clip = gleba_uf.overlay(uf_select, how='intersection')
+gleba_uf_clip = gleba_uf_clip.dissolve()
+gleba_uf_clip.plot(ax=ax_gleba2, alpha=0.7)
+uf_select.plot(ax=ax_gleba2, facecolor='none', edgecolor='black')
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+# cálculo de área em km2 policônica em km2
+gleba_uf_clip['area_clip']= (gleba_uf_clip.to_crs(5880).area)/1000000
+
+display(Markdown('### Tabela de Glebas Federais no estado e suas áreas'))
+gleba_uf_fim = gleba_uf_clip.groupby('nome_gleba').agg({
+    'area_clip':'sum'
+})
+gleba_uf_fim.reset_index(inplace=True)
+
+gleba_uf_fim.rename(columns={
+    'nome_gleba':'Nome da Gleba Federal',
+    'area_clip':'Área (km²)'
+}).to_html(index=False)
+```
+
+
+```{python}
+#| echo: false
+
+
+area_uf = round(uf_select['area_km2'],4)
+area_total_glebas = round(gleba_uf_clip['area_clip'].sum(),4)
+percentual_glebas = round((area_total_glebas/area_uf)*100,2)
+percentual_glebas = locale.currency(percentual_glebas.values[0], grouping=True, symbol=None)
+area_total_glebas = locale.currency(area_total_glebas, grouping=True, symbol=None)
+display(Markdown(f'### Área total de Glebas Federais no Estado do {uf_analise}: **{area_total_glebas} km²**'))
+
+display(Markdown(f'### Percentual do {uf_analise} ocupado por Glebas Federais: **{percentual_glebas} %**'))
+
+```
+
+
+## Florestas Públicas.
+
+### Florestas Públicas não destinadas.
+
+Florestas Públicas do TIPO B (FPB) - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas, de acordo com os dados baixados do Serviço Florestal Brasileiro.
+
+fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assuntos/servico-florestal-brasileiro/cadastro-nacional-de-florestas-publicas){target="_blank"}
+
+```{python}
+#| echo: false
+
+fig_flor, ax_flor = plt.subplots()
+# flrestas tipo B dentro da uf analisada
+floresta_B_uf = floresta[floresta['tipo']=='TIPO B'].overlay(uf_select, how='intersection')
+
+floresta_B_uf.plot(ax=ax_flor, alpha=0.6, column='tipo', legend=True,  
+                                          legend_kwds={'loc': 'center left',
+                                          'bbox_to_anchor':(1,0.5)})
+uf_select.plot(ax=ax_flor,facecolor="none", edgecolor="black")
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+```
+
+
+```{python}
+#| echo: false
+# Recalculando a área das florestas no interior do estado policônica em km2
+floresta_B_uf['area_km'] = (floresta_B_uf.to_crs(5880).area)/1000000
+
+floresta_B_uf_area = floresta_B_uf['area_km'].sum()
+percentual_floresta_B = round((floresta_B_uf_area/area_uf)*100,2)
+floresta_B_uf_area = locale.currency(floresta_B_uf_area, grouping=True, symbol=None)
+percentual_floresta_B = locale.currency(percentual_floresta_B.values[0], grouping=True, symbol=None)
+
+display(Markdown(f'### Área de Florestas Públicas não destinadas no {uf_analise}: **{floresta_B_uf_area} km²**'))
+
+display(Markdown(f'### Percentual do {uf_analise} ocupado por Florestas Públicas não destinadas : **{percentual_floresta_B} %**'))
+```
+
+## Análise de Sobreposições.
+
+As análises de sobreposições visam mostrar a sobreposição entre as classes de áreas públicas existentes para que possamos determinar se a relação é concorrente ou não. A análise será elaborada tendo as Glebas Federais como ponto pincipal sendo comparadas com Florestas Públicas não destinadas, Terras Indígenas, Unidades de Conservação e Projetos de Assentamento.
+
+### Glebas Federais sobrepostas a Florestas Públicas não destinadas.
+
+```{python}
+#| echo: false
+
+fig_gle_flo, ax_gle_flo = plt.subplots()
+uf_select.plot(ax=ax_gle_flo, facecolor='none', edgecolor='black', label='Estado')
+floresta_B_uf.plot(ax=ax_gle_flo, facecolor='orange', linewidth=0.3, label='Fleresta Pública')
+gleba_uf_clip.plot(ax=ax_gle_flo, alpha=0.5, label='Gleba Federal')
+
+
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+```

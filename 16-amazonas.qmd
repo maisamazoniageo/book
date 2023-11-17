@@ -70,12 +70,13 @@ display(Markdown('### Tabela de Glebas Federais no estado e suas áreas'))
 gleba_uf_fim = gleba_uf_clip.groupby('nome_gleba').agg({
     'area_clip':'sum'
 })
-gleba_uf_fim.reset_index(inplace=True)
 
-gleba_uf_fim.rename(columns={
-    'nome_gleba':'Nome da Gleba Federal',
-    'area_clip':'Área (km²)'
-}).to_html(index=False)
+#gleba_uf_fim.reset_index(inplace=True)
+
+#gleba_uf_fim.rename(columns={
+#    'nome_gleba':'Nome da Gleba Federal',
+#    'area_clip':'Área (km²)'
+#}).to_html(index=False)
 ```
 
 
@@ -143,6 +144,8 @@ As análises de sobreposições visam mostrar a sobreposição entre as classes 
 
 ### Glebas Federais sobrepostas a Florestas Públicas não destinadas.
 
+#### Mapa Geral.
+
 ```{python}
 #| echo: false
 
@@ -156,4 +159,32 @@ plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
 plt.show()
+```
+
+### Glebas Federais com Floresta Pública não destinada.
+
+```{python}
+#| echo: false
+fig_gle_flo_clip, ax_gle_flo_clip = plt.subplots()
+uf_select.plot(ax=ax_gle_flo_clip, facecolor='none', edgecolor='black', label='Estado')
+gle_flo_clip = gleba_uf_clip.overlay(floresta_B_uf, how='intersection', keep_geom_tupe=False)
+gleba_uf_clip.plot(ax=ax_gle_flo_clip, facecolor='none', edgecolor='black', label='Gleba Federal')
+gle_flo_clip.plot(ax=ax_gle_flo_clip, alpha=0.5)
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+```
+
+```{python}
+#| echo: false
+# Recalculando a área das glebas no interior das florestas policônica em km2
+gle_flo_clip['area_km2'] = (gle_flo_clip.to_crs(5880).area)/1000000
+
+gle_flo_clip_area = gle_flo_clip['area_km2'].sum()
+#percentual_floresta_B = round((floresta_B_uf_area/area_uf)*100,2)
+gle_flo_clip_area = locale.currency(gle_flo_clip_area, grouping=True, symbol=None)
+
+
+display(Markdown(f'### A área de Glebas Federais dentro das Florestas Públicas não destinadas  no Estado do {uf_analise} é de: **{gle_flo_clip_area} km²**'))
 ```

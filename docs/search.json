@@ -474,10 +474,7 @@
     "href": "16-amazonas.html#informações-gerais.",
     "title": "17  Análise do Estado do Amazonas.",
     "section": "17.1 Informações Gerais.",
-    "text": "17.1 Informações Gerais.",
-    "crumbs": [
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Análise do Estado do Amazonas.</span>"
-    ]
+    "text": "17.1 Informações Gerais."
   },
   {
     "objectID": "16-amazonas.html#glebas-federais-na-unidade-da-federação",
@@ -494,20 +491,14 @@
     "href": "16-amazonas.html#glebas-federais-na-unidade-da-federação.",
     "title": "17  Análise do Estado do Amazonas.",
     "section": "17.2 Glebas Federais na Unidade da Federação.",
-    "text": "17.2 Glebas Federais na Unidade da Federação.\n\n17.2.1 Área com Glebas Federais.\n\n\n\n\n\n\n\n\n\n\n\n17.2.2 Tabela de Glebas Federais no estado e suas áreas\n\n\n\n\n\n\n\n\n\nNome da Gleba Federal\n\n\n\nÁrea (km²)\n\n\n\n\n\n\n\n\n\n\n\nPIC BELA VISTA II\n\n\n\n392756.1085\n\n\n\n\n\n\n\n\n\n\n\n\n17.2.3 Área total de Glebas Federais no Estado do Amazonas: 392.756,11 km²\n\n\n17.2.4 Percentual do Amazonas ocupado por Glebas Federais: 25,19 %",
-    "crumbs": [
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Análise do Estado do Amazonas.</span>"
-    ]
+    "text": "17.2 Glebas Federais na Unidade da Federação.\n\n17.2.1 Área com Glebas Federais.\n\n\n\n\n\n17.2.2 Tabela de Glebas Federais no estado e suas áreas\n\n\n\n\n\n17.2.3 Área total de Glebas Federais no Estado do Amazonas: 392.756,11 km²\n\n\n17.2.4 Percentual do Amazonas ocupado por Glebas Federais: 25,19 %"
   },
   {
     "objectID": "16-amazonas.html#florestas-públicas.",
     "href": "16-amazonas.html#florestas-públicas.",
     "title": "17  Análise do Estado do Amazonas.",
     "section": "17.3 Florestas Públicas.",
-    "text": "17.3 Florestas Públicas.\n\n17.3.1 Florestas Públicas não destinadas.\nFlorestas Públicas do TIPO B (FPB) - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas, de acordo com os dados baixados do Serviço Florestal Brasileiro.\nfonte: Serviço Florestal Brasileiro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n17.3.2 Área de Florestas Públicas não destinadas no Amazonas: 410.510,04 km²\n\n\n17.3.3 Percentual do Amazonas ocupado por Florestas Públicas não destinadas : 26,33 %",
-    "crumbs": [
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Análise do Estado do Amazonas.</span>"
-    ]
+    "text": "17.3 Florestas Públicas.\n\n17.3.1 Florestas Públicas não destinadas.\nFlorestas Públicas do TIPO B (FPB) - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas, de acordo com os dados baixados do Serviço Florestal Brasileiro.\nfonte: Serviço Florestal Brasileiro\n\n\n\n\n\n\n\n\n17.3.2 Área de Florestas Públicas não destinadas no Amazonas: 410.510,04 km²\n\n\n17.3.3 Percentual do Amazonas ocupado por Florestas Públicas não destinadas : 26,33 %"
   },
   {
     "objectID": "16-amazonas.html#análise-de-sobreposições",
@@ -524,9 +515,6 @@
     "href": "16-amazonas.html#análise-de-sobreposições.",
     "title": "17  Análise do Estado do Amazonas.",
     "section": "17.4 Análise de Sobreposições.",
-    "text": "17.4 Análise de Sobreposições.\nAs análises de sobreposições visam mostrar a sobreposição entre as classes de áreas públicas existentes para que possamos determinar se a relação é concorrente ou não. A análise será elaborada tendo as Glebas Federais como ponto pincipal sendo comparadas com Florestas Públicas não destinadas, Terras Indígenas, Unidades de Conservação e Projetos de Assentamento.\n\n17.4.1 Glebas Federais sobrepostas a Florestas Públicas não destinadas.",
-    "crumbs": [
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Análise do Estado do Amazonas.</span>"
-    ]
+    "text": "17.4 Análise de Sobreposições.\nAs análises de sobreposições visam mostrar a sobreposição entre as classes de áreas públicas existentes para que possamos determinar se a relação é concorrente ou não. A análise será elaborada tendo as Glebas Federais como ponto pincipal sendo comparadas com Florestas Públicas não destinadas, Terras Indígenas, Unidades de Conservação e Projetos de Assentamento.\n\n17.4.1 Glebas Federais sobrepostas a Florestas Públicas não destinadas.\n\n17.4.1.1 Mapa Geral.\n\n\n\n\n\n\n\n\n17.4.2 Glebas Federais com Floresta Pública não destinada.\n\n\n/home/obt/miniconda3/lib/python3.11/site-packages/geopandas/geodataframe.py:2469: UserWarning: `keep_geom_type=True` in overlay resulted in 1254 dropped geometries of different geometry types than df1 has. Set `keep_geom_type=False` to retain all geometries\n  return geopandas.overlay(\n\n\n\n\n\n\n\n\n17.4.3 A área de Glebas Federais dentro das Florestas Públicas não destinadas no Estado do Amazonas é de: 88.615,72 km²"
   }
 ]

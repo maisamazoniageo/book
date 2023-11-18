@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.367">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -48,12 +48,6 @@ ul.task-list li input[type="checkbox"] {
   "panel-placement": "start",
   "type": "textbox",
   "limit": 20,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -81,9 +75,9 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./7-ctrf.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./7-ctrf.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
@@ -95,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Análise Geográfica das Glebas Federais</a> 
         <div class="sidebar-tools-main">
-    <a href="https://maisamazoniageo.github.io/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
+    <a href="https://maisamazoniageo.github.io/book/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -205,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-am-borba.html" class="sidebar-item-text sidebar-link">
+  <a href="./16-amazonas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Análise do Estado do Amazonas.</span></span></a>
   </div>
 </li>
@@ -237,14 +231,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta">
 
     
   
     
   </div>
   
-
 
 </header>
 
@@ -259,104 +252,70 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <section id="distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação." class="level2 page-columns page-full" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação."><span class="header-section-number">7.1</span> Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação.</h2>
-<div class="page-columns page-full">
-<div id="b560aad5" class="cell page-columns page-full" data-execution_count="3">
-<div class="cell-output cell-output-display page-columns page-full">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored page-columns page-full" width="758" height="521">
-<figure class="quarto-float quarto-float-fig figure page-columns page-full">
-<div class="page-columns page-full">
-<img src="7-ctrf_files/figure-html/cell-4-output-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="758" height="521" class="figure-img column-body-outset">
-</div>
-</figure>
-</div>
-</div>
-</div>
+<div class="column-body-outset">
+<!-- ```{python}
+#| echo: false
+# Contagem de áreas com Consulta à Câmara Técnica Fundiária
+glebas_consult = pd.DataFrame(glebas[glebas['amaz_legal']==1][['uf','status_con']].value_counts())
+glebas_consult.rename(columns={0:'qt'}, inplace=True)
+glebas_consult.reset_index(inplace=True)
+# Linha de valores sem consulta em uf=RR para acrescentar
+RR_sem_consulta = pd.DataFrame({'uf':'RR', 'status_con': 'Sem Consulta', 'qt':0}, index=[0])
+glebas_consult = pd.concat([glebas_consult,RR_sem_consulta]).reset_index(drop=True)
+glebas_consult.sort_values(['uf', 'status_con'])
+fig, ax = plt.subplots(nrows=3, ncols=3)
+ax[0,0].pie(glebas_consult[glebas_consult['uf']=='AC']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[0,1].pie(glebas_consult[glebas_consult['uf']=='AM']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[0,2].pie(glebas_consult[glebas_consult['uf']=='AP']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[1,0].pie(glebas_consult[glebas_consult['uf']=='MA']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[1,1].pie(glebas_consult[glebas_consult['uf']=='MT']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[1,2].pie(glebas_consult[glebas_consult['uf']=='PA']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[2,0].pie(glebas_consult[glebas_consult['uf']=='RO']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[2,1].pie(glebas_consult[glebas_consult['uf']=='RR']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[2,2].pie(glebas_consult[glebas_consult['uf']=='TO']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
+ax[0,0].set_title('Acre')
+ax[0,1].set_title('Amazonas')
+ax[0,2].set_title('Amapá')
+ax[1,0].set_title('Maranhão')
+ax[1,1].set_title('Mato Grosso')
+ax[1,2].set_title('Pará')
+ax[2,0].set_title('Roraima')
+ax[2,1].set_title('Rondônia')
+ax[2,2].set_title('Tocantins')
+plt.show()
+``` -->
 </div>
 </section>
 <section id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais." class="level2 page-columns page-full" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais."><span class="header-section-number">7.2</span> Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</h2>
 <div class="column-body-outset">
-<div id="8e2057d7" class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="648" height="524">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="7-ctrf_files/figure-html/cell-5-output-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="648" height="524" class="figure-img">
-</div>
-</figure>
-</div>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-1.png" width="648" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored" width="759" height="524">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="7-ctrf_files/figure-html/cell-5-output-2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="759" height="524" class="figure-img">
-</div>
-</figure>
-</div>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-2.png" width="759" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center anchored" width="871" height="524">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="7-ctrf_files/figure-html/cell-5-output-3.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="871" height="524" class="figure-img">
-</div>
-</figure>
-</div>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-3.png" width="871" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center anchored" width="1034" height="524">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="7-ctrf_files/figure-html/cell-5-output-4.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" width="1034" height="524" class="figure-img">
-</div>
-</figure>
-</div>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-4.png" width="1034" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center anchored" width="708" height="524">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="7-ctrf_files/figure-html/cell-5-output-5.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" width="708" height="524" class="figure-img">
-</div>
-</figure>
-</div>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-5.png" width="708" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center anchored" width="711" height="524">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="7-ctrf_files/figure-html/cell-5-output-6.png" id="fig-539a35d47e664c97a50115a146a7f1bd-7" width="711" height="524" class="figure-img">
-</div>
-</figure>
-</div>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-6.png" width="711" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="quarto-figure quarto-figure-center anchored" width="651" height="524">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="7-ctrf_files/figure-html/cell-5-output-7.png" id="fig-539a35d47e664c97a50115a146a7f1bd-8" width="651" height="524" class="figure-img">
-</div>
-</figure>
-</div>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-7.png" width="651" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="quarto-figure quarto-figure-center anchored" width="672" height="524">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="7-ctrf_files/figure-html/cell-5-output-8.png" id="fig-539a35d47e664c97a50115a146a7f1bd-9" width="672" height="524" class="figure-img">
-</div>
-</figure>
-</div>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-8.png" width="672" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-10" class="quarto-figure quarto-figure-center anchored" width="655" height="524">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="7-ctrf_files/figure-html/cell-5-output-9.png" id="fig-539a35d47e664c97a50115a146a7f1bd-10" width="655" height="524" class="figure-img">
-</div>
-</figure>
-</div>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-9.png" width="655" height="524"></p>
 </div>
 </div>
 </div>
@@ -444,9 +403,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -456,17 +416,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -479,81 +430,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
-        }
-        return container.innerHTML
-      } else {
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      return note.innerHTML;
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -597,7 +473,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -623,33 +498,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        console.log("RESIZE");
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -722,7 +570,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

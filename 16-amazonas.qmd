@@ -167,7 +167,7 @@ plt.show()
 #| echo: false
 fig_gle_flo_clip, ax_gle_flo_clip = plt.subplots()
 uf_select.plot(ax=ax_gle_flo_clip, facecolor='none', edgecolor='black', label='Estado')
-gle_flo_clip = gleba_uf_clip.overlay(floresta_B_uf, how='intersection', keep_geom_tupe=False)
+gle_flo_clip = gleba_uf_clip.overlay(floresta_B_uf, how='intersection')
 gleba_uf_clip.plot(ax=ax_gle_flo_clip, facecolor='none', edgecolor='black', label='Gleba Federal')
 gle_flo_clip.plot(ax=ax_gle_flo_clip, alpha=0.5)
 plt.grid(visible=True)

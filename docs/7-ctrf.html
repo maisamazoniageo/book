@@ -250,44 +250,20 @@ ul.task-list li input[type="checkbox"] {
 <p>II - convergir ações de destinação e promoção de políticas públicas.</p>
 </blockquote>
 <hr>
-<section id="distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação." class="level2 page-columns page-full" data-number="7.1">
+<section id="distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação." class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação."><span class="header-section-number">7.1</span> Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação.</h2>
-<div class="column-body-outset">
-<!-- ```{python}
-#| echo: false
-# Contagem de áreas com Consulta à Câmara Técnica Fundiária
-glebas_consult = pd.DataFrame(glebas[glebas['amaz_legal']==1][['uf','status_con']].value_counts())
-glebas_consult.rename(columns={0:'qt'}, inplace=True)
-glebas_consult.reset_index(inplace=True)
-# Linha de valores sem consulta em uf=RR para acrescentar
-RR_sem_consulta = pd.DataFrame({'uf':'RR', 'status_con': 'Sem Consulta', 'qt':0}, index=[0])
-glebas_consult = pd.concat([glebas_consult,RR_sem_consulta]).reset_index(drop=True)
-glebas_consult.sort_values(['uf', 'status_con'])
-fig, ax = plt.subplots(nrows=3, ncols=3)
-ax[0,0].pie(glebas_consult[glebas_consult['uf']=='AC']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[0,1].pie(glebas_consult[glebas_consult['uf']=='AM']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[0,2].pie(glebas_consult[glebas_consult['uf']=='AP']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[1,0].pie(glebas_consult[glebas_consult['uf']=='MA']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[1,1].pie(glebas_consult[glebas_consult['uf']=='MT']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[1,2].pie(glebas_consult[glebas_consult['uf']=='PA']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[2,0].pie(glebas_consult[glebas_consult['uf']=='RO']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[2,1].pie(glebas_consult[glebas_consult['uf']=='RR']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[2,2].pie(glebas_consult[glebas_consult['uf']=='TO']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[0,0].set_title('Acre')
-ax[0,1].set_title('Amazonas')
-ax[0,2].set_title('Amapá')
-ax[1,0].set_title('Maranhão')
-ax[1,1].set_title('Mato Grosso')
-ax[1,2].set_title('Pará')
-ax[2,0].set_title('Roraima')
-ax[2,1].set_title('Rondônia')
-ax[2,2].set_title('Tocantins')
-plt.show()
-``` -->
-</div>
 </section>
-<section id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais." class="level2 page-columns page-full" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais."><span class="header-section-number">7.2</span> Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</h2>
+<div class="column-body-outset">
+<section id="contagem-de-áreas-com-consulta-à-câmara-técnica-fundiária" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Contagem de áreas com Consulta à Câmara Técnica Fundiária</h1>
+</section>
+<section id="todo-verificar-os-gráficos" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> TODO: VERIFICAR OS GRÁFICOS</h1>
+<p>glebas_consult = pd.DataFrame(glebas[glebas[‘amaz_legal’]==1][[‘uf’,‘status_con’]].value_counts()) glebas_consult.rename(columns={‘count’:‘qt’}, inplace=True) glebas_consult.reset_index(inplace=True) # Linha de valores sem consulta em uf=RR para acrescentar RR_sem_consulta = pd.DataFrame({‘uf’:‘RR’, ‘status_con’: ‘Sem Consulta’, ‘qt’:0}, index=[0]) glebas_consult = pd.concat([glebas_consult,RR_sem_consulta]).reset_index(drop=True) glebas_consult.sort_values([‘uf’, ‘status_con’]) fig, ax = plt.subplots(nrows=3, ncols=3) ax[0,0].pie(glebas_consult[glebas_consult[‘uf’]==‘AC’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[0,1].pie(glebas_consult[glebas_consult[‘uf’]==‘AM’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[0,2].pie(glebas_consult[glebas_consult[‘uf’]==‘AP’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[1,0].pie(glebas_consult[glebas_consult[‘uf’]==‘MA’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[1,1].pie(glebas_consult[glebas_consult[‘uf’]==‘MT’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[1,2].pie(glebas_consult[glebas_consult[‘uf’]==‘PA’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[2,0].pie(glebas_consult[glebas_consult[‘uf’]==‘RO’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[2,1].pie(glebas_consult[glebas_consult[‘uf’]==‘RR’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[2,2].pie(glebas_consult[glebas_consult[‘uf’]==‘TO’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[0,0].set_title(‘Acre’) ax[0,1].set_title(‘Amazonas’) ax[0,2].set_title(‘Amapá’) ax[1,0].set_title(‘Maranhão’) ax[1,1].set_title(‘Mato Grosso’) ax[1,2].set_title(‘Pará’) ax[2,0].set_title(‘Roraima’) ax[2,1].set_title(‘Rondônia’) ax[2,2].set_title(‘Tocantins’) plt.show() ```</p>
+</section>
+</div>
+<section id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais." class="level2 page-columns page-full" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais."><span class="header-section-number">9.1</span> Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</h2>
 <div class="column-body-outset">
 <div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">

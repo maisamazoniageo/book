@@ -40,7 +40,7 @@ import matplotlib.pyplot as plt
 from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.4f}'.format
 pd.set_option('display.precision', 4)
-glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
 uf = gpd.read_file('../drive/uf.shp')
 fx_fronteira = gpd.read_file('../drive/BR_FaixaFronteira_150km/i3geomap_faixa150km.shp')
 glebas_assentimento = glebas[glebas['faixa_fron']==1]

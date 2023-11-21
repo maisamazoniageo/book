@@ -34,6 +34,7 @@ import pandas as pd
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap, ListedColormap
 from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.4f}'.format
 pd.set_option('display.precision', 4)
@@ -120,9 +121,7 @@ fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assu
 ```{python}
 #| echo: false
 fig, ax = plt.subplots()
-floresta[floresta['area-estudo']==1].plot(ax=ax, alpha=0.6, column='tipo', legend=True,  
-                                          legend_kwds={'loc': 'center left',
-                                          'bbox_to_anchor':(1,0.5)})
+floresta[floresta['area-estudo']==1].plot(ax=ax, column='tipo', legend=True,cmap = ListedColormap(["lawngreen", "lightseagreen"]),legend_kwds={'loc': 'center left', 'bbox_to_anchor':(1,0.5)})
 area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
 uf[uf['amaz_legal']==1].plot(ax=ax,facecolor="none", edgecolor="grey")
 plt.show()

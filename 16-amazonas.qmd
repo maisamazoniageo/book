@@ -15,6 +15,7 @@ import locale
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.4f}'.format
 pd.set_option('display.precision', 4)
@@ -34,10 +35,10 @@ mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
 #| echo: false
 
 fig, ax = plt.subplots()
-area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
-uf[uf['amaz_legal']==1].plot(ax=ax, facecolor='none', edgecolor='red')
+area_estudo.plot(ax=ax,facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+uf[uf['amaz_legal']==1].plot(ax=ax, facecolor = 'none', edgecolor = 'red', linewidth = 0.7)
 uf_select = uf[uf['nm_uf']==uf_analise]
-uf_select.plot(ax=ax, alpha=0.5)
+uf_select.plot(ax=ax, facecolor = 'yellow', edgecolor = 'black', linewidth = 0.7)
 plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
@@ -57,8 +58,8 @@ gleba_uf = glebas.sjoin(uf_select, how='inner')
 fig_gleba2, ax_gleba2 = plt.subplots()
 gleba_uf_clip = gleba_uf.overlay(uf_select, how='intersection')
 gleba_uf_clip = gleba_uf_clip.dissolve()
-gleba_uf_clip.plot(ax=ax_gleba2, alpha=0.7)
-uf_select.plot(ax=ax_gleba2, facecolor='none', edgecolor='black')
+gleba_uf_clip.plot(ax=ax_gleba2, facecolor = 'blue', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+uf_select.plot(ax=ax_gleba2, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
 plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
@@ -66,10 +67,10 @@ plt.show()
 # cálculo de área em km2 policônica em km2
 gleba_uf_clip['area_clip']= (gleba_uf_clip.to_crs(5880).area)/1000000
 
-display(Markdown('### Tabela de Glebas Federais no estado e suas áreas'))
-gleba_uf_fim = gleba_uf_clip.groupby('nome_gleba').agg({
-    'area_clip':'sum'
-})
+# display(Markdown('### Tabela de Glebas Federais no estado e suas áreas'))
+# gleba_uf_fim = gleba_uf_clip.groupby('nome_gleba').agg({
+#     'area_clip':'sum'
+#})
 
 #gleba_uf_fim.reset_index(inplace=True)
 
@@ -109,12 +110,10 @@ fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assu
 
 fig_flor, ax_flor = plt.subplots()
 # flrestas tipo B dentro da uf analisada
-floresta_B_uf = floresta[floresta['tipo']=='TIPO B'].overlay(uf_select, how='intersection')
+floresta_B_uf = floresta[floresta['tipo']=='TIPO B'].overlay(uf_select, how='intersection', keep_geom_type=True)
 
-floresta_B_uf.plot(ax=ax_flor, alpha=0.6, column='tipo', legend=True,  
-                                          legend_kwds={'loc': 'center left',
-                                          'bbox_to_anchor':(1,0.5)})
-uf_select.plot(ax=ax_flor,facecolor="none", edgecolor="black")
+floresta_B_uf.plot(ax=ax_flor,facecolor = 'orange', edgecolor = 'none', alpha = 0.6, linewidth = 0.7)
+uf_select.plot(ax=ax_flor, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
 plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
@@ -150,10 +149,17 @@ As análises de sobreposições visam mostrar a sobreposição entre as classes 
 #| echo: false
 
 fig_gle_flo, ax_gle_flo = plt.subplots()
-uf_select.plot(ax=ax_gle_flo, facecolor='none', edgecolor='black', label='Estado')
-floresta_B_uf.plot(ax=ax_gle_flo, facecolor='orange', linewidth=0.3, label='Fleresta Pública')
-gleba_uf_clip.plot(ax=ax_gle_flo, alpha=0.5, label='Gleba Federal')
-
+uf_select.plot(ax=ax_gle_flo, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+floresta_B_uf.plot(ax=ax_gle_flo, facecolor = 'orange', edgecolor = 'none', alpha = 0.6, linewidth = 0.7)
+gleba_uf_clip.plot(ax=ax_gle_flo, facecolor = 'blue', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor='orange', edgecolor='black', label='Florestas Públicas', linewidth=1))
+patch_list.append(patches.Patch(facecolor='blue', edgecolor='blue', label='Gleba Federal', linewidth=1, alpha=0.5))
+patch_list.append(patches.Patch(facecolor='#8E8D5A', label='Florestas nas Glebas', linewidth=1))
+# Creates a legend with the list of patches above.
+ax_gle_flo.legend(handles=patch_list, fontsize=10, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
 
 plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
@@ -166,10 +172,20 @@ plt.show()
 ```{python}
 #| echo: false
 fig_gle_flo_clip, ax_gle_flo_clip = plt.subplots()
-uf_select.plot(ax=ax_gle_flo_clip, facecolor='none', edgecolor='black', label='Estado')
+uf_select.plot(ax=ax_gle_flo_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
 gle_flo_clip = gleba_uf_clip.overlay(floresta_B_uf, how='intersection')
-gleba_uf_clip.plot(ax=ax_gle_flo_clip, facecolor='none', edgecolor='black', label='Gleba Federal')
-gle_flo_clip.plot(ax=ax_gle_flo_clip, alpha=0.5)
+gleba_uf_clip.plot(ax=ax_gle_flo_clip, facecolor = 'blue', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+gle_flo_clip.plot(ax=ax_gle_flo_clip, facecolor = 'orange', edgecolor = 'none', alpha = 0.6, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor = 'none', edgecolor = 'black', linewidth = 0.7, label=f'{uf_analise}'))
+patch_list.append(patches.Patch(facecolor='none', edgecolor='blue', linewidth = 0.7, label='Gleba Federal'))
+patch_list.append(patches.Patch(facecolor = 'orange', edgecolor = 'none', alpha = 0.6, linewidth = 0.7, label='Florestas nas Glebas'))
+# Creates a legend with the list of patches above.
+ax_gle_flo_clip.legend(handles=patch_list, fontsize=8, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=10)
+
+
 plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')

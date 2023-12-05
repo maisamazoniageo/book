@@ -288,46 +288,220 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <section id="distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação." class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação."><span class="header-section-number">7.1</span> Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação.</h2>
-</section>
-<div class="column-body-outset">
-<section id="contagem-de-áreas-com-consulta-à-câmara-técnica-fundiária" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Contagem de áreas com Consulta à Câmara Técnica Fundiária</h1>
-</section>
-<section id="todo-verificar-os-gráficos" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> TODO: VERIFICAR OS GRÁFICOS</h1>
-<p>glebas_consult = pd.DataFrame(glebas[glebas[‘amaz_legal’]==1][[‘uf’,‘status_con’]].value_counts()) glebas_consult.rename(columns={‘count’:‘qt’}, inplace=True) glebas_consult.reset_index(inplace=True) # Linha de valores sem consulta em uf=RR para acrescentar RR_sem_consulta = pd.DataFrame({‘uf’:‘RR’, ‘status_con’: ‘Sem Consulta’, ‘qt’:0}, index=[0]) glebas_consult = pd.concat([glebas_consult,RR_sem_consulta]).reset_index(drop=True) glebas_consult.sort_values([‘uf’, ‘status_con’]) fig, ax = plt.subplots(nrows=3, ncols=3) ax[0,0].pie(glebas_consult[glebas_consult[‘uf’]==‘AC’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[0,1].pie(glebas_consult[glebas_consult[‘uf’]==‘AM’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[0,2].pie(glebas_consult[glebas_consult[‘uf’]==‘AP’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[1,0].pie(glebas_consult[glebas_consult[‘uf’]==‘MA’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[1,1].pie(glebas_consult[glebas_consult[‘uf’]==‘MT’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[1,2].pie(glebas_consult[glebas_consult[‘uf’]==‘PA’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[2,0].pie(glebas_consult[glebas_consult[‘uf’]==‘RO’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[2,1].pie(glebas_consult[glebas_consult[‘uf’]==‘RR’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[2,2].pie(glebas_consult[glebas_consult[‘uf’]==‘TO’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[0,0].set_title(‘Acre’) ax[0,1].set_title(‘Amazonas’) ax[0,2].set_title(‘Amapá’) ax[1,0].set_title(‘Maranhão’) ax[1,1].set_title(‘Mato Grosso’) ax[1,2].set_title(‘Pará’) ax[2,0].set_title(‘Roraima’) ax[2,1].set_title(‘Rondônia’) ax[2,2].set_title(‘Tocantins’) plt.show() ```</p>
-</section>
-</div>
-<section id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais." class="level2 page-columns page-full" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais."><span class="header-section-number">9.1</span> Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</h2>
-<div class="column-body-outset">
 <div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-1.png" width="648" height="524"></p>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-1.png" width="742" height="548"></p>
+</div>
+<section id="tabela-de-glebas-consultadas." class="level2 cell-output cell-output-display" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="tabela-de-glebas-consultadas."><span class="header-section-number">7.2</span> Tabela de Glebas Consultadas.</h2>
+</section>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+<table class="dataframe table table-sm table-striped small">
+
+<thead>
+
+<tr>
+
+<th>
+uf
+</th>
+
+<th>
+Consultada
+</th>
+
+<th>
+Sem Consulta
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+AC
+</td>
+
+<td>
+59
+</td>
+
+<td>
+22
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+AM
+</td>
+
+<td>
+215
+</td>
+
+<td>
+42
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+AP
+</td>
+
+<td>
+25
+</td>
+
+<td>
+6
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+MA
+</td>
+
+<td>
+92
+</td>
+
+<td>
+21
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+MT
+</td>
+
+<td>
+533
+</td>
+
+<td>
+50
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+PA
+</td>
+
+<td>
+280
+</td>
+
+<td>
+130
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+RO
+</td>
+
+<td>
+76
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+RR
+</td>
+
+<td>
+3
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+TO
+</td>
+
+<td>
+476
+</td>
+
+<td>
+68
+</td>
+
+</tr>
+
+</tbody>
+
+
+</table>
+</div>
+</div>
+</section>
+<section id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais." class="level2 page-columns page-full" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais."><span class="header-section-number">7.3</span> Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</h2>
+<div class="column-body-outset">
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<p><img src="7-ctrf_files/figure-html/cell-5-output-1.png" width="648" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-2.png" width="759" height="524"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-2.png" width="759" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-3.png" width="871" height="524"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-3.png" width="871" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-4.png" width="1034" height="524"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-4.png" width="1034" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-5.png" width="708" height="524"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-5.png" width="708" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-6.png" width="711" height="524"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-6.png" width="711" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-7.png" width="651" height="524"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-7.png" width="651" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-8.png" width="672" height="524"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-8.png" width="672" height="524"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-9.png" width="655" height="524"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-9.png" width="655" height="524"></p>
 </div>
 </div>
 </div>

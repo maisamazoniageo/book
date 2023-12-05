@@ -116,21 +116,21 @@
     "href": "7-ctrf.html",
     "title": "7  Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.",
     "section": "",
-    "text": "8 Contagem de áreas com Consulta à Câmara Técnica Fundiária\nglebas_consult = pd.DataFrame(glebas[glebas[‘amaz_legal’]==1][[‘uf’,‘status_con’]].value_counts()) glebas_consult.rename(columns={‘count’:‘qt’}, inplace=True) glebas_consult.reset_index(inplace=True) # Linha de valores sem consulta em uf=RR para acrescentar RR_sem_consulta = pd.DataFrame({‘uf’:‘RR’, ‘status_con’: ‘Sem Consulta’, ‘qt’:0}, index=[0]) glebas_consult = pd.concat([glebas_consult,RR_sem_consulta]).reset_index(drop=True) glebas_consult.sort_values([‘uf’, ‘status_con’]) fig, ax = plt.subplots(nrows=3, ncols=3) ax[0,0].pie(glebas_consult[glebas_consult[‘uf’]==‘AC’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[0,1].pie(glebas_consult[glebas_consult[‘uf’]==‘AM’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[0,2].pie(glebas_consult[glebas_consult[‘uf’]==‘AP’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[1,0].pie(glebas_consult[glebas_consult[‘uf’]==‘MA’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[1,1].pie(glebas_consult[glebas_consult[‘uf’]==‘MT’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[1,2].pie(glebas_consult[glebas_consult[‘uf’]==‘PA’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[2,0].pie(glebas_consult[glebas_consult[‘uf’]==‘RO’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[2,1].pie(glebas_consult[glebas_consult[‘uf’]==‘RR’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[2,2].pie(glebas_consult[glebas_consult[‘uf’]==‘TO’][‘qt’].to_list(), autopct=‘%1.2f%%’, labels=[‘Consultada’, ‘Sem Consulta’], startangle=90) ax[0,0].set_title(‘Acre’) ax[0,1].set_title(‘Amazonas’) ax[0,2].set_title(‘Amapá’) ax[1,0].set_title(‘Maranhão’) ax[1,1].set_title(‘Mato Grosso’) ax[1,2].set_title(‘Pará’) ax[2,0].set_title(‘Roraima’) ax[2,1].set_title(‘Rondônia’) ax[2,2].set_title(‘Tocantins’) plt.show() ```"
+    "text": "8 Contagem de áreas com Consulta à Câmara Técnica Fundiária\nuf_consultada = pd.DataFrame(glebas[(glebas[‘amaz_legal’]==1) & (glebas[‘status_con’]==‘Consultada’)][[‘uf’]].value_counts()) uf_consultada = uf_consultada.rename(columns={‘count’:‘Consultada’})\nuf_n_consultada = pd.DataFrame(glebas[(glebas[‘amaz_legal’]==1) & (glebas[‘status_con’]==‘Sem Consulta’)][[‘uf’]].value_counts()) uf_n_consultada = uf_n_consultada.rename(columns={‘count’:‘Sem Consulta’}) g_consult = pd.concat([uf_consultada,uf_n_consultada], axis=1) g_consult = g_consult.fillna(0) g_consult = g_consult.reset_index().sort_values(‘uf’) g_consult.plot.bar(x=‘uf’) plt.grid(visible=True) plt.xlabel(‘Estados’) plt.ylabel(‘Quantidade’) plt.show()\ndisplay(Markdown(‘Tabela de Glebas Consultadas.’))\ng_consult.to_html(index=False) ```\n:::"
   },
   {
     "objectID": "7-ctrf.html#distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação.",
     "href": "7-ctrf.html#distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação.",
     "title": "7  Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.",
     "section": "7.1 Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação.",
-    "text": "7.1 Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação."
+    "text": "7.1 Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação.\n\n\n\n\n\n7.2 Tabela de Glebas Consultadas.\n\n\n\n\n\n\n\n\n\n\nuf\n\n\n\nConsultada\n\n\n\nSem Consulta\n\n\n\n\n\n\n\n\n\n\n\nAC\n\n\n\n59\n\n\n\n22\n\n\n\n\n\n\n\nAM\n\n\n\n215\n\n\n\n42\n\n\n\n\n\n\n\nAP\n\n\n\n25\n\n\n\n6\n\n\n\n\n\n\n\nMA\n\n\n\n92\n\n\n\n21\n\n\n\n\n\n\n\nMT\n\n\n\n533\n\n\n\n50\n\n\n\n\n\n\n\nPA\n\n\n\n280\n\n\n\n130\n\n\n\n\n\n\n\nRO\n\n\n\n76\n\n\n\n3\n\n\n\n\n\n\n\nRR\n\n\n\n3\n\n\n\n0\n\n\n\n\n\n\n\nTO\n\n\n\n476\n\n\n\n68"
   },
   {
     "objectID": "7-ctrf.html#glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais.",
     "href": "7-ctrf.html#glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais.",
     "title": "7  Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.",
-    "section": "9.1 Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.",
-    "text": "9.1 Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais."
+    "section": "7.3 Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.",
+    "text": "7.3 Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais."
   },
   {
     "objectID": "8-matricula.html#chave-de-identificação-registral-dos-imóveis.",
@@ -747,5 +747,12 @@
     "title": "References",
     "section": "Banco de dados espacial - geopackage",
     "text": "Banco de dados espacial - geopackage\nAs camadas utilizadas estão compiladas em um bando de dados espacial geopackage. A especificação GeoPackage descreve um conjunto de convenções para armazenamento de dados espaciais dentro de um banco de dados SQLite: Podem compor um gpkg: Vetores. Tiles, arquivos raster e matrizes em várias escalas.\n\n\n\n\n\n\n\n\n\nNome da Tabela\nGeometria\nEPSG\ndescrição\n\n\n\n\namazonia-legal\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\narea-estudo\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nfaixa-fronteira-150km\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nflorestas-publicas\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\ngleba-centroid-hub_sr\nMULTILINESTRING\nSIRGAS 2000 (4674)\n\n\n\nglebas-centroid\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nglebas-centroid-hub-menos-dist-sr\nMULTILINESTRING\nSIRGAS 2000 (4674)\n\n\n\nglebas-centroid-menor-dist-sr\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nglebas-mais-amazonia\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nmunicipios-area-estudo\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nsr_incra\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nti-geral\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nti-geral-pts\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nti-portarias\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nti-portarias-pts\nPOINT\nSIRGAS 2000 (4674)\n\n\n\nuc\nMULTIPOLYGON\nSIRGAS 2000 (4674)\n\n\n\nuf-brasil\nMULTIPOLYGON\nSIRGAS 2000 (4674)"
+  },
+  {
+    "objectID": "7-ctrf.html#tabela-de-glebas-consultadas.",
+    "href": "7-ctrf.html#tabela-de-glebas-consultadas.",
+    "title": "7  Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.",
+    "section": "7.2 Tabela de Glebas Consultadas.",
+    "text": "7.2 Tabela de Glebas Consultadas."
   }
 ]

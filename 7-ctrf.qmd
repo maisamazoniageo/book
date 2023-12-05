@@ -36,40 +36,28 @@ O Decreto nº 10.592, de 24 de dezembro de 2020, que Regulamenta a Lei nº 11.95
 ---
 
 ## Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação.
-:::{.column-body-outset}
- ```{python}
+
+```{python}
 #| echo: false
-# Contagem de áreas com Consulta à Câmara Técnica Fundiária
-# TODO: VERIFICAR OS GRÁFICOS
-glebas_consult = pd.DataFrame(glebas[glebas['amaz_legal']==1][['uf','status_con']].value_counts())
-glebas_consult.rename(columns={'count':'qt'}, inplace=True)
-glebas_consult.reset_index(inplace=True)
-# Linha de valores sem consulta em uf=RR para acrescentar
-RR_sem_consulta = pd.DataFrame({'uf':'RR', 'status_con': 'Sem Consulta', 'qt':0}, index=[0])
-glebas_consult = pd.concat([glebas_consult,RR_sem_consulta]).reset_index(drop=True)
-glebas_consult.sort_values(['uf', 'status_con'])
-fig, ax = plt.subplots(nrows=3, ncols=3)
-ax[0,0].pie(glebas_consult[glebas_consult['uf']=='AC']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[0,1].pie(glebas_consult[glebas_consult['uf']=='AM']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[0,2].pie(glebas_consult[glebas_consult['uf']=='AP']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[1,0].pie(glebas_consult[glebas_consult['uf']=='MA']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[1,1].pie(glebas_consult[glebas_consult['uf']=='MT']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[1,2].pie(glebas_consult[glebas_consult['uf']=='PA']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[2,0].pie(glebas_consult[glebas_consult['uf']=='RO']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[2,1].pie(glebas_consult[glebas_consult['uf']=='RR']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[2,2].pie(glebas_consult[glebas_consult['uf']=='TO']['qt'].to_list(), autopct='%1.2f%%', labels=['Consultada', 'Sem Consulta'], startangle=90)
-ax[0,0].set_title('Acre')
-ax[0,1].set_title('Amazonas')
-ax[0,2].set_title('Amapá')
-ax[1,0].set_title('Maranhão')
-ax[1,1].set_title('Mato Grosso')
-ax[1,2].set_title('Pará')
-ax[2,0].set_title('Roraima')
-ax[2,1].set_title('Rondônia')
-ax[2,2].set_title('Tocantins')
+uf_consultada = pd.DataFrame(glebas[(glebas['amaz_legal']==1) & (glebas['status_con']=='Consultada')][['uf']].value_counts())
+uf_consultada = uf_consultada.rename(columns={'count':'Consultada'})
+
+uf_n_consultada = pd.DataFrame(glebas[(glebas['amaz_legal']==1) & (glebas['status_con']=='Sem Consulta')][['uf']].value_counts())
+uf_n_consultada = uf_n_consultada.rename(columns={'count':'Sem Consulta'})
+g_consult = pd.concat([uf_consultada,uf_n_consultada], axis=1)
+g_consult = g_consult.fillna(0)
+g_consult['Sem Consulta'] = g_consult['Sem Consulta'].astype(int)
+g_consult = g_consult.reset_index().sort_values('uf')
+g_consult.plot.bar(x='uf')
+plt.grid(visible=True)
+plt.xlabel('Estados')
+plt.ylabel('Quantidade')
 plt.show()
-``` 
-:::
+
+display(Markdown('## Tabela de Glebas Consultadas.'))
+
+g_consult.to_html(index=False)
+```
 
 ## Glebas Federais por unidade da federação com consulta na  Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.
 

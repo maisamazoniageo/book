@@ -74,13 +74,15 @@ display(glebas_area_tot_uf.to_html(index=False))
 :::{.column-body-outset}
 ```{python}
 #| echo: false
+
+cor_gleba = '#e9cf68'
 for estado in glebas[glebas['amaz_legal']==1]['uf'].unique():
     
     fig, ax = plt.subplots()
     uf[uf['SIGLA']==estado].plot(ax=ax, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
     #area_estudo.plot(ax=ax, alpha=0.2, color='blue')
     glebas[(glebas['amaz_legal']==1) & (glebas['uf']==estado)].plot(ax=ax,
-    facecolor = 'blue', edgecolor = 'black', alpha = 0.5, linewidth = 0.7, column='uf', categorical=True, figsize=(8,20), legend=True, zorder=2,
+    facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7, column='uf', categorical=True, figsize=(8,20), legend=True, zorder=2,
                                                legend_kwds={'loc': 'center left',
                                                            'bbox_to_anchor':(1,0.5)})
     plt.xlabel('Longitude (°)')

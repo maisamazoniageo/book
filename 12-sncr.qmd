@@ -34,10 +34,16 @@ for sr in sr_nome:
     display(Markdown(f'### Superintendência Regional do {sr}.'))
     fig1, ax1 = plt.subplots()
     uf[uf['amaz_legal']==1].plot(ax=ax1, alpha=0.2, color='grey',edgecolor='black')
-    glebas[(glebas['sr_nome']==sr) & (glebas['cod_imovel']!='0000000000000')].plot(ax=ax1, zorder=1, aspect=1)
+
+    g_sncr = glebas[(glebas['sr_nome']==sr) & (glebas['cod_imovel']!='0000000000000')]
+    if len(g_sncr)!=0:
+        g_sncr.plot(ax=ax1, zorder=1, aspect=1)
+    else:
+        display(Markdown(f'*Não há Glebas Cadastradas no SNCR.*'))
+        
     sr_incra[sr_incra['sr_nome']==sr].plot(ax=ax1, color='red')
-    pto_sr_x = sr_incra[sr_incra['sr_nome']==sr]['geometry'].x
-    pto_sr_y = sr_incra[sr_incra['sr_nome']==sr]['geometry'].y
+    pto_sr_x = float(sr_incra.loc[sr_incra['sr_nome']==sr, ['local']].values[0][0].split()[0])
+    pto_sr_y = float(sr_incra.loc[sr_incra['sr_nome']==sr, ['local']].values[0][0].split()[1])
     ax1.annotate(f'SR do {sr}', xy=(pto_sr_x,pto_sr_y), size=10,va="bottom", ha="left",
                     xytext=((pto_sr_x+1),(pto_sr_y+1)),
                     bbox=dict(boxstyle="round", pad=0.1, fc="w"),

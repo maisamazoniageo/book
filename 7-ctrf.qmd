@@ -37,6 +37,7 @@ O Decreto nº 10.592, de 24 de dezembro de 2020, que Regulamenta a Lei nº 11.95
 
 ## Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação.
 
+:::{.table-center}
 ```{python}
 #| echo: false
 uf_consultada = pd.DataFrame(glebas[(glebas['amaz_legal']==1) & (glebas['status_con']=='Consultada')][['uf']].value_counts())
@@ -58,6 +59,7 @@ display(Markdown('## Tabela de Glebas Consultadas.'))
 
 g_consult.to_html(index=False)
 ```
+:::
 
 ## Glebas Federais por unidade da federação com consulta na  Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.
 

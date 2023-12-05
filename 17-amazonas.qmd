@@ -1,0 +1,573 @@
+# Análise do Estado do Amazonas.
+
+
+## Informações Gerais.
+
+```{python}
+#| echo: false
+
+# Definição de cores
+cor_gleba = '#e9cf68'
+cor_SIGEF = '#e0bd1f'
+cor_PA = '#998115'
+cor_TI = '#f2d4d3'
+cor_TQ = '#d7c0dd'
+cor_UC = '#99eb65'
+cor_Floresta = '#a7f5e0'
+cor_massa_agua = '#0751ff'
+cor_rodovias = '#e10c00'
+cor_gleba_flo = '#D9E3A9'
+cor_gleba_uc = '#C1DC66'
+cor_gleba_ti = '#EFD9A5'
+cor_gleba_pa = '#C1A83E'
+cor_gleba_tq = '#CDAFD4'
+
+uf_analise = 'Amazonas'
+
+import geopandas as gpd
+import pandas as pd
+import locale
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
+uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
+ti=gpd.read_file('../glebas-federais.gpkg', layer='ti-portarias')
+ti = ti.set_crs(4674, allow_override=True)
+pa = gpd.read_file('../glebas-federais.gpkg', layer='pa_brasil')
+tq = gpd.read_file('../glebas-federais.gpkg', layer='tq_brasil')
+floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
+mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
+```
+
+```{python}
+#| echo: false
+
+fig, ax = plt.subplots()
+area_estudo.plot(ax=ax,facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+uf[uf['amaz_legal']==1].plot(ax=ax, facecolor = 'none', edgecolor = 'red', linewidth = 0.7)
+uf_select = uf[uf['nm_uf']==uf_analise]
+uf_select.plot(ax=ax, facecolor = 'yellow', edgecolor = 'black', linewidth = 0.7)
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+
+# Verificar a necessidade de dados sobre o estado
+
+```
+
+## Glebas Federais na Unidade da Federação.
+
+### Área com Glebas Federais.
+```{python}
+#| echo: false
+gleba_uf = glebas.sjoin(uf_select, how='inner')
+fig_gleba2, ax_gleba2 = plt.subplots()
+gleba_uf_clip = gleba_uf.overlay(uf_select, how='intersection')
+gleba_uf_clip = gleba_uf_clip.dissolve()
+gleba_uf_clip.plot(ax=ax_gleba2, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+uf_select.plot(ax=ax_gleba2, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+# cálculo de área em km2 policônica em km2
+gleba_uf_clip['area_clip']= (gleba_uf_clip.to_crs(5880).area)/1000000
+
+area_uf = round(uf_select['area_km2'],4)
+area_total_glebas = round(gleba_uf_clip['area_clip'].sum(),4)
+percentual_glebas = round((area_total_glebas/area_uf)*100,2)
+percentual_glebas = locale.currency(percentual_glebas.values[0], grouping=True, symbol=None)
+area_total_glebas = locale.currency(area_total_glebas, grouping=True, symbol=None)
+display(Markdown(f'### Área total de Glebas Federais no Estado do {uf_analise}: **{area_total_glebas} km²**'))
+
+display(Markdown(f'### Percentual do {uf_analise} ocupado por Glebas Federais: **{percentual_glebas} %**'))
+```
+
+
+
+
+## Florestas Públicas.
+
+### Florestas Públicas não destinadas.
+
+Florestas Públicas do TIPO B (FPB) - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas, de acordo com os dados baixados do Serviço Florestal Brasileiro.
+
+fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assuntos/servico-florestal-brasileiro/cadastro-nacional-de-florestas-publicas){target="_blank"}
+
+```{python}
+#| echo: false
+
+fig_flor, ax_flor = plt.subplots()
+# flrestas tipo B dentro da uf analisada
+floresta_B_uf = floresta[floresta['tipo']=='TIPO B'].overlay(uf_select, how='intersection', keep_geom_type=False)
+
+floresta_B_uf.plot(ax=ax_flor,facecolor = cor_Floresta, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+uf_select.plot(ax=ax_flor, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+# Recalculando a área das florestas no interior do estado policônica em km2
+floresta_B_uf['area_km'] = (floresta_B_uf.to_crs(5880).area)/1000000
+
+floresta_B_uf_area = floresta_B_uf['area_km'].sum()
+percentual_floresta_B = round((floresta_B_uf_area/area_uf)*100,2)
+floresta_B_uf_area = locale.currency(floresta_B_uf_area, grouping=True, symbol=None)
+percentual_floresta_B = locale.currency(percentual_floresta_B.values[0], grouping=True, symbol=None)
+
+display(Markdown(f'### Área de Florestas Públicas não destinadas no {uf_analise}: **{floresta_B_uf_area} km²**'))
+
+display(Markdown(f'### Percentual do {uf_analise} ocupado por Florestas Públicas não destinadas : **{percentual_floresta_B} %**'))
+
+```
+
+
+## Unidades de Conservação.
+
+```{python}
+#| echo: false
+
+fig_uc, ax_uc = plt.subplots()
+uc_uf = uc.overlay(uf_select, how='intersection', keep_geom_type=False)
+uc_uf.plot(ax=ax_uc, facecolor= cor_UC, edgecolor='none', alpha=1)
+uf_select.plot(ax=ax_uc, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+# Recalculando a área das unidades de conservação no interior do estado policônica em km2
+uc_uf['area_km2'] = (uc_uf.to_crs(5880).area)/1000000
+
+uc_uf_area = uc_uf['area_km2'].sum()
+percentual_uc = round((uc_uf_area/area_uf)*100,2)
+uc_uf_area = locale.currency(uc_uf_area, grouping=True, symbol=None)
+percentual_uc = locale.currency(percentual_uc.values[0], grouping=True, symbol=None)
+
+display(Markdown(f'### Área de Unidades de Conservação no {uf_analise}: **{uc_uf_area} km²**'))
+
+display(Markdown(f'### O Percentual do {uf_analise} ocupado por Unidades de Conservação : **{percentual_uc} %**'))
+```
+
+## Terras Indígenas
+
+```{python}
+#| echo: false
+
+fig_ti, ax_ti = plt.subplots()
+ti_uf = ti.overlay(uf_select, how='intersection', keep_geom_type=False)
+ti_uf.plot(ax=ax_ti, facecolor= cor_TI, edgecolor='none', alpha=1)
+uf_select.plot(ax=ax_ti, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+# Recalculando a área das unidades de conservação no interior do estado policônica em km2
+ti_uf['area_km2'] = (ti_uf.to_crs(5880).area)/1000000
+
+ti_uf_area = ti_uf['area_km2'].sum()
+percentual_ti = round((ti_uf_area/area_uf)*100,2)
+ti_uf_area = locale.currency(ti_uf_area, grouping=True, symbol=None)
+percentual_ti = locale.currency(percentual_ti.values[0], grouping=True, symbol=None)
+
+display(Markdown(f'### Área de Terras Indígenas no {uf_analise}: **{ti_uf_area} km²**'))
+
+display(Markdown(f'### O Percentual do {uf_analise} ocupado por Terras Indígenas: **{percentual_ti} %**'))
+```
+
+## Projetos de Assentamento.
+
+```{python}
+#| echo: false
+
+fig_pa, ax_pa = plt.subplots()
+pa_uf = pa.overlay(uf_select, how='intersection', keep_geom_type=False)
+pa_uf.plot(ax=ax_pa, facecolor= cor_PA, edgecolor='none', alpha=1)
+uf_select.plot(ax=ax_pa, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+# Recalculando a área das unidades de conservação no interior do estado policônica em km2
+pa_uf['area_km2'] = (pa_uf.to_crs(5880).area)/1000000
+
+pa_uf_area = pa_uf['area_km2'].sum()
+percentual_pa = round((pa_uf_area/area_uf)*100,2)
+pa_uf_area = locale.currency(pa_uf_area, grouping=True, symbol=None)
+percentual_pa = locale.currency(percentual_pa.values[0], grouping=True, symbol=None)
+
+display(Markdown(f'### Área de Projetos de Assentamento no {uf_analise}: **{pa_uf_area} km²**'))
+
+display(Markdown(f'### O Percentual do {uf_analise} ocupado por Projetos de Assentamento: **{percentual_pa} %**'))
+```
+
+## Territórios Quilombolas.
+
+```{python}
+#| echo: false
+
+fig_tq, ax_tq = plt.subplots()
+tq_uf = tq.overlay(uf_select, how='intersection', keep_geom_type=False)
+tq_uf.plot(ax=ax_tq, facecolor=cor_TQ, edgecolor='none', alpha=1)
+uf_select.plot(ax=ax_tq, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+# Recalculando a área das unidades de conservação no interior do estado policônica em km2
+tq_uf['area_km2'] = (tq_uf.to_crs(5880).area)/1000000
+
+tq_uf_area = tq_uf['area_km2'].sum()
+percentual_tq = round((tq_uf_area/area_uf)*100,2)
+tq_uf_area = locale.currency(tq_uf_area, grouping=True, symbol=None)
+percentual_tq = locale.currency(percentual_tq.values[0], grouping=True, symbol=None)
+
+display(Markdown(f'### Área de Territórios Quilombolas no {uf_analise}: **{tq_uf_area} km²**'))
+
+display(Markdown(f'### O Percentual do {uf_analise} ocupado por Territórios Quilombolas: **{percentual_tq} %**'))
+```
+
+
+
+## Análise de Sobreposições.
+
+As análises de sobreposições visam mostrar a sobreposição entre as classes de áreas públicas existentes para que possamos determinar se a relação é concorrente ou não. A análise será elaborada tendo as Glebas Federais como ponto pincipal sendo comparadas com Florestas Públicas não destinadas, Terras Indígenas, Unidades de Conservação e Projetos de Assentamento.
+
+### Glebas Federais sobrepostas a Florestas Públicas não destinadas.
+
+#### Mapa Geral.
+
+```{python}
+#| echo: false
+
+fig_gle_flo, ax_gle_flo = plt.subplots()
+uf_select.plot(ax=ax_gle_flo, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+floresta_B_uf.plot(ax=ax_gle_flo, facecolor = cor_Floresta, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+gleba_uf_clip.plot(ax=ax_gle_flo, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor=cor_Floresta, alpha=1, edgecolor='none', label='Florestas Públicas', linewidth=1))
+patch_list.append(patches.Patch(facecolor=cor_gleba, edgecolor='blue', label='Gleba Federal', linewidth=1, alpha=0.5))
+patch_list.append(patches.Patch(facecolor=cor_gleba_flo, label='Florestas nas Glebas', linewidth=1))
+# Creates a legend with the list of patches above.
+ax_gle_flo.legend(handles=patch_list, fontsize=10, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+```
+
+#### Glebas Federais com Floresta Pública não destinada.
+
+```{python}
+#| echo: false
+fig_gle_flo_clip, ax_gle_flo_clip = plt.subplots()
+uf_select.plot(ax=ax_gle_flo_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+gle_flo_clip = gleba_uf_clip.overlay(floresta_B_uf, how='intersection', keep_geom_type=False)
+gleba_uf_clip.plot(ax=ax_gle_flo_clip, facecolor = 'none', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+gle_flo_clip.plot(ax=ax_gle_flo_clip, facecolor = cor_gleba_flo, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor = 'none', edgecolor = 'black', linewidth = 0.7, label=f'{uf_analise}'))
+patch_list.append(patches.Patch(facecolor='none', edgecolor='blue', linewidth = 0.7, label='Gleba Federal'))
+patch_list.append(patches.Patch(facecolor = cor_gleba_flo, edgecolor = 'none', alpha = 1, linewidth = 0.7, label='Florestas nas Glebas'))
+# Creates a legend with the list of patches above.
+ax_gle_flo_clip.legend(handles=patch_list, fontsize=8, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=10)
+
+
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+# Recalculando a área das glebas no interior das florestas policônica em km2
+gle_flo_clip['area_km2'] = (gle_flo_clip.to_crs(5880).area)/1000000
+
+gle_flo_clip_area = gle_flo_clip['area_km2'].sum()
+#percentual_floresta_B = round((floresta_B_uf_area/area_uf)*100,2)
+gle_flo_clip_area = locale.currency(gle_flo_clip_area, grouping=True, symbol=None)
+
+
+display(Markdown(f'### A área de Florestas Públicas *_não destinadas_* dentro das Glebas Federais no Estado do {uf_analise} é de: **{gle_flo_clip_area} km²**'))
+
+display(Markdown(f'''Dos {floresta_B_uf_area} km² de Florestas Públicas classificadas na base do Serviço Florestal Brasileiro, {gle_flo_clip_area} km² estão sobrepostas aos polígons de Glebas Públicas Federais registrados na base de dados do INCRA.'''))
+```
+
+
+### Glebas Federais sobrepostas a Unidades de Conservação.
+
+#### Mapa Geral.
+
+```{python}
+#| echo: false
+
+fig_gle_uc, ax_gle_uc = plt.subplots()
+uf_select.plot(ax=ax_gle_uc, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+uc_uf.plot(ax=ax_gle_uc, facecolor = cor_UC, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+gleba_uf_clip.plot(ax=ax_gle_uc, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor=cor_UC, alpha=1, edgecolor='none', label='Unidades de Conservação', linewidth=1))
+patch_list.append(patches.Patch(facecolor=cor_gleba, edgecolor='blue', label='Gleba Federal', linewidth=1, alpha=0.5))
+patch_list.append(patches.Patch(facecolor=cor_gleba_uc, label='Unid. de Consercação nas Glebas', linewidth=1))
+# Creates a legend with the list of patches above.
+ax_gle_uc.legend(handles=patch_list, fontsize=10, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+```
+
+#### Glebas Federais com Unidades de Conservação.
+
+```{python}
+#| echo: false
+fig_gle_uc_clip, ax_gle_uc_clip = plt.subplots()
+uf_select.plot(ax=ax_gle_uc_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+gle_uc_clip = gleba_uf_clip.overlay(uc_uf, how='intersection', keep_geom_type=False)
+gleba_uf_clip.plot(ax=ax_gle_uc_clip, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+gle_uc_clip.plot(ax=ax_gle_uc_clip, facecolor = cor_gleba_uc, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor = 'none', edgecolor = 'black', linewidth = 0.7, label=f'{uf_analise}'))
+patch_list.append(patches.Patch(facecolor='none', edgecolor='blue', linewidth = 0.7, label='Gleba Federal'))
+patch_list.append(patches.Patch(facecolor = cor_gleba_uc, edgecolor = 'none', alpha = 1, linewidth = 0.7, label='Unid. de Conservação nas Glebas'))
+# Creates a legend with the list of patches above.
+ax_gle_uc_clip.legend(handles=patch_list, fontsize=8, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=10)
+
+
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+# Recalculando a área das glebas no interior das florestas policônica em km2
+gle_uc_clip['area_km2'] = (gle_uc_clip.to_crs(5880).area)/1000000
+
+gle_uc_clip_area = gle_uc_clip['area_km2'].sum()
+#percentual_floresta_B = round((floresta_B_uf_area/area_uf)*100,2)
+gle_uc_clip_area = locale.currency(gle_uc_clip_area, grouping=True, symbol=None)
+
+
+display(Markdown(f'### A área de Unidades de Conservação dentro das Glebas Federais no Estado do {uf_analise} é de: **{gle_uc_clip_area} km²**'))
+
+display(Markdown(f'''Dos {uc_uf_area} km² de Unidades de Conservação, {gle_uc_clip_area} km² estão sobrepostas aos polígons de Glebas Públicas Federais registrados na base de dados do INCRA.'''))
+```
+
+### Glebas Federais sobrepostas a Terras Indígenas.
+
+#### Mapa Geral.
+
+
+```{python}
+#| echo: false
+
+fig_gle_ti, ax_gle_ti = plt.subplots()
+uf_select.plot(ax=ax_gle_ti, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+ti_uf.plot(ax=ax_gle_ti, facecolor = cor_TI, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+gleba_uf_clip.plot(ax=ax_gle_ti, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor=cor_TI, alpha=0.6, edgecolor='none', label='Terras Indígenas', linewidth=1))
+patch_list.append(patches.Patch(facecolor=cor_gleba, edgecolor='blue', label='Gleba Federal', linewidth=1, alpha=0.5))
+patch_list.append(patches.Patch(facecolor=cor_gleba_ti, label='Terras Indígenas nas Glebas', linewidth=1))
+# Creates a legend with the list of patches above.
+ax_gle_ti.legend(handles=patch_list, fontsize=10, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+```
+
+#### Glebas Federais com Terras Indígenas.
+
+```{python}
+#| echo: false
+fig_gle_ti_clip, ax_gle_ti_clip = plt.subplots()
+uf_select.plot(ax=ax_gle_ti_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+gle_ti_clip = gleba_uf_clip.overlay(ti_uf, how='intersection', keep_geom_type=False)
+gleba_uf_clip.plot(ax=ax_gle_ti_clip, facecolor = 'none', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+gle_ti_clip.plot(ax=ax_gle_ti_clip, facecolor = cor_gleba_ti, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor = 'none', edgecolor = 'black', linewidth = 0.7, label=f'{uf_analise}'))
+patch_list.append(patches.Patch(facecolor='none', edgecolor='blue', linewidth = 0.7, label='Gleba Federal'))
+patch_list.append(patches.Patch(facecolor = cor_gleba_ti, edgecolor = 'none', alpha = 1, linewidth = 0.7, label='Terras Indígenas nas Glebas'))
+# Creates a legend with the list of patches above.
+ax_gle_ti_clip.legend(handles=patch_list, fontsize=8, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=10)
+
+
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+# Recalculando a área das glebas no interior das florestas policônica em km2
+gle_ti_clip['area_km2'] = (gle_ti_clip.to_crs(5880).area)/1000000
+
+gle_ti_clip_area = gle_ti_clip['area_km2'].sum()
+#percentual_floresta_B = round((floresta_B_uf_area/area_uf)*100,2)
+gle_ti_clip_area = locale.currency(gle_ti_clip_area, grouping=True, symbol=None)
+
+
+display(Markdown(f'### A área de Terras Indígenas dentro das Glebas Federais no Estado do {uf_analise} é de: **{gle_ti_clip_area} km²**'))
+
+display(Markdown(f'''Dos {ti_uf_area} km² de Terras Indígenas, {gle_ti_clip_area} km² estão sobrepostas aos polígons de Glebas Públicas Federais registrados na base de dados do INCRA.'''))
+```
+
+### Glebas Federais sobrepostas a Projetos de Assentamento.
+
+#### Mapa Geral.
+
+
+```{python}
+#| echo: false
+
+fig_gle_pa, ax_gle_pa = plt.subplots()
+uf_select.plot(ax=ax_gle_pa, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+pa_uf.plot(ax=ax_gle_pa, facecolor = cor_PA, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+gleba_uf_clip.plot(ax=ax_gle_pa, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor=cor_PA, alpha=0.6, edgecolor='none', label='Assentamentos', linewidth=1))
+patch_list.append(patches.Patch(facecolor=cor_gleba, edgecolor='blue', label='Gleba Federal', linewidth=1, alpha=0.5))
+patch_list.append(patches.Patch(facecolor=cor_gleba_pa, label='Assentamentos nas Glebas', linewidth=1))
+# Creates a legend with the list of patches above.
+ax_gle_pa.legend(handles=patch_list, fontsize=10, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+```
+
+#### Glebas Federais com Projetos de Assentamentos.
+
+```{python}
+#| echo: false
+fig_gle_pa_clip, ax_gle_pa_clip = plt.subplots()
+uf_select.plot(ax=ax_gle_pa_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+gle_pa_clip = gleba_uf_clip.overlay(pa_uf, how='intersection', keep_geom_type=False)
+gleba_uf_clip.plot(ax=ax_gle_pa_clip, facecolor = 'none', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+gle_pa_clip.plot(ax=ax_gle_pa_clip, facecolor = cor_gleba_pa, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+# LEGENDAS
+patch_list = []
+patch_list.append(patches.Patch(facecolor = 'none', edgecolor = 'black', linewidth = 0.7, label=f'{uf_analise}'))
+patch_list.append(patches.Patch(facecolor='none', edgecolor='blue', linewidth = 0.7, label='Gleba Federal'))
+patch_list.append(patches.Patch(facecolor = cor_gleba_pa, edgecolor = 'none', alpha = 1, linewidth = 0.7, label='Assentamentos nas Glebas'))
+# Creates a legend with the list of patches above.
+ax_gle_pa_clip.legend(handles=patch_list, fontsize=8, loc='lower left',
+        bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=10)
+
+
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.show()
+
+# Recalculando a área das glebas no interior dos pa em km2
+gle_pa_clip['area_km2'] = (gle_pa_clip.to_crs(5880).area)/1000000
+
+gle_pa_clip_area = gle_pa_clip['area_km2'].sum()
+#percentual_floresta_B = round((floresta_B_uf_area/area_uf)*100,2)
+gle_pa_clip_area = locale.currency(gle_pa_clip_area, grouping=True, symbol=None)
+
+
+display(Markdown(f'### A área de Assentamentos dentro das Glebas Federais no Estado do {uf_analise} é de: **{gle_pa_clip_area} km²**'))
+
+display(Markdown(f'''Dos {pa_uf_area} km² de Assentamentos, {gle_pa_clip_area} km² estão sobrepostas aos polígons de Glebas Públicas Federais registrados na base de dados do INCRA.'''))
+```
+
+### Glebas Federais sobrepostas a Territórios Quilombola.
+
+#### Mapa Geral.
+
+
+```{python}
+#| echo: false
+try:
+        fig_gle_tq, ax_gle_tq = plt.subplots()
+        uf_select.plot(ax=ax_gle_tq, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+        tq_uf.plot(ax=ax_gle_tq, facecolor = cor_TQ, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+        gleba_uf_clip.plot(ax=ax_gle_tq, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+        # LEGENDAS
+        patch_list = []
+        patch_list.append(patches.Patch(facecolor=cor_TQ, alpha=0.6, edgecolor='none', label='Assentamentos', linewidth=1))
+        patch_list.append(patches.Patch(facecolor=cor_gleba, edgecolor='blue', label='Gleba Federal', linewidth=1, alpha=0.5))
+        patch_list.append(patches.Patch(facecolor=cor_gleba_tq, label='Quilombos nas Glebas', linewidth=1))
+        # Creates a legend with the list of patches above.
+        ax_gle_tq.legend(handles=patch_list, fontsize=10, loc='lower left',
+                bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+
+        plt.grid(visible=True)
+        plt.xlabel('Longitude (°)')
+        plt.ylabel('Latitude (°)')
+        plt.show()
+except:
+        display(Markdown(f'### Não há Territórios Quilobola demarcados no Estado do {uf_analise} dentro de Glebas Federais.'))
+```
+
+#### Glebas Federais com Territórios Quilombola.
+
+```{python}
+#| echo: false
+try:
+        fig_gle_tq_clip, ax_gle_tq_clip = plt.subplots()
+        uf_select.plot(ax=ax_gle_tq_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+        gle_tq_clip = gleba_uf_clip.overlay(tq_uf, how='intersection', keep_geom_type=False)
+        gleba_uf_clip.plot(ax=ax_gle_tq_clip, facecolor = 'none', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
+        gle_tq_clip.plot(ax=ax_gle_tq_clip, facecolor = cor_gleba_tq, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+        # LEGENDAS
+        patch_list = []
+        patch_list.append(patches.Patch(facecolor = 'none', edgecolor = 'black', linewidth = 0.7, label=f'{uf_analise}'))
+        patch_list.append(patches.Patch(facecolor='none', edgecolor='blue', linewidth = 0.7, label='Gleba Federal'))
+        patch_list.append(patches.Patch(facecolor = cor_gleba_pa, edgecolor = 'none', alpha = 1, linewidth = 0.7, label='Quilombos nas Glebas'))
+        # Creates a legend with the list of patches above.
+        ax_gle_tq_clip.legend(handles=patch_list, fontsize=8, loc='lower left',
+                bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=10)
+
+
+        plt.grid(visible=True)
+        plt.xlabel('Longitude (°)')
+        plt.ylabel('Latitude (°)')
+        plt.show()
+
+        # Recalculando a área das glebas no interior dos pa em km2
+        gle_tq_clip['area_km2'] = (gle_tq_clip.to_crs(5880).area)/1000000
+
+        gle_tq_clip_area = gle_tq_clip['area_km2'].sum()
+        #percentual_floresta_B = round((floresta_B_uf_area/area_uf)*100,2)
+        gle_tq_clip_area = locale.currency(gle_tq_clip_area, grouping=True, symbol=None)
+
+
+        display(Markdown(f'### A área de Territórios Quilobola dentro das Glebas Federais no Estado do {uf_analise} é de: **{gle_tq_clip_area} km²**'))
+
+        display(Markdown(f'''Dos {tq_uf_area} km² de Territórios Quilobola, {gle_tq_clip_area} km² estão sobrepostas aos polígons de Glebas Públicas Federais registrados na base de dados do INCRA.'''))
+except:
+        display(Markdown(f'### Não há Territórios Quilobola demarcados no Estado do {uf_analise} dentro de Glebas Federais.'))
+```

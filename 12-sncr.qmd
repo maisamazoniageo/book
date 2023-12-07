@@ -24,9 +24,10 @@ sr_ponto = gpd.read_file("../drive/Shapes Bases de Glebas e Projetos data 01.03.
 
 Os mapas abaixo mostram a distribuição das gelbas federais com cadastro no SNCR por Superintendência Regional.
 
-:::{.column-body-outset}
+
 ```{python}
 #| echo: false
+#| fig-align: center
 # Bibliotecas
 sr_incra = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp')
 sr_nome = sr_incra['sr_nome']
@@ -55,7 +56,7 @@ for sr in sr_nome:
     plt.grid()
     plt.show()
 ```
-:::
+
 
 
 ### Contagem de Glebas com cadastro no SNCR por Superintendência Regional.
@@ -63,6 +64,7 @@ for sr in sr_nome:
 :::{.table-center}
 ```{python}
 #| echo: false
+#| fig-align: center
 
 gleba_sncr = glebas[glebas['cod_imovel']!='0000000000000'].groupby('sr_nome').agg({'cod_imovel':'count'}).reset_index().rename(columns={'sr_nome':'Superintendência', 'cod_imovel': 'Qt. SNCR'}).merge(glebas.groupby('sr_nome').agg({'cod_imovel':'count'}).reset_index().rename(columns={'sr_nome':'Superintendência', 'cod_imovel': 'Total'}))
 gleba_sncr['Perc. Cadastrado'] = gleba_sncr.apply(lambda x: round(x['Qt. SNCR']/x['Total']*100,2), axis=1)

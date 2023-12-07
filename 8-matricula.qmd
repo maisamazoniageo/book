@@ -1,7 +1,7 @@
 
 # Registros em Cartório
 
-
+<div style="text-align: justify">
 
 ```{python}
 #| echo: false
@@ -24,7 +24,7 @@ area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-ma
 uf = gpd.read_file('../drive/uf.shp')
 ```
 
-<div style="text-align: justify">
+
 
 A Lei 6.015 que dispõe sobre os registros públicos, e dá outras providências, estabelece que:
 
@@ -89,6 +89,7 @@ _**CNS:**_ receberá o número correspondente ao Código Nacional de Serventias 
 :::{.table-center}
 ```{python}
 #| echo: false
+#| fig-align: center
 glebas_matricula = glebas[['uf','matricula','cartorio']].copy()
 glebas_matricula['total']=1
 display(Markdown('### Número de glebas com informações de matrícula e CNS do Catório cadastradas.'))
@@ -110,3 +111,4 @@ tot_glebas.rename(columns={
 
 ```
 :::
+</div>

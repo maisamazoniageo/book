@@ -20,7 +20,7 @@ pd.set_option('display.precision', 4)
 
 ## Mapa das Glebas Públicas Federais dentro da área de estudo.
 
-:::{.column-body-outset}
+
 ```{python}
 #| echo: false
 glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
@@ -28,11 +28,12 @@ area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-ma
 uf = gpd.read_file('../drive/uf.shp')
 #glebas.info()
 ```
-:::
 
-:::{.column-body-outset}
+
+
 ```{python}
 #| echo: false
+#| fig-align: center
 fig, ax = plt.subplots()
 uf.plot(ax=ax, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
 area_estudo.plot(ax=ax, alpha=0.2, color='blue')
@@ -45,15 +46,16 @@ plt.grid()
 plt.title("Glebas Federais dentro da Área de Estudo")
 plt.show()
 ```
-:::
+
 
 
 
 ## Total de área das Gebas Federais por Unidade da Federação
 
-::: {.table-right}
+:::{.table-center}
 ```{python}
 #| echo: false
+
 # Totalizando as áreas das glebas por UF
 glebas_area_uf = glebas[glebas['amaz_legal']==1][['uf']].copy()
 glebas_area_uf['area_km'] = glebas['area_ha'].apply(lambda x: x/100)
@@ -64,16 +66,17 @@ def formatar_numero(numero):
     num = f'{float(numero):,.4f}'
     return str(num.replace(',',';').replace('.',',').replace(';','.'))
 glebas_area_tot_uf['Área (km²)'] = glebas_area_tot_uf['Área (km²)'].apply(lambda x: formatar_numero(x))
-display(glebas_area_tot_uf.to_html(index=False))
+display(glebas_area_tot_uf.to_html(justify='center',index=False))
 ```
 :::
 *1km² = 100ha*
 
 ## Mapa de glebas federais por unidade da federação.
 
-:::{.column-body-outset}
+
 ```{python}
 #| echo: false
+#| fig-align: center
 
 cor_gleba = '#e9cf68'
 for estado in glebas[glebas['amaz_legal']==1]['uf'].unique():
@@ -91,4 +94,4 @@ for estado in glebas[glebas['amaz_legal']==1]['uf'].unique():
     plt.title(f"Glebas Federais por unidade da federação - {estado}.")
     plt.show()
 ```
-:::
+</div>

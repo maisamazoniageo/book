@@ -1,8 +1,8 @@
 # Unidades de Consrvação.
 
 ## Unidade de Conservação
+<div style="text-align: justify"> 
 
-:::{.text-justify}
 Áreas naturais relevantes para o Brasil são conhecidas como Unidades de Conservação e são protegidas por Lei. Objetivo é garantir a preservação da biodiversidade
 
 Viver em um meio ambiente ecologicamente equilibrado é um direito de todo brasileiro, garantido na Constituição Federal. Há muito o ser humano reconhece a necessidade de proteger áreas naturais com características específicas, salvaguardando fauna, flora, rios e mares, elementos que precisam coexistir para haver equilíbrio na natureza. No Brasil, país considerado megabiodiverso, essas áreas são delimitadas, denominadas Unidades de Conservação (UC) e reguladas por lei.
@@ -22,7 +22,7 @@ Zoneamento – Ainda que as Unidades de Uso Sustentável aliem a preservação a
 O zoneamento é definido pelo Plano de Manejo, que também inclui medidas para promover a integração da UC à vida econômica e social das comunidades vizinhas, o que é essencial para que implementação da unidade seja mais eficiente.
 
 fonte:[Ministério do Meio Ambiente](https://antigo.mma.gov.br/informma/item/15713-o-que-s%C3%A3o-as-unidades-de-conserva%C3%A7%C3%A3o.html){target="_blank"}
-:::
+
 
 ### Quantificação das Unidades de Conservação
 
@@ -46,24 +46,29 @@ floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
 uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
 ```
 
-:::{.column-body-outset}
+
 ```{python}
 #| echo: false
+#| fig-align: center
+
 fig_uc, ax_uc = plt.subplots()
 area_estudo.plot(ax=ax_uc,facecolor="none", edgecolor="black")
 uf[uf['amaz_legal']==1].plot(ax=ax_uc,facecolor="none", edgecolor="grey")
 uc[uc['area-estudo']==1].plot(ax=ax_uc, alpha=0.5, column='categori3', legend=True,
-                                          legend_kwds={'loc': 'center left',
-                                          'bbox_to_anchor':(1,0.5)})
+                                          legend_kwds={'loc': 'upper left',
+                                          'bbox_to_anchor':(0.9,0.5)})
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
 plt.show()
 ```
-:::
 
 
 ### Unidade de Conservação por Categoria
 
 ```{python}
 #| echo: false
+#| fig-align: center
 
 uc_tab = uc[uc['area-estudo']==1].groupby('categori3').agg({
   'id_uc0':'count',
@@ -77,25 +82,11 @@ uc_tab.rename(columns={'categori3':'Categoria da Unidade de Conservação',
           }).to_html(index=False)
 ```
 
-### Unidade de Conservação por estado
 
-<!-- ```{python}
-#| echo: false
-uc_uf_area_list = []
-uc_uf_estados_list = []
-estados = glebas[glebas['amaz_legal']==1]['uf_nome'].unique()
-for estado in estados:
-  #fig_uf, ax_uf = plt.subplots(figsize=(13,6))
-  uf_alvo = uf[uf['nm_uf']==estado]
-  uc_uf_temp = uc.overlay(uf_alvo, how='intersection').dissolve()
-  uc_uf_area_list.append(((uc_uf_temp.to_crs(5880).area)/1000000).iloc[0])
-  uc_uf_estados_list.append[estado]
-
-``` -->
 
 ## Cadastro Nacional de Florestas Públicas (CNFP)
 
-:::{text-justify}
+
 O Cadastro Nacional de Florestas Públicas (CNFP) é um instrumento de planejamento da gestão florestal, que reúne dados georreferenciados sobre as florestas públicas brasileiras, de modo a oferecer aos gestores públicos e à população em geral uma base confiável de mapas, imagens e dados com informações relevantes para a gestão florestal. Os dados do CNFP auxiliam os processos de destinação das florestas públicas para uso comunitário, criação de unidades de conservação e realização de concessões florestais. O Cadastro contribui para a transparência, a participação social e unificação das informações sobre as florestas públicas.
 
 O CNFP é formado pelo Cadastro de Florestas Públicas da União, pelos Cadastros de Florestas Públicas dos estados, Distrito Federal e municípios e está em processo de interligação ao Sistema Nacional de Cadastro Rural (SNCR) do Instituto Nacional de Colonização e Reforma Agrária (INCRA).
@@ -113,24 +104,30 @@ Existem três tipos de florestas públicas federais:
 - Florestas Públicas do TIPO C (FPC) - São as florestas localizadas em áreas de dominialidade indefinida, comumente chamadas de terras devolutas.
 
 fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assuntos/servico-florestal-brasileiro/cadastro-nacional-de-florestas-publicas){target="_blank"}
-:::
+
 
 ### Quantificação das florestas publicas por tipo
 
-:::{.column-body-outset-right}
+
+
 ```{python}
 #| echo: false
+#| fig-align: center
+
 fig, ax = plt.subplots()
-floresta[floresta['area-estudo']==1].plot(ax=ax, column='tipo', legend=True,cmap = ListedColormap(["lawngreen", "lightseagreen"]),legend_kwds={'loc': 'center left', 'bbox_to_anchor':(1,0.5)})
+floresta[floresta['area-estudo']==1].plot(ax=ax, column='tipo', legend=True,cmap = ListedColormap(["lawngreen", "lightseagreen"]),legend_kwds={'loc': 'lower center', 'bbox_to_anchor':(1.1,0.5)})
 area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
 uf[uf['amaz_legal']==1].plot(ax=ax,facecolor="none", edgecolor="grey")
+plt.grid(visible=True)
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
 plt.show()
-
 ```
-:::
+
 
 ```{python}
 #| echo: false
+#| fig-align: center
 
 floresta_tipo = floresta[floresta['area-estudo']==1].groupby('tipo').agg({
   'area_ha':'sum'
@@ -142,10 +139,11 @@ floresta_tipo.rename(columns={
 }).to_html(index=False)
 
 ```
-:::{.text-justify}
+
 A denominação de florestas publicas parece abranger integralmentes as poligonais já classificadas em outras atividades tais como áreas de assentamentos federais, assim, a denominação que pode remeter a uma área de vegetação nativa não é a realizada das poligonais existentes na base de dados.
 
 As áreas mensuradas como florestas publicas abrangem divérsos uso do solo distintos de vegetação nativa, levando à conclusões equivocadas quando do uso da totalização de área.
 
 Seguindo a definição do Serviço Florestal Brasileiro, as florestas publicas do *Tipo A - lorestas que apresentam destinação e dominialidade específica*, somariam 235.982.649 de hectares e as do *Tipo B - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas* somariam 62.989.475 de hectares. Porém esse número não corresponde à área ocupada por vergetação nativa nos respectivos polígonos.
-:::
+
+</div>

@@ -30,6 +30,8 @@ A Lei Nº 6.634, de 2 de maio de 1979, dispõe sobre a Faixa de Fronteira, alter
 
 ```{python}
 #| echo: false
+#| fig-align: center
+
 # Bibliotecas
 import geopandas as gpd
 import pandas as pd
@@ -61,6 +63,9 @@ plt.show()
 :::{.table-center}
 ```{python}
 #| echo: false
+#| fig-align: center
+
+
 glebas_assentimento.groupby('uf_nome').agg({'uf':'count'}).reset_index().rename(columns={'uf_nome':'UF', 'uf':'Quantidade'}).to_html(index=False)
 ```
 :::
@@ -72,6 +77,9 @@ glebas_assentimento.groupby('uf_nome').agg({'uf':'count'}).reset_index().rename(
 
 ```{python}
 #| echo: false
+#| fig-align: center
+
+
 fig1, ax1 = plt.subplots()
 uf.plot(ax=ax1, alpha=0.2, color='grey',edgecolor='black')
 fx_fronteira.plot(ax=ax1, alpha=0.2, color='orange', edgecolor='red')
@@ -88,6 +96,9 @@ plt.show()
 :::{.table-center}
 ```{python}
 #| echo: false
+#| fig-align: center
+
+
 glebas_assentimento[glebas_assentimento['assent_pre']==1].groupby('uf_nome').agg({'uf':'count'}).reset_index().rename(columns={'uf_nome':'UF', 'uf':'Quantidade'}).to_html(index=False)
 ```
 :::

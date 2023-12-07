@@ -102,7 +102,7 @@ Sendo assim, com a experiência obtida nos resultados do GOVFUN-BR, a partir da 
 
 ## Fluxo da Coordenação-Geral Acadêmica
 
-:::{.column-body-outset-right}
+
 ```{mermaid}
 flowchart LR
 A[Coordenação-Geral Acadêmica] ---> B(Coordenação Técnica)
@@ -110,7 +110,7 @@ A[Coordenação-Geral Acadêmica] ---> C(Administrativo CEGAFI)
 A[Coordenação-Geral Acadêmica] ---> D(Pesquisadores)
 B[Coordenação Técnica] ---> E(Equipe de Coleta)
 ```
-:::
+
 
 O fluxo das informações deverá seguir impreterivelmente a hierarquia apresentada acima.
 
@@ -141,8 +141,9 @@ O fluxo das informações deverá seguir impreterivelmente a hierarquia apresent
 
 ## Fluxo de Funcionamento das Coletas
 
-:::{.column-body-outset-right}
+
 ```{mermaid}
+
 flowchart LR
     A[Coordenação Técnica] -->|1ª Etapa|B(INCRA Sede)
     B[INCRA Sede] -->|1ª Etapa|A(Coordenação Técnica)
@@ -152,7 +153,7 @@ flowchart LR
     D[Equipe de Coleta] -->|5ª Etapa|C(Superintendências Regionais)
     style D fill:#f1ba20
 ```
-:::
+
 
 **1º etapa:** A coordenação Técnica pactua junto com Incra as demandas e prioridades para o desenvolvimento do trabalho e solicita que o Incra Sede informe a atuação dos trabalhos para Superintendência Regional.
 
@@ -163,4 +164,4 @@ flowchart LR
 **4º etapa:** A Coordenação Técnica apresenta a atividade para a Equipe de Coleta.
 
 **5º etapa:** A Equipe é deslocada para Superintendência Regional para executar a coleta de dados.
-
+</div>

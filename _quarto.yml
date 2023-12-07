@@ -50,6 +50,7 @@ format:
     toc: false
     fig-width: 9
     fig-height: 6.5
+    fig-align: center
 
   pdf:
     documentclass: report

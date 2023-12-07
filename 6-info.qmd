@@ -1,6 +1,6 @@
 
 # Detalhamento das Informações dos atributos relacionados às geometrias das Glebas Federais.
-
+<div style="text-align: justify"> 
 - **cod_imovel**  - código da gleba no Sistema Nacional de Cadastro Rural composto por 13 dígitos (000.000.000.000-0);
 - **matricula**   - matrícula da gleba registrada em cartório, informação de texto com o número da matrícula, livro e cartório de registro;
 - **cartorio**    - campo para armazenar o Código Nacional de Serventia do cartório de registro da gleba;
@@ -85,3 +85,4 @@ As poligonais das glebas representam uma das informações mais importantes para
 
 As glebas que não encontram-se certificadas necessitam de uma verificação mínima nos polígonos que a representam para que possam ter uma topologia válida, possibilitando cruzamentos espaciais com outras entidades. Nas poligonais analizadas, foram encontradas uma série de vértices sobrepostos e outros tipos de geometrias inválidas como micropolígonos, ou polígonos com área zero, gerando inconsistências e erros durante as análises espaciais.
 
+</div>

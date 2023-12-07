@@ -9,3 +9,4 @@ O presente Manual de Coleta de Dados tem por objetivo central a padronização d
 2. Estabelecer metodologia de coleta;
 3. Definir procedimentos para levantamento dos dados;
 4. Orientar os trabalhos, dirimir dúvidas e definir fluxos.
+</div>

@@ -22,6 +22,7 @@ cor_gleba_uc = '#C1DC66'
 cor_gleba_ti = '#EFD9A5'
 cor_gleba_pa = '#C1A83E'
 cor_gleba_tq = '#CDAFD4'
+cor_gleba_sigef = '#E4C643'
 
 uf_analise = 'Maranhão'
 
@@ -45,6 +46,7 @@ ti=gpd.read_file('../glebas-federais.gpkg', layer='ti-portarias')
 ti = ti.set_crs(4674, allow_override=True)
 pa = gpd.read_file('../glebas-federais.gpkg', layer='pa_brasil')
 tq = gpd.read_file('../glebas-federais.gpkg', layer='tq_brasil')
+sigef = gpd.read_file('../glebas-federais.gpkg', layer='sigef-particular')
 floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
 mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
 ```
@@ -250,7 +252,37 @@ display(Markdown(f'### Área de Territórios Quilombolas no {uf_analise}: **{tq_
 display(Markdown(f'### O Percentual do {uf_analise} ocupado por Territórios Quilombolas: **{percentual_tq} %**'))
 ```
 
+## Certificações Particulares (SIGEF).
 
+```{python}
+#| echo: false
+#| fig-align: center
+try:
+        fig_sigef, ax_sigef = plt.subplots()
+        sigef_uf = sigef.overlay(uf_select, how='intersection', keep_geom_type=False)
+        sigef_uf.plot(ax=ax_sigef, facecolor=cor_SIGEF, edgecolor='none', alpha=1)
+        uf_select.plot(ax=ax_sigef, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+        plt.grid(visible=True)
+        plt.xlabel('Longitude (°)')
+        plt.ylabel('Latitude (°)')
+        plt.show()
+
+        # Recalculando a área das unidades de conservação no interior do estado policônica em km2
+        sigef_uf['area_km2'] = (sigef_uf.to_crs(5880).area)/1000000
+
+        sigef_uf_area = sigef_uf['area_km2'].sum()
+        percentual_sigef = round((sigef_uf_area/area_uf)*100,2)
+        sigef_uf_area = locale.currency(sigef_uf_area, grouping=True, symbol=None)
+        percentual_sigef = locale.currency(percentual_sigef.values[0], grouping=True, symbol=None)
+
+        display(Markdown(f'### Área de Imóveis Certificados no {uf_analise}: **{sigef_uf_area} km²**'))
+
+        display(Markdown(f'### O Percentual do {uf_analise} ocupado por Imóveis Certificados: **{percentual_sigef} %**'))
+
+        display(Markdown(f'### O Estado do {uf_analise} possui **{sigef_uf.shape[0]}** polígonos Certificados'))
+except:
+        display(Markdown(f'### Não foi identificado Imóveis Certificados demarcados no {uf_analise}' ))
+```
 
 ## Análise de Sobreposições.
 
@@ -589,15 +621,17 @@ try:
 except:
         display(Markdown(f'### Não há Territórios Quilobola demarcados no Estado do {uf_analise} dentro de Glebas Federais.'))
 ```
+
 ### Glebas Federais sobrepostas a Imóveis Certificados.
 
 #### Mapa Geral.
 
 
+
 ```{python}
 #| echo: false
 #| fig-align: center
-try:
+if sigef_uf.shape[0]>0:
         fig_gle_sigef, ax_gle_sigef = plt.subplots()
         uf_select.plot(ax=ax_gle_sigef, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
         sigef_uf.plot(ax=ax_gle_sigef, facecolor = cor_SIGEF, edgecolor = 'none', alpha = 1, linewidth = 0.7)
@@ -615,7 +649,7 @@ try:
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
         plt.show()
-except:
+else:
         display(Markdown(f'### Não há Imóveis Certificados demarcados no Estado do {uf_analise} dentro de Glebas Federais.'))
 ```
 
@@ -624,7 +658,7 @@ except:
 ```{python}
 #| echo: false
 #| fig-align: center
-try:
+if sigef_uf.shape[0]>0:
         fig_gle_sigef_clip, ax_gle_sigef_clip = plt.subplots()
         uf_select.plot(ax=ax_gle_sigef_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
         gle_sigef_clip = gleba_uf_clip.overlay(sigef_uf, how='intersection', keep_geom_type=False)
@@ -656,7 +690,7 @@ try:
         display(Markdown(f'### A área de Imóveis Certificados dentro das Glebas Federais no Estado do {uf_analise} é de: **{gle_sigef_clip_area} km²**'))
 
         display(Markdown(f'''Dos {sigef_uf_area} km² de Imóveis Certificados, {gle_sigef_clip_area} km² estão sobrepostas aos polígons de Glebas Públicas Federais registrados na base de dados do INCRA.'''))
-except:
+else:
         display(Markdown(f'### Não há Imóveis Certificados demarcados no Estado do {uf_analise} dentro de Glebas Federais.'))
 ```
 </div>

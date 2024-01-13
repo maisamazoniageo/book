@@ -98,9 +98,6 @@ display(Markdown(f'### Área total de Glebas Federais no Estado do {uf_analise}:
 display(Markdown(f'### Percentual do {uf_analise} ocupado por Glebas Federais: **{percentual_glebas} %**'))
 ```
 
-
-
-
 ## Florestas Públicas.
 
 ### Florestas Públicas não destinadas.
@@ -279,6 +276,8 @@ try:
         display(Markdown(f'### Área de Imóveis Certificados no {uf_analise}: **{sigef_uf_area} km²**'))
 
         display(Markdown(f'### O Percentual do {uf_analise} ocupado por Imóveis Certificados: **{percentual_sigef} %**'))
+
+        display(Markdown(f'### O Estado do {uf_analise} possui **{sigef_uf.shape[0]}** polígonos Certificados'))
 except:
         display(Markdown(f'### Não foi identificado Imóveis Certificados demarcados no {uf_analise}' ))
 ```
@@ -563,7 +562,7 @@ except:
 ```{python}
 #| echo: false
 #| fig-align: center
-try:
+if sigef_uf.shape[0]>0:
         fig_gle_sigef, ax_gle_sigef = plt.subplots()
         uf_select.plot(ax=ax_gle_sigef, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
         sigef_uf.plot(ax=ax_gle_sigef, facecolor = cor_SIGEF, edgecolor = 'none', alpha = 1, linewidth = 0.7)
@@ -581,7 +580,7 @@ try:
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
         plt.show()
-except:
+else:
         display(Markdown(f'### Não há Imóveis Certificados demarcados no Estado do {uf_analise} dentro de Glebas Federais.'))
 ```
 
@@ -590,7 +589,7 @@ except:
 ```{python}
 #| echo: false
 #| fig-align: center
-try:
+if sigef_uf.shape[0]>0:
         fig_gle_sigef_clip, ax_gle_sigef_clip = plt.subplots()
         uf_select.plot(ax=ax_gle_sigef_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
         gle_sigef_clip = gleba_uf_clip.overlay(sigef_uf, how='intersection', keep_geom_type=False)
@@ -622,7 +621,7 @@ try:
         display(Markdown(f'### A área de Imóveis Certificados dentro das Glebas Federais no Estado do {uf_analise} é de: **{gle_sigef_clip_area} km²**'))
 
         display(Markdown(f'''Dos {sigef_uf_area} km² de Imóveis Certificados, {gle_sigef_clip_area} km² estão sobrepostas aos polígons de Glebas Públicas Federais registrados na base de dados do INCRA.'''))
-except:
+else:
         display(Markdown(f'### Não há Imóveis Certificados demarcados no Estado do {uf_analise} dentro de Glebas Federais.'))
 ```
 

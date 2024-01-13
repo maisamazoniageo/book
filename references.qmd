@@ -26,6 +26,7 @@ As camadas utilizadas estão compiladas em um bando de dados espacial geopackage
 |ti-portarias-pts                 |POINT          |SIRGAS 2000 (4674)|
 |uc                               |MULTIPOLYGON   |SIRGAS 2000 (4674)|
 |uf-brasil                        |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+|sigef-particular                 |MULTIPOLYGON   |SIRGAS 2000 (4674)|
 
 
 

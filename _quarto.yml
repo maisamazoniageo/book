@@ -37,6 +37,7 @@ book:
     - 21-rondonia.qmd
     - 22-roraima.qmd
     - 23-tocantins.qmd
+    - 24-analise-individual-acre.qmd
     - summary.qmd
     - references.qmd
 bibliography: references.bib

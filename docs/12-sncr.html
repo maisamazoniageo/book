@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.542">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -72,24 +79,24 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12-sncr.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sistema Nacional de Cadastro Rural - SNCR.</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12-sncr.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sistema Nacional de Cadastro Rural - SNCR.</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Análise Geográfica das Glebas Federais</a> 
         <div class="sidebar-tools-main">
-    <a href="https://maisamazoniageo.github.io/book/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
+    <a href="https://maisamazoniageo.github.io/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -241,8 +248,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./24-analise-individual-acre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Definição de cores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -254,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -267,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -275,122 +288,124 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="mapas-de-localização-das-glebas-com-código-no-sistema-nacional-de-cadsatro-rural---sncr." class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="mapas-de-localização-das-glebas-com-código-no-sistema-nacional-de-cadsatro-rural---sncr."><span class="header-section-number">12.1</span> Mapas de localização das glebas com código no Sistema Nacional de Cadsatro Rural - SNCR.</h2>
 <p>Os mapas abaixo mostram a distribuição das gelbas federais com cadastro no SNCR por Superintendência Regional.</p>
-<div class="cell" data-execution_count="2">
-<section id="superintendência-regional-do-acre." class="level3 cell-output cell-output-display" data-number="12.1.1">
+<div id="db30e346" class="cell" data-execution_count="2">
+<section id="superintendência-regional-do-acre." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.1">
 <h3 data-number="12.1.1" class="anchored" data-anchor-id="superintendência-regional-do-acre."><span class="header-section-number">12.1.1</span> Superintendência Regional do Acre.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-2.png" width="729" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-2.png" class="quarto-figure quarto-figure-center figure-img" width="729" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-amapá." class="level3 cell-output cell-output-display" data-number="12.1.2">
+<section id="superintendência-regional-do-amapá." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.2">
 <h3 data-number="12.1.2" class="anchored" data-anchor-id="superintendência-regional-do-amapá."><span class="header-section-number">12.1.2</span> Superintendência Regional do Amapá.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-4.png" width="739" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-4.png" class="quarto-figure quarto-figure-center figure-img" width="739" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-amazonas." class="level3 cell-output cell-output-display" data-number="12.1.3">
+<section id="superintendência-regional-do-amazonas." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.3">
 <h3 data-number="12.1.3" class="anchored" data-anchor-id="superintendência-regional-do-amazonas."><span class="header-section-number">12.1.3</span> Superintendência Regional do Amazonas.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-6.png" width="738" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-6.png" class="quarto-figure quarto-figure-center figure-img" width="738" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-maranhão." class="level3 cell-output cell-output-display" data-number="12.1.4">
+<section id="superintendência-regional-do-maranhão." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.4">
 <h3 data-number="12.1.4" class="anchored" data-anchor-id="superintendência-regional-do-maranhão."><span class="header-section-number">12.1.4</span> Superintendência Regional do Maranhão.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-8.png" width="790" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-8.png" class="quarto-figure quarto-figure-center figure-img" width="790" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-mato-grosso." class="level3 cell-output cell-output-display" data-number="12.1.5">
+<section id="superintendência-regional-do-mato-grosso." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.5">
 <h3 data-number="12.1.5" class="anchored" data-anchor-id="superintendência-regional-do-mato-grosso."><span class="header-section-number">12.1.5</span> Superintendência Regional do Mato Grosso.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-10.png" width="714" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-10.png" class="quarto-figure quarto-figure-center figure-img" width="714" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-pará---belém." class="level3 cell-output cell-output-display" data-number="12.1.6">
+<section id="superintendência-regional-do-pará---belém." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.6">
 <h3 data-number="12.1.6" class="anchored" data-anchor-id="superintendência-regional-do-pará---belém."><span class="header-section-number">12.1.6</span> Superintendência Regional do Pará - Belém.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-12.png" width="738" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-12.png" class="quarto-figure quarto-figure-center figure-img" width="738" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-pará---santarém." class="level3 cell-output cell-output-display" data-number="12.1.7">
+<section id="superintendência-regional-do-pará---santarém." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.7">
 <h3 data-number="12.1.7" class="anchored" data-anchor-id="superintendência-regional-do-pará---santarém."><span class="header-section-number">12.1.7</span> Superintendência Regional do Pará - Santarém.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-14.png" width="738" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-14.png" class="quarto-figure quarto-figure-center figure-img" width="738" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-pará---marabá." class="level3 cell-output cell-output-display" data-number="12.1.8">
+<section id="superintendência-regional-do-pará---marabá." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.8">
 <h3 data-number="12.1.8" class="anchored" data-anchor-id="superintendência-regional-do-pará---marabá."><span class="header-section-number">12.1.8</span> Superintendência Regional do Pará - Marabá.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-16.png" width="736" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-16.png" class="quarto-figure quarto-figure-center figure-img" width="736" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-rondônia." class="level3 cell-output cell-output-display" data-number="12.1.9">
+<section id="superintendência-regional-do-rondônia." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.9">
 <h3 data-number="12.1.9" class="anchored" data-anchor-id="superintendência-regional-do-rondônia."><span class="header-section-number">12.1.9</span> Superintendência Regional do Rondônia.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-18.png" width="731" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-18.png" class="quarto-figure quarto-figure-center figure-img" width="731" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-tocantins." class="level3 cell-output cell-output-display" data-number="12.1.10">
+<section id="superintendência-regional-do-tocantins." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.10">
 <h3 data-number="12.1.10" class="anchored" data-anchor-id="superintendência-regional-do-tocantins."><span class="header-section-number">12.1.10</span> Superintendência Regional do Tocantins.</h3>
 </section>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-20.png" width="728" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-20.png" class="quarto-figure quarto-figure-center figure-img" width="728" height="540"></p>
 </figure>
 </div>
 </div>
-<section id="superintendência-regional-do-roraima." class="level3 cell-output cell-output-display" data-number="12.1.11">
+<section id="superintendência-regional-do-roraima." class="level3 cell-output cell-output-display cell-output-markdown" data-number="12.1.11">
 <h3 data-number="12.1.11" class="anchored" data-anchor-id="superintendência-regional-do-roraima."><span class="header-section-number">12.1.11</span> Superintendência Regional do Roraima.</h3>
 </section>
-<div class="cell-output cell-output-display">
+<div class="cell-output cell-output-display cell-output-markdown">
 <p><em>Não há Glebas Cadastradas no SNCR.</em></p>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="12-sncr_files/figure-html/cell-3-output-23.png" width="738" height="540" class="figure-img"></p>
+<p><img src="12-sncr_files/figure-html/cell-3-output-23.png" class="quarto-figure quarto-figure-center figure-img" width="738" height="540"></p>
 </figure>
 </div>
 </div>
@@ -398,9 +413,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="contagem-de-glebas-com-cadastro-no-sncr-por-superintendência-regional." class="level3" data-number="12.1.12">
 <h3 data-number="12.1.12" class="anchored" data-anchor-id="contagem-de-glebas-com-cadastro-no-sncr-por-superintendência-regional."><span class="header-section-number">12.1.12</span> Contagem de Glebas com cadastro no SNCR por Superintendência Regional.</h3>
 <div class="table-center">
-<div class="cell" data-execution_count="3">
+<div id="01745a46" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
-
 <table class="dataframe table table-sm table-striped small">
 
 <thead>
@@ -651,7 +665,6 @@ Tocantins
 
 </tbody>
 
-
 </table>
 </div>
 </div>
@@ -741,10 +754,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -754,8 +766,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -768,6 +789,120 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -811,6 +946,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -836,6 +972,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -897,17 +1059,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="./11-assentimento.html" class="pagination-link">
+      <a href="./11-assentimento.html" class="pagination-link  aria-label=" &lt;span="" com="" assentimento="" prévio="" do="" concelho="" de="" defesa="" nacional="" -="" cdn.&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Glebas com Assentimento prévio do Concelho de Defesa Nacional - CDN.</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./13-terra-indigena.html" class="pagination-link">
+      <a href="./13-terra-indigena.html" class="pagination-link" aria-label="<span class='chapter-number'>13</span>&nbsp; <span class='chapter-title'>Terras Indígenas.</span>">
         <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Terras Indígenas.</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

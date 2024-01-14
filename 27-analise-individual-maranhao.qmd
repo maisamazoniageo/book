@@ -1,4 +1,4 @@
-# Análise de Sobreposição individual das Glebas Federais do estado do Acre.
+# Análise de Sobreposição individual das Glebas Federais do estado do Maranhão.
 
 ```{python}
 #| echo: false
@@ -26,7 +26,7 @@ sigef = gpd.read_file('../glebas-federais.gpkg', layer='sigef-particular')
 floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
 mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
 
-uf_analise = 'Acre'
+uf_analise = 'Maranhão'
 
 # Definição de cores
 cor_gleba = '#e9cf68'

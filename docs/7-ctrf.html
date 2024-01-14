@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.542">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -72,24 +79,24 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./7-ctrf.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./7-ctrf.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Análise Geográfica das Glebas Federais</a> 
         <div class="sidebar-tools-main">
-    <a href="https://maisamazoniageo.github.io/book/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
+    <a href="https://maisamazoniageo.github.io/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -241,8 +248,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./24-analise-individual-acre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Definição de cores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -254,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -267,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -275,7 +288,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <div style="text-align: justify">
 
@@ -289,19 +304,18 @@ ul.task-list li input[type="checkbox"] {
 <section id="distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação." class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="distribuição-de-glebas-federais-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais-por-unidade-da-federação."><span class="header-section-number">7.1</span> Distribuição de Glebas Federais com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais por unidade da federação.</h2>
 <div class="table-center">
-<div class="cell" data-execution_count="3">
+<div id="29680164" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-4-output-1.png" width="742" height="548" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-4-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="742" height="548"></p>
 </figure>
 </div>
 </div>
-<section id="tabela-de-glebas-consultadas." class="level2 cell-output cell-output-display" data-number="7.2">
+<section id="tabela-de-glebas-consultadas." class="level2 cell-output cell-output-display cell-output-markdown" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="tabela-de-glebas-consultadas."><span class="header-section-number">7.2</span> Tabela de Glebas Consultadas.</h2>
 </section>
 <div class="cell-output cell-output-display" data-execution_count="3">
-
 <table class="dataframe table table-sm table-striped small">
 
 <thead>
@@ -472,7 +486,6 @@ TO
 
 </tbody>
 
-
 </table>
 </div>
 </div>
@@ -480,67 +493,67 @@ TO
 </section>
 <section id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais." class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="glebas-federais-por-unidade-da-federação-com-consulta-na-câmara-técnica-de-destinação-e-regularização-fundiária-de-terras-públicas-federais-rurais."><span class="header-section-number">7.3</span> Glebas Federais por unidade da federação com consulta na Câmara Técnica de Destinação e Regularização Fundiária de Terras Públicas Federais Rurais.</h2>
-<div class="cell" data-execution_count="4">
+<div id="4edee2ca" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-5-output-1.png" width="648" height="524" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="648" height="524"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-5-output-2.png" width="759" height="524" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-2.png" class="quarto-figure quarto-figure-center figure-img" width="759" height="524"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-5-output-3.png" width="871" height="524" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-3.png" class="quarto-figure quarto-figure-center figure-img" width="871" height="524"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-5-output-4.png" width="1034" height="524" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-4.png" class="quarto-figure quarto-figure-center figure-img" width="1034" height="524"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-5-output-5.png" width="708" height="524" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-5.png" class="quarto-figure quarto-figure-center figure-img" width="708" height="524"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-5-output-6.png" width="711" height="524" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-6.png" class="quarto-figure quarto-figure-center figure-img" width="711" height="524"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-5-output-7.png" width="651" height="524" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-7.png" class="quarto-figure quarto-figure-center figure-img" width="651" height="524"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-5-output-8.png" width="672" height="524" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-8.png" class="quarto-figure quarto-figure-center figure-img" width="672" height="524"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="7-ctrf_files/figure-html/cell-5-output-9.png" width="655" height="524" class="figure-img"></p>
+<p><img src="7-ctrf_files/figure-html/cell-5-output-9.png" class="quarto-figure quarto-figure-center figure-img" width="655" height="524"></p>
 </figure>
 </div>
 </div>
@@ -629,10 +642,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -642,8 +654,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -656,6 +677,120 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -699,6 +834,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -724,6 +860,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -785,17 +947,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="./6-info.html" class="pagination-link">
+      <a href="./6-info.html" class="pagination-link  aria-label=" &lt;span="" das="" informações="" dos="" atributos="" relacionados="" às="" geometrias="" glebas="" federais.&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Detalhamento das Informações dos atributos relacionados às geometrias das Glebas Federais.</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./8-matricula.html" class="pagination-link">
+      <a href="./8-matricula.html" class="pagination-link" aria-label="<span class='chapter-number'>8</span>&nbsp; <span class='chapter-title'>Registros em Cartório</span>">
         <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Registros em Cartório</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

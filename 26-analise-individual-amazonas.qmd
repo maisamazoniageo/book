@@ -177,7 +177,7 @@ for item in lista:
         patch_list.append(patches.Patch(facecolor='none', edgecolor='black', label='Gleba Federal', linewidth=1))
         patch_list.append(patches.Patch(facecolor=cor_TQ, alpha=0.6, edgecolor='none', label='Território Quilombola', linewidth=1))
         # Creates a legend with the list of patches above.
-        ax_ti.legend(handles=patch_list, fontsize=10, loc='lower left',
+        ax_tq.legend(handles=patch_list, fontsize=10, loc='lower left',
                 bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')

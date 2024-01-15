@@ -38,6 +38,14 @@ book:
     - 22-roraima.qmd
     - 23-tocantins.qmd
     - 24-analise-individual-acre.qmd
+    - 25-analise-individual-amapa.qmd
+    - 26-analise-individual-amazonas.qmd
+    - 27-analise-individual-maranhao.qmd
+    - 28-analise-individual-matogrosso.qmd
+    - 29-analise-individual-para.qmd
+    - 30-analise-individual-rondonia.qmd
+    - 31-analise-individual-roraima.qmd
+    - 32-analise-individual-tocantins.qmd
     - summary.qmd
     - references.qmd
 bibliography: references.bib

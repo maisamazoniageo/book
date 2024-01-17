@@ -63,14 +63,10 @@ for item in lista:
     fig, ax = plt.subplots(figsize=(13,6))
     
     municipio_gleba = mun.sjoin(gleba, how='inner')
-    gleba.plot(ax=ax, facecolor=cor_gleba, alpha=0.8)
-    municipio_gleba.plot(ax=ax, facecolor='none')
-    # LEGENDAS
-    patch_list = []
-    patch_list.append(patches.Patch(facecolor=cor_gleba, alpha=0.6, edgecolor='none', label='Gleba Federal', linewidth=1))
-    # Creates a legend with the list of patches above.
-    ax.legend(handles=patch_list, fontsize=10, loc='lower left',
-            bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+    municipio_gleba.plot(ax=ax, column='nm_mun', categorical=True, legend=True, 
+                        alpha=0.65, cmap='Pastel2',
+                        legend_kwds={'loc': 'center left','bbox_to_anchor':(1,0.5)})
+    gleba.plot(ax=ax, facecolor='none', edgecolor='black', linewidth=2)
     plt.xlabel('Longitude (°)')
     plt.ylabel('Latitude (°)')
     plt.grid()
@@ -79,122 +75,103 @@ for item in lista:
     display(municipio_gleba[['Código da UF', 'Estado', 'UF', 'Código do Município', 'Nome do Município']].to_html(index=False))
 
     display(Markdown('### Floresta Pública'))
-    floresta_gleba = floresta.sjoin(gleba, how='inner')
+    floresta_gleba = floresta.overlay(gleba, how='intersection')
     if floresta_gleba.shape[0]>0:
         fig_flor, ax_flor = plt.subplots(figsize=(13,6))
-        floresta_gleba.plot(ax=ax_flor, facecolor=cor_Floresta)
+        floresta_gleba.plot(ax=ax_flor, column='nome', categorical=True, legend=True, 
+                        alpha=0.65, cmap='Pastel2',
+                        legend_kwds={'loc': 'center left','bbox_to_anchor':(1,0.5)})
         gleba.plot(ax=ax_flor, facecolor='none', edgecolor='black', linewidth=1)
-        # LEGENDAS
-        patch_list = []
-        patch_list.append(patches.Patch(facecolor='none', edgecolor='black', label='Gleba Federal', linewidth=1))
-        patch_list.append(patches.Patch(facecolor=cor_Floresta, alpha=0.6, edgecolor='none', label='Floresta Pública', linewidth=1))
-        # Creates a legend with the list of patches above.
-        ax_flor.legend(handles=patch_list, fontsize=10, loc='lower left',
-                bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
         plt.grid()
         plt.show()
+        # cálculo de área em km2 policônica em ha
+        floresta_gleba['Área Sobreposta (ha)'] = (floresta_gleba.to_crs(5880).area)/10000
         floresta_gleba = floresta_gleba.rename(columns={'nome':'Nome','tipo':'Tipo','categoria':'Categoria'})
-        display(floresta_gleba[['Nome', 'Tipo', 'Categoria']].to_html(index=False))
+        display(floresta_gleba[['Nome', 'Tipo', 'Categoria', 'Área Sobreposta (ha)']].to_html(index=False))
     else:
         display(Markdown('Não há sobreposição'))
 
     display(Markdown('### Unidades de Conservação'))
-    uc_gleba = uc.sjoin(gleba, how='inner')
+    uc_gleba = uc.overlay(gleba, how='intersection')
     if uc_gleba.shape[0]>0:
         fig_uc, ax_uc = plt.subplots(figsize=(13,6))
-        uc_gleba.plot(ax=ax_uc, facecolor=cor_UC)
-        gleba.plot(ax=ax_uc, facecolor='none', edgecolor='black', linewidth=1)
-        # LEGENDAS
-        patch_list = []
-        patch_list.append(patches.Patch(facecolor='none', edgecolor='black', label='Gleba Federal', linewidth=1))
-        patch_list.append(patches.Patch(facecolor=cor_UC, alpha=0.6, edgecolor='none', label='Unidade de Conservação', linewidth=1))
-        # Creates a legend with the list of patches above.
-        ax_uc.legend(handles=patch_list, fontsize=10, loc='lower left',
-                bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+        uc_gleba.plot(ax=ax_uc, column='nome_uc1', categorical=True, legend=True, 
+                        alpha=0.65, cmap='Pastel2',
+                        legend_kwds={'loc': 'center left','bbox_to_anchor':(1,0.5)})
+        gleba.plot(ax=ax_uc, facecolor='none', edgecolor='black', linewidth=2)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
         plt.grid()
         plt.show()
+        uc_gleba['Área Sobreposta (ha)'] = (uc_gleba.to_crs(5880).area)/10000
         uc_gleba = uc_gleba.rename(columns={'nome_uc1':'Nome','categori3':'Categoria','esfera5':'Responsabilidade'})
-        display(uc_gleba[['Nome','Categoria','Responsabilidade']].to_html(index=False))
+        display(uc_gleba[['Nome','Categoria','Responsabilidade', 'Área Sobreposta (ha)']].to_html(index=False))
     else:
         display(Markdown('Não há sobreposição'))
 
     display(Markdown('### Terra Indígenas'))
-    ti_gleba = ti.sjoin(gleba, how='inner')
+    ti_gleba = ti.overlay(gleba, how='intersection')
     if ti_gleba.shape[0]>0:
         fig_ti, ax_ti = plt.subplots(figsize=(13,6))
-        ti_gleba.plot(ax=ax_ti, facecolor=cor_TI)
-        gleba.plot(ax=ax_ti, facecolor='none', edgecolor='black', linewidth=1)
-        # LEGENDAS
-        patch_list = []
-        patch_list.append(patches.Patch(facecolor='none', edgecolor='black', label='Gleba Federal', linewidth=1))
-        patch_list.append(patches.Patch(facecolor=cor_TI, alpha=0.6, edgecolor='none', label='Terra Indígena', linewidth=1))
-        # Creates a legend with the list of patches above.
-        ax_ti.legend(handles=patch_list, fontsize=10, loc='lower left',
-                bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+        ti_gleba.plot(ax=ax_ti, column='terrai_nom', categorical=True, legend=True, 
+                        alpha=0.65, cmap='Pastel2',
+                        legend_kwds={'loc': 'center left','bbox_to_anchor':(1,0.5)})
+        gleba.plot(ax=ax_ti, facecolor='none', edgecolor='black', linewidth=2)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
         plt.grid()
         plt.show()
+        ti_gleba['Área Sobreposta (ha)'] = (ti_gleba.to_crs(5880).area)/10000
         ti_gleba = ti_gleba.rename(columns={'terrai_nom':'Nome', 'fase_ti':'Fase de Regularização'})
-        display(ti_gleba[['Nome', 'Fase de Regularização']].to_html(index=False))
+        display(ti_gleba[['Nome', 'Fase de Regularização', 'Área Sobreposta (ha)']].to_html(index=False))
     else:
         display(Markdown('Não há sobreposição'))
 
     display(Markdown('### Projetos de Assentamento'))
-    pa_gleba = pa.sjoin(gleba, how='inner')
+    pa_gleba = pa.overlay(gleba, how='intersection')
     if pa_gleba.shape[0] > 0:
         fig_pa, ax_pa = plt.subplots(figsize=(13,6))
-        pa_gleba.plot(ax=ax_pa, facecolor=cor_PA)
-        gleba.plot(ax=ax_pa, facecolor='none', edgecolor='black', linewidth=1)
-        # LEGENDAS
-        patch_list = []
-        patch_list.append(patches.Patch(facecolor='none', edgecolor='black', label='Gleba Federal', linewidth=1))
-        patch_list.append(patches.Patch(facecolor=cor_PA, alpha=0.6, edgecolor='none', label='Assentamento', linewidth=1))
-        # Creates a legend with the list of patches above.
-        ax_pa.legend(handles=patch_list, fontsize=10, loc='lower left',
-                bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+        pa_gleba.plot(ax=ax_pa, column='nome_proje', categorical=True, legend=True, 
+                        alpha=0.65, cmap='Pastel2',
+                        legend_kwds={'loc': 'center left','bbox_to_anchor':(1,0.5)})
+        gleba.plot(ax=ax_pa, facecolor='none', edgecolor='black', linewidth=2)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
         plt.grid()
         plt.show()
+        pa_gleba['Área Sobreposta (ha)'] = (pa_gleba.to_crs(5880).area)/10000
         pa_gleba = pa_gleba.rename(columns={'cd_sipra':'SIPRA','nome_proje':'Nome','municipio':'Município'})
-        display(pa_gleba[['SIPRA','Nome','Município']].to_html(index=False))
+        display(pa_gleba[['SIPRA','Nome','Município', 'Área Sobreposta (ha)']].to_html(index=False))
     else:
         display(Markdown('Não há sobreposição'))
     
     display(Markdown('### Território Quilombola'))
-    tq_gleba = tq.sjoin(gleba, how='inner')
+    tq_gleba = tq.overlay(gleba, how='intersection')
     if tq_gleba.shape[0] >0:
         fig_tq, ax_tq = plt.subplots(figsize=(13,6))
-        tq_gleba.plot(ax=ax_tq, facecolor=cor_TQ)
-        gleba.plot(ax=ax_tq, facecolor='none', edgecolor='black', linewidth=1)
-                    # LEGENDAS
-        patch_list = []
-        patch_list.append(patches.Patch(facecolor='none', edgecolor='black', label='Gleba Federal', linewidth=1))
-        patch_list.append(patches.Patch(facecolor=cor_TQ, alpha=0.6, edgecolor='none', label='Território Quilombola', linewidth=1))
-        # Creates a legend with the list of patches above.
-        ax_tq.legend(handles=patch_list, fontsize=10, loc='lower left',
-                bbox_to_anchor = (1,0.75),title='Legenda', title_fontsize=12)
+        tq_gleba.plot(ax=ax_tq, column='nm_comunid', categorical=True, legend=True, 
+                        alpha=0.65, cmap='Pastel2',
+                        legend_kwds={'loc': 'center left','bbox_to_anchor':(1,0.5)})
+        gleba.plot(ax=ax_tq, facecolor='none', edgecolor='black', linewidth=2)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
         plt.grid()
         plt.show()
+        tq_gleba['Área Sobreposta (ha)'] = (tq_gleba.to_crs(5880).area)/10000
         tq_gleba = tq_gleba.rename(columns={'nm_comunid':'Nome', 'esfera':'Responsabilidade', 'fase':'Fase da Regularização'})
-        display(tq_gleba[['Nome', 'Responsabilidade', 'Fase da Regularização']].to_html(index=False))
+        display(tq_gleba[['Nome', 'Responsabilidade', 'Fase da Regularização', 'Área Sobreposta (ha)']].to_html(index=False))
     else:
         display(Markdown('Não há sobreposição'))
     
     display(Markdown('### SIGEF'))
-    sigef_gleba = sigef.sjoin(gleba, how='inner')
+    sigef_gleba = sigef.overlay(gleba, how='intersection')
     if sigef_gleba.shape[0] > 0:
         fig_sigef, ax_sigef = plt.subplots(figsize=(13,6))
         sigef_gleba.plot(ax=ax_sigef, facecolor=cor_SIGEF)
         gleba.plot(ax=ax_sigef, facecolor='none', edgecolor='black', linewidth=1)
-                    # LEGENDAS
+        # LEGENDAS
         patch_list = []
         patch_list.append(patches.Patch(facecolor='none', edgecolor='black', label='Gleba Federal', linewidth=1))
         patch_list.append(patches.Patch(facecolor=cor_SIGEF, alpha=0.6, edgecolor='none', label='SIGEF', linewidth=1))
@@ -205,9 +182,9 @@ for item in lista:
         plt.ylabel('Latitude (°)')
         plt.grid()
         plt.show()
+        sigef_gleba['Área Sobreposta (ha)'] = (sigef_gleba.to_crs(5880).area)/10000
         sigef_gleba = sigef_gleba.rename(columns={'qrcode':'Código SIGEF','natureza':'Natureza do Polígono'})
-        display(sigef_gleba[['Código SIGEF','Natureza do Polígono']].to_html(index=False))
+        display(sigef_gleba[['Código SIGEF','Natureza do Polígono', 'Área Sobreposta (ha)']].to_html(index=False))
     else:
         display(Markdown('Não há sobreposição'))
-
 ```

@@ -13,10 +13,12 @@ import matplotlib.pyplot as plt
 from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.2f}'.format
 pd.set_option('display.precision', 4)
-glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
-area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-maranhao.shp')
-uf = gpd.read_file('../drive/uf.shp')
-sr_ponto = gpd.read_file("../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp")
+import warnings
+warnings.filterwarnings('ignore')
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+area_estudo =  gpd.read_file('../glebas-federais.gpkg', layer='area-estudo') 
+sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
 ```
 
 
@@ -29,7 +31,7 @@ Os mapas abaixo mostram a distribuição das gelbas federais com cadastro no SNC
 #| echo: false
 #| fig-align: center
 # Bibliotecas
-sr_incra = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp')
+sr_incra = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
 sr_nome = sr_incra['sr_nome']
 for sr in sr_nome:
     display(Markdown(f'### Superintendência Regional do {sr}.'))

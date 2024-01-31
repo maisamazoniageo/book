@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.542">
+<meta name="generator" content="quarto-1.4.545">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -360,11 +360,11 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="11.1" class="anchored" data-anchor-id="glebas-federais-na-faixa-de-fronteira."><span class="header-section-number">11.1</span> Glebas Federais na Faixa de Fronteira.</h2>
 <section id="mapa-de-glebas-federais-na-faixa-de-fronteira-por-unidade-da-federação." class="level3" data-number="11.1.1">
 <h3 data-number="11.1.1" class="anchored" data-anchor-id="mapa-de-glebas-federais-na-faixa-de-fronteira-por-unidade-da-federação."><span class="header-section-number">11.1.1</span> Mapa de glebas federais na faixa de fronteira por unidade da federação.</h3>
-<div id="8735d47b" class="cell" data-execution_count="1">
+<div id="0be377a6" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="11-assentimento_files/figure-html/cell-2-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="766" height="540"></p>
+<p><img src="11-assentimento_files/figure-html/cell-2-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="638" height="429"></p>
 </figure>
 </div>
 </div>
@@ -373,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="tabela-de-glebas-federais-na-faixa-de-fronteira-por-unidade-da-federação" class="level3" data-number="11.1.2">
 <h3 data-number="11.1.2" class="anchored" data-anchor-id="tabela-de-glebas-federais-na-faixa-de-fronteira-por-unidade-da-federação"><span class="header-section-number">11.1.2</span> Tabela de glebas federais na faixa de fronteira por unidade da federação</h3>
 <div class="table-center">
-<div id="56715b4f" class="cell" data-execution_count="2">
+<div id="0fb4ce52" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <table class="dataframe table table-sm table-striped small">
 
@@ -479,11 +479,11 @@ Roraima
 <h2 data-number="11.2" class="anchored" data-anchor-id="glebas-com-assentimento-prévio-por-superintendência."><span class="header-section-number">11.2</span> Glebas com assentimento prévio por Superintendência.</h2>
 <section id="mapa-de-glebas-federais-com-assentimento." class="level3" data-number="11.2.1">
 <h3 data-number="11.2.1" class="anchored" data-anchor-id="mapa-de-glebas-federais-com-assentimento."><span class="header-section-number">11.2.1</span> Mapa de glebas federais com assentimento.</h3>
-<div id="98fde0c5" class="cell" data-execution_count="3">
+<div id="2e973e4d" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="11-assentimento_files/figure-html/cell-4-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="758" height="540"></p>
+<p><img src="11-assentimento_files/figure-html/cell-4-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="632" height="429"></p>
 </figure>
 </div>
 </div>
@@ -492,7 +492,7 @@ Roraima
 <section id="tabela-de-glebas-federais-com-assentimento" class="level3" data-number="11.2.2">
 <h3 data-number="11.2.2" class="anchored" data-anchor-id="tabela-de-glebas-federais-com-assentimento"><span class="header-section-number">11.2.2</span> Tabela de glebas federais com assentimento</h3>
 <div class="table-center">
-<div id="66c3e8e6" class="cell" data-execution_count="4">
+<div id="99eceed4" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
 <table class="dataframe table table-sm table-striped small">
 
@@ -735,7 +735,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {

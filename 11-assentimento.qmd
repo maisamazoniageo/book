@@ -42,9 +42,11 @@ import matplotlib.pyplot as plt
 from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.4f}'.format
 pd.set_option('display.precision', 4)
+import warnings
+warnings.filterwarnings('ignore')
 glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
-uf = gpd.read_file('../drive/uf.shp')
-fx_fronteira = gpd.read_file('../drive/BR_FaixaFronteira_150km/i3geomap_faixa150km.shp')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+fx_fronteira = gpd.read_file('../glebas-federais.gpkg', layer='faixa-fronteira-150km')
 glebas_assentimento = glebas[glebas['faixa_fron']==1]
 fig, ax = plt.subplots()
 uf.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')

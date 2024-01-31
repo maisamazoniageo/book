@@ -53,12 +53,12 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-    default-image-extension: png
+    default-image-extension: jpg
     page-layout: full
     css: styles.css
     toc: false
-    fig-width: 9
-    fig-height: 6.5
+    fig-width: 7
+    fig-height: 5
     fig-align: center
 
   pdf:

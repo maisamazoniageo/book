@@ -33,6 +33,8 @@ import matplotlib.pyplot as plt
 from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.4f}'.format
 pd.set_option('display.precision', 4)
+import warnings
+warnings.filterwarnings('ignore')
 glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
 area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
 uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')

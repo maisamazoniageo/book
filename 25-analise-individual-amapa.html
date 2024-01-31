@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.542">
+<meta name="generator" content="quarto-1.4.545">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -340,7 +340,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div id="d8667ce8" class="cell" data-execution_count="2">
+<div id="9878ab69" class="cell" data-execution_count="2">
 <section id="gleba-analisada-176-tucunaré" class="level2 cell-output cell-output-display cell-output-markdown" data-number="25.1">
 <h2 data-number="25.1" class="anchored" data-anchor-id="gleba-analisada-176-tucunaré"><span class="header-section-number">25.1</span> Gleba Analisada: 176 TUCUNARÉ</h2>
 <p>Name: nome_gleba, dtype: object</p>
@@ -20865,7 +20865,7 @@ CUTIAS
 <h3 data-number="25.19.7" class="anchored" data-anchor-id="sigef-18"><span class="header-section-number">25.19.7</span> SIGEF</h3>
 </section>
 <div class="cell-output cell-output-stderr">
-<pre><code>/home/israel/miniconda3/lib/python3.10/site-packages/geopandas/geodataframe.py:2469: UserWarning: `keep_geom_type=True` in overlay resulted in 1 dropped geometries of different geometry types than df1 has. Set `keep_geom_type=False` to retain all geometries
+<pre><code>C:\ProgramData\miniconda3\Lib\site-packages\geopandas\geodataframe.py:2469: UserWarning: `keep_geom_type=True` in overlay resulted in 1 dropped geometries of different geometry types than df1 has. Set `keep_geom_type=False` to retain all geometries
   return geopandas.overlay(</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -31088,7 +31088,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {

@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.0f}'.format
 pd.set_option('display.precision', 4)
+import warnings
+warnings.filterwarnings('ignore')
 ```
 
 ## Localização das superintendências Regionais do INCRA dentro da área de estudo.
@@ -18,10 +20,10 @@ pd.set_option('display.precision', 4)
 ```{python}
 #| echo: false
 #| fig-align: center
-glebas = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/tab_glebas_federais.shp')
-area_estudo = gpd.read_file('../drive/shapes_transformados/amazonia-legal-com-maranhao.shp')
-uf = gpd.read_file('../drive/uf.shp')
-sr_ponto = gpd.read_file("../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp")
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
 fig, ax = plt.subplots()
 uf.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
 area_estudo.plot(ax=ax, alpha=0.2, color='blue')
@@ -70,10 +72,10 @@ Os mapas abaixo mostram as distribuições de distâncias dos centroides das gel
 #| echo: false
 #| fig-align: center
 # Bibliotecas
-sr_incra = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp')
+sr_incra = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
 sr_nome = sr_incra['sr_nome']
-hub_original_lnh = gpd.read_file('../drive/hub/hub_lin_sr.shp')
-hub_cent_origem = gpd.read_file('../drive/hub/hub_pto_sr.shp')
+hub_original_lnh = gpd.read_file('../glebas-federais.gpkg', layer='gleba-centroid-hub_sr')
+hub_cent_origem = gpd.read_file('../glebas-federais.gpkg', layer='glebas-centroid')
 for sr in sr_nome:
     display(Markdown(f'### Superintendência Regional - {sr}.'))
     fig1, ax1 = plt.subplots()
@@ -134,10 +136,10 @@ A redistribuição das glebas em locais administrativos mais próximos pode, nã
 #| fig-align: center
 
 # Bibliotecas
-sr_incra = gpd.read_file('../drive/Shapes Bases de Glebas e Projetos data 01.03.23/sr_incra.shp')
+
 sr_nome = sr_incra['sr_nome']
-hub_calculado_lnh = gpd.read_file('../drive/hub/hub_lin_calc_menor_dist_sr.shp')
-hub_cent_calculado = gpd.read_file('../drive/hub/hub_pto_calc_menor_dist_sr.shp')
+hub_calculado_lnh = gpd.read_file('../glebas-federais.gpkg', layer='glebas-centroid-hub-menos-dist-sr')
+hub_cent_calculado = gpd.read_file('../glebas-federais.gpkg', layer='glebas-centroid-menor-dist-sr')
 for sr in sr_nome:
     display(Markdown(f'### Superintendência Regional do {sr}.'))
     fig1, ax1 = plt.subplots()
@@ -168,15 +170,15 @@ for sr in sr_nome:
 ```{python}
 #| echo: false
 #| fig-align: center
-hub_recalculado = gpd.read_file("../drive/hub/hub_lin_calc_menor_dist_sr.shp")
+hub_recalculado = gpd.read_file('../glebas-federais.gpkg', layer='glebas-centroid-hub-menos-dist-sr')
 hub_recalculado_agg = hub_recalculado.drop(['sr', 'endereço', 'cidade', 'uf', 'cep', 'tel', 'local', 'nome_gleba', 'nome_comp','uf_nome', 'geometry'], axis=1).copy().groupby('sr_nome').max()
 hub_recalculado_agg['dis-mean'] = hub_recalculado.groupby('sr_nome').agg({
-    'HubDist':'mean',
+    'hubdist':'mean',
 })
 hub_recalculado_agg.reset_index(inplace=True)
 hub_recalculado_agg.rename(columns={
     'sr_nome':'Superintendência',
-    'HubDist': 'Distância Máxima (km)',
+    'hubdist': 'Distância Máxima (km)',
     'dis-mean': 'Distância Média (km)'
 }).to_html(index=False)
 ```

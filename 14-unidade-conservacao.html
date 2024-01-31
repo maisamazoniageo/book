@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.542">
+<meta name="generator" content="quarto-1.4.545">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -355,11 +355,11 @@ ul.task-list li input[type="checkbox"] {
 <p>fonte:<a href="https://antigo.mma.gov.br/informma/item/15713-o-que-s%C3%A3o-as-unidades-de-conserva%C3%A7%C3%A3o.html" target="_blank">Ministério do Meio Ambiente</a></p>
 <section id="quantificação-das-unidades-de-conservação" class="level3" data-number="14.1.1">
 <h3 data-number="14.1.1" class="anchored" data-anchor-id="quantificação-das-unidades-de-conservação"><span class="header-section-number">14.1.1</span> Quantificação das Unidades de Conservação</h3>
-<div id="1e1b2e29" class="cell" data-execution_count="2">
+<div id="86ddb00f" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="14-unidade-conservacao_files/figure-html/cell-3-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="1011" height="537"></p>
+<p><img src="14-unidade-conservacao_files/figure-html/cell-3-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="875" height="439"></p>
 </figure>
 </div>
 </div>
@@ -367,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="unidade-de-conservação-por-categoria" class="level3" data-number="14.1.2">
 <h3 data-number="14.1.2" class="anchored" data-anchor-id="unidade-de-conservação-por-categoria"><span class="header-section-number">14.1.2</span> Unidade de Conservação por Categoria</h3>
-<div id="0fe06c55" class="cell" data-execution_count="3">
+<div id="b9579a87" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
 <table class="dataframe table table-sm table-striped small">
 
@@ -594,16 +594,16 @@ Reserva de Desenvolvimento Sustentável
 <p>fonte: <a href="https://www.gov.br/agricultura/pt-br/assuntos/servico-florestal-brasileiro/cadastro-nacional-de-florestas-publicas" target="_blank">Serviço Florestal Brasileiro</a></p>
 <section id="quantificação-das-florestas-publicas-por-tipo" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="quantificação-das-florestas-publicas-por-tipo"><span class="header-section-number">14.2.1</span> Quantificação das florestas publicas por tipo</h3>
-<div id="2eed8794" class="cell" data-execution_count="4">
+<div id="e9e16a63" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="14-unidade-conservacao_files/figure-html/cell-5-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="840" height="540"></p>
+<p><img src="14-unidade-conservacao_files/figure-html/cell-5-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="674" height="429"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="de83a439" class="cell" data-execution_count="5">
+<div id="83b4da61" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <table class="dataframe table table-sm table-striped small">
 
@@ -826,7 +826,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {

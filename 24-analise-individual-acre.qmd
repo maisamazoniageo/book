@@ -13,6 +13,8 @@ from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.4f}'.format
 pd.set_option('display.precision', 4)
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+import warnings
+warnings.filterwarnings('ignore')
 glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
 area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
 uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
@@ -24,6 +26,7 @@ pa = gpd.read_file('../glebas-federais.gpkg', layer='pa_brasil')
 tq = gpd.read_file('../glebas-federais.gpkg', layer='tq_brasil')
 sigef = gpd.read_file('../glebas-federais.gpkg', layer='sigef-particular')
 floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
+floresta[floresta['tipo']=='TIPO B']
 mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
 
 uf_analise = 'Acre'

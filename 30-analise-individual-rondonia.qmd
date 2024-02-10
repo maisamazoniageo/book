@@ -19,15 +19,7 @@ glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
 area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
 uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
 sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
-uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
-ti=gpd.read_file('../glebas-federais.gpkg', layer='ti-portarias')
-ti = ti.set_crs(4674, allow_override=True)
-pa = gpd.read_file('../glebas-federais.gpkg', layer='pa_brasil')
-tq = gpd.read_file('../glebas-federais.gpkg', layer='tq_brasil')
-sigef = gpd.read_file('../glebas-federais.gpkg', layer='sigef-particular')
-floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
 mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
-
 uf_analise = 'Rondônia'
 
 # Definição de cores
@@ -78,6 +70,8 @@ for item in lista:
     display(municipio_gleba[['Código da UF', 'Estado', 'UF', 'Código do Município', 'Nome do Município']].to_html(index=False))
 
     display(Markdown('### Floresta Pública'))
+    floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas', mask=gleba)
+    floresta[floresta['tipo']=='TIPO B']
     floresta_gleba = floresta.overlay(gleba, how='intersection')
     if floresta_gleba.shape[0]>0:
         fig_flor, ax_flor = plt.subplots(figsize=(13,6))
@@ -97,6 +91,7 @@ for item in lista:
         display(Markdown('Não há sobreposição'))
 
     display(Markdown('### Unidades de Conservação'))
+    uc=gpd.read_file('../glebas-federais.gpkg', layer='uc', mask=gleba)
     uc_gleba = uc.overlay(gleba, how='intersection')
     if uc_gleba.shape[0]>0:
         fig_uc, ax_uc = plt.subplots(figsize=(13,6))
@@ -115,6 +110,8 @@ for item in lista:
         display(Markdown('Não há sobreposição'))
 
     display(Markdown('### Terra Indígenas'))
+    ti=gpd.read_file('../glebas-federais.gpkg', layer='ti-portarias', mask=gleba)
+    ti = ti.set_crs(4674, allow_override=True)
     ti_gleba = ti.overlay(gleba, how='intersection')
     if ti_gleba.shape[0]>0:
         fig_ti, ax_ti = plt.subplots(figsize=(13,6))
@@ -133,6 +130,7 @@ for item in lista:
         display(Markdown('Não há sobreposição'))
 
     display(Markdown('### Projetos de Assentamento'))
+    pa = gpd.read_file('../glebas-federais.gpkg', layer='pa_brasil', mask=gleba)
     pa_gleba = pa.overlay(gleba, how='intersection')
     if pa_gleba.shape[0] > 0:
         fig_pa, ax_pa = plt.subplots(figsize=(13,6))
@@ -151,6 +149,7 @@ for item in lista:
         display(Markdown('Não há sobreposição'))
     
     display(Markdown('### Território Quilombola'))
+    tq = gpd.read_file('../glebas-federais.gpkg', layer='tq_brasil', mask=gleba)
     tq_gleba = tq.overlay(gleba, how='intersection')
     if tq_gleba.shape[0] >0:
         fig_tq, ax_tq = plt.subplots(figsize=(13,6))
@@ -169,6 +168,7 @@ for item in lista:
         display(Markdown('Não há sobreposição'))
     
     display(Markdown('### SIGEF'))
+    sigef = gpd.read_file('../glebas-federais.gpkg', layer='sigef-particular', mask=gleba)
     sigef_gleba = sigef.overlay(gleba, how='intersection')
     if sigef_gleba.shape[0] > 0:
         fig_sigef, ax_sigef = plt.subplots(figsize=(13,6))
@@ -190,4 +190,5 @@ for item in lista:
         display(sigef_gleba[['Código SIGEF','Natureza do Polígono', 'Área Sobreposta (ha)']].to_html(index=False))
     else:
         display(Markdown('Não há sobreposição'))
+
 ```

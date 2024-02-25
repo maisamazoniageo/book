@@ -1,7 +1,7 @@
 # Delimitação Geográfica
 
 <div style="text-align: justify"> 
-Nos capiyulos a seguir faremos uma análise dos dados literais e espaciais das Glebas Públicas Federais do INCRA dentro da Amazônia Legal e do estado do Maranhão. A área de estudo contempla os limites da Amazônia Legal incluindo-se todo o estado do Maranhão, mesmo a porção que encontra-se fora da delimitação oficial da amazônia legal (@fig-area-estudo).
+Nos capitulos a seguir faremos uma análise dos dados literais e espaciais das Glebas Públicas Federais do INCRA dentro da Amazônia Legal e do estado do Maranhão. A área de estudo contempla os limites da Amazônia Legal incluindo-se todo o estado do Maranhão, mesmo a porção que encontra-se fora da delimitação oficial da amazônia legal.
 
 ```{python}
 #| echo: false
@@ -26,8 +26,10 @@ warnings.filterwarnings('ignore')
 ```{python}
 #| echo: false
 
-glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
-area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
+glebas = gpd.read_file('../glebas-federais.gpkg', 
+                        layer='glebas-mais-amazonia')
+area_estudo = gpd.read_file('../glebas-federais.gpkg', 
+                                    layer='area-estudo')
 uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
 #glebas.info()
 ```
@@ -40,9 +42,10 @@ uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
 fig, ax = plt.subplots()
 uf.plot(ax=ax, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
 area_estudo.plot(ax=ax, alpha=0.2, color='blue')
-glebas[glebas['amaz_legal']==1].plot(ax=ax, column='uf', categorical=True, figsize=(8,20), legend=True, zorder=2,
-                                           legend_kwds={'loc': 'center left',
-                                                       'bbox_to_anchor':(1,0.5)})
+glebas[glebas['amaz_legal']==1].plot(ax=ax, column='uf', categorical=True, 
+                            figsize=(8,20), legend=True, zorder=2,
+                            legend_kwds={'loc': 'center left',
+                                        'bbox_to_anchor':(1,0.5)})
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
 plt.grid()
@@ -85,12 +88,15 @@ cor_gleba = '#e9cf68'
 for estado in glebas[glebas['amaz_legal']==1]['uf'].unique():
     
     fig, ax = plt.subplots()
-    uf[uf['sigla']==estado].plot(ax=ax, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
+    uf[uf['sigla']==estado].plot(ax=ax, facecolor = 'none', 
+                        edgecolor = 'black', linewidth = 0.7)
     #area_estudo.plot(ax=ax, alpha=0.2, color='blue')
     glebas[(glebas['amaz_legal']==1) & (glebas['uf']==estado)].plot(ax=ax,
-    facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7, column='uf', categorical=True, figsize=(8,20), legend=True, zorder=2,
-                                               legend_kwds={'loc': 'center left',
-                                                           'bbox_to_anchor':(1,0.5)})
+                facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, 
+                linewidth = 0.7, column='uf', 
+                categorical=True, figsize=(8,20), 
+                legend=True, zorder=2,
+                legend_kwds={'loc': 'center left','bbox_to_anchor':(1,0.5)})
     plt.xlabel('Longitude (°)')
     plt.ylabel('Latitude (°)')
     plt.grid()

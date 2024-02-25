@@ -94,7 +94,7 @@ _**CNS:**_ receberá o número correspondente ao Código Nacional de Serventias 
 #| fig-align: center
 glebas_matricula = glebas[['uf','matricula','cartorio']].copy()
 glebas_matricula['total']=1
-display(Markdown('### Número de glebas com informações de matrícula e CNS do Catório cadastradas.'))
+display(Markdown('### Número de glebas com informações de matrículas e CNS do Cartório cadastradas.'))
 uf_mat = glebas_matricula['uf'].unique()
 
 tot_glebas = glebas_matricula.groupby('uf').agg({

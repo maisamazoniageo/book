@@ -74,34 +74,6 @@ for item in lista:
     display(municipio_gleba[['Código da UF', 'Estado', 'UF', 
     'Código do Município', 'Nome do Município']].to_html(index=False))
 
-    display(Markdown('### Floresta Pública'))
-    floresta=gpd.read_file('../glebas-federais.gpkg',
-    layer='florestas-publicas', mask=gleba)
-    floresta=floresta[floresta['tipo']=='TIPO B']
-    floresta_gleba = floresta.overlay(gleba, how='intersection')
-    if floresta_gleba.shape[0]>0:
-        fig_flor, ax_flor = plt.subplots(figsize=(6,6))
-        floresta_gleba.plot(ax=ax_flor, column='nome', categorical=True,
-                        legend=True,
-                        alpha=0.65, cmap='Pastel2',
-                        legend_kwds={'loc': 'upper center',
-                        'bbox_to_anchor':(0.5,-0.15),'ncols':3})
-        gleba.plot(ax=ax_flor, facecolor='none', edgecolor='black',
-        linewidth=1)
-        plt.xlabel('Longitude (°)')
-        plt.ylabel('Latitude (°)')
-        plt.grid()
-        plt.show()
-        # cálculo de área em km2 policônica em ha
-        floresta_gleba['Área Sobreposta (ha)'] = \
-        (floresta_gleba.to_crs(5880).area)/10000
-        floresta_gleba = floresta_gleba.rename(columns={'nome':'Nome',
-                                'tipo':'Tipo','categoria':'Categoria'})
-        display(floresta_gleba[['Nome', 'Tipo', 'Categoria',
-                            'Área Sobreposta (ha)']].to_html(index=False))
-    else:
-        display(Markdown('Não há sobreposição'))
-
     display(Markdown('### Unidades de Conservação'))
     uc=gpd.read_file('../glebas-federais.gpkg', layer='uc', mask=gleba)
     uc_gleba = uc.overlay(gleba, how='intersection')

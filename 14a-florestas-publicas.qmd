@@ -101,7 +101,7 @@ floresta_b_area.reset_index(inplace=True)
 floresta_b_area.rename(columns={
   'uf':'UF',
   'area_ha': 'Área (ha)'
-}).sort_values('Área (ha)', ascending=False)#.to_html(index=False)
+}).sort_values('Área (ha)', ascending=False).to_html(index=False)
 ```
 
 ## Análise de sobreposição das Florestas Públicas e das Glebas Federais.
@@ -130,7 +130,7 @@ display(Markdown('### Área de Florestas Públicas Não destinadas sobrepostas a
 floresta_b_area_sobreposta.reset_index(inplace=True)
 floresta_b_area_sobreposta.rename(columns={
   'uf_1':'UF'
-}).sort_values('Área Sobreposta (ha)', ascending=False)#.to_html(index=False)
+}).sort_values('Área Sobreposta (ha)', ascending=False).to_html(index=False)
 ```
 
 ### Análise das sobreposições

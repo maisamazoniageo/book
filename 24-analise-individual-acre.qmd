@@ -192,8 +192,37 @@ for item in lista:
         plt.grid()
         plt.show()
         sigef_gleba['Área Sobreposta (ha)'] = (sigef_gleba.to_crs(5880).area)/10000
-        sigef_gleba = sigef_gleba.rename(columns={'qrcode':'Código SIGEF','natureza':'Natureza do Polígono'})
+        sigef_gleba = sigef_gleba.rename(columns={'parcela_co':'Código SIGEF','natureza':'Natureza do Polígono'})
         display(sigef_gleba[['Código SIGEF','Natureza do Polígono', 'Área Sobreposta (ha)']].to_html(index=False))
     else:
         display(Markdown('Não há sobreposição'))
+    
+    display(Markdown('### SNCI'))
+    snci = gpd.read_file('../glebas-federais.gpkg', layer='snci-particular',
+                        mask=gleba)
+    snci_gleba = snci.overlay(gleba, how='intersection')
+    if snci_gleba.shape[0] > 0:
+        fig_snci, ax_snci = plt.subplots(figsize=(13,6))
+        snci_gleba.plot(ax=ax_snci, facecolor=cor_SIGEF)
+        gleba.plot(ax=ax_snci, facecolor='none', edgecolor='black',
+                    linewidth=1)
+        # LEGENDAS
+        patch_list = []
+        patch_list.append(patches.Patch(facecolor='none', edgecolor='black',
+                        label='Gleba Federal', linewidth=1))
+        patch_list.append(patches.Patch(facecolor=cor_SIGEF, alpha=0.6, 
+                            edgecolor='none', label='SNCI', linewidth=1))
+        # Creates a legend with the list of patches above.
+        ax_sigef.legend(handles=patch_list, fontsize=10, loc='upper center',
+                bbox_to_anchor = (0.5 , -0.15), ncols=3,title='Legenda', title_fontsize=12)
+        plt.xlabel('Longitude (°)')
+        plt.ylabel('Latitude (°)')
+        plt.grid()
+        plt.show()
+        snci_gleba['Área Sobreposta (ha)'] = (snci_gleba.to_crs(5880).area)/10000
+        snci_gleba = snci_gleba.rename(columns={'num_certif_1':'Código SNCI'})
+        display(snci_gleba[['Código SNCI', 'Área Sobreposta (ha)']].to_html(index=False))
+    else:
+        display(Markdown('Não há sobreposição'))
+
 ```

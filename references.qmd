@@ -5,7 +5,7 @@
 
 ## Banco de dados espacial - geopackage
 
-As camadas utilizadas estão compiladas em um bando de dados espacial geopackage. A especificação GeoPackage descreve um conjunto de convenções para armazenamento de dados espaciais dentro de um banco de dados SQLite: Podem compor um gpkg: Vetores. Tiles, arquivos raster e matrizes em várias escalas.
+As camadas utilizadas estão compiladas em um bando de dados espacial geopackage. A especificação GeoPackage descreve um conjunto de convenções para armazenamento de dados espaciais dentro de um banco de dados SQLite: Podem compor um gpkg: Vetores, Tiles, arquivos raster e matrizes em várias escalas.
 
 |Nome da Tabela                   |Geometria      |EPSG              |descrição|
 |--------------                   |---------      |----              |---------|
@@ -26,9 +26,20 @@ As camadas utilizadas estão compiladas em um bando de dados espacial geopackage
 |ti-portarias-pts                 |POINT          |SIRGAS 2000 (4674)|
 |uc                               |MULTIPOLYGON   |SIRGAS 2000 (4674)|
 |uf-brasil                        |MULTIPOLYGON   |SIRGAS 2000 (4674)|
-|sigef-particular                 |MULTIPOLYGON   |SIRGAS 2000 (4674)|
+|sigef-geral                      |MULTIPOLYGON   |SIRGAS 2000 (4674)|
 
 
+## Processamentos utilizados nas camadas espaciais
+
+### Sistema Nacional de Gestão Fundiária - SIGEF
+
+O Sistema Nacional de Gestão Fundiária - SIGEF recebe os imóveis certificados pelo Instituto Nacioanl de Colonização e Reforma Agrária - INCRA sendo extraída do banco de dados **CARTOS** na data de 04 de março de 2024 da camada *SIGEF Geral*.
+
+Procedemos a separação por unidade da federação para possibilitar os cruzamentos com as demais camadas utilizadas neste estudo.
 
 
+### Sistema Nacional de Certificação de Imóveis - SNCI
 
+O Sistema Nacional de Certificação de Imóveis - SNCI precedeu o SIGEF no gerenciamento dos imóveis certificados, como as certificações realizadas nesse sistema permaneceram com sua validade legal após a mudança para o SIGEF, ela foi incluída na análise deste estudo. Esta informação é gerida pelo Instituto Nacioanl de Colonização e Reforma Agrária - INCRA sendo extraída do banco de dados **CARTOS** na data de 04 de março de 2024 da camada *SNCI Geral*.
+
+Procedemos a separação por unidade da federação para possibilitar os cruzamentos com as demais camadas utilizadas neste estudo.

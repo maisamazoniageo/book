@@ -1,4 +1,4 @@
-# Análise de Sobreposição individual das Glebas Federais do estado do Maranhão.
+# Análise de Sobreposição individual - Maranhão (Parte 01).
 
 ```{python}
 #| echo: false
@@ -16,10 +16,7 @@ locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 import warnings
 warnings.filterwarnings('ignore')
 glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
-area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
-uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
-sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
-mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo')
+glebas = glebas.set_index('gid')
 
 uf_analise = 'Maranhão'
 
@@ -43,138 +40,140 @@ cor_gleba_sigef = '#E4C643'
 ```{python}
 #| echo: false
 
-glebas = glebas[glebas['uf_nome']==uf_analise]
-lista = glebas.gid.to_list()
+glebas = glebas[glebas['uf_nome']==uf_analise].sort_values('nome_gleba')
+glebas = glebas.iloc[:40]
 
-for item in lista:
-    gleba = glebas[glebas['gid']==item]
-    display(Markdown(f'## Gleba Analisada: {gleba.nome_gleba}'))
+for row in glebas.itertuples():
+    indice = int(row.Index)
+    gleba = glebas.loc[[indice]]
+    nome_da_gleba = gleba["nome_gleba"].values[0]
+    display(Markdown(f'## Gleba Analisada: {nome_da_gleba}'))
     gleba = gleba.rename(columns={'nome_gleba':'Nome da Gleba',
     'area_ha':'Área (ha)'})
     display(gleba[['Nome da Gleba','Área (ha)']].to_html(index=False))
-
     display(Markdown('### Abrangência Municipal'))
     fig, ax = plt.subplots(figsize=(13,6))
 
-    municipio_gleba = mun.sjoin(gleba, how='inner')
-    municipio_gleba.plot(ax=ax, column='nm_mun', categorical=True,
-                        legend=True,
-                        alpha=0.65, cmap='Pastel2',
-                        legend_kwds={'loc': 'upper center',
-                        'bbox_to_anchor':(0.5,-0.15),'ncols':3})
+    municipio_gleba = gpd.read_file('../municipios-glebas.gpkg', 
+                                    layer=f'{indice}')
+    municipio_gleba.plot(ax=ax, column='Nome do Município', categorical=True,
+                         legend=True,
+                         alpha=0.65, cmap='Pastel2',
+                         legend_kwds={'loc': 'upper center',
+                         'bbox_to_anchor':(0.5,-0.2),'ncols':3})
     gleba.plot(ax=ax, facecolor='none', edgecolor='black', linewidth=2)
     plt.xlabel('Longitude (°)')
     plt.ylabel('Latitude (°)')
+    plt.xticks(rotation=45)
     plt.grid()
     plt.show()
-    municipio_gleba = municipio_gleba.rename(columns={'cd_uf':'Código da UF',
-    'nm_uf':'Estado', 'sigla':'UF', 'cd_mun':'Código do Município',
-    'nm_mun':'Nome do Município'})
     display(municipio_gleba[['Código da UF', 'Estado', 'UF', 
     'Código do Município', 'Nome do Município']].to_html(index=False))
 
     display(Markdown('### Unidades de Conservação'))
-    uc=gpd.read_file('../glebas-federais.gpkg', layer='uc', mask=gleba)
-    uc_gleba = uc.overlay(gleba, how='intersection')
-    if uc_gleba.shape[0]>0:
+
+    try:
+        uc_gleba = gpd.read_file('../uc-glebas.gpkg', 
+                                        layer=f'{indice}')
         fig_uc, ax_uc = plt.subplots(figsize=(13,6))
-        uc_gleba.plot(ax=ax_uc, column='nome_uc1', categorical=True,
+        uc_gleba.plot(ax=ax_uc, column='Nome', categorical=True,
                         legend=True,
                         alpha=0.65, cmap='Pastel2',
                         legend_kwds={'loc': 'upper center',
-                        'bbox_to_anchor':(0.5,-0.15),'ncols':3})
+                        'bbox_to_anchor':(0.5,-0.2),'ncols':3})
         gleba.plot(ax=ax_uc, facecolor='none', edgecolor='black', linewidth=2)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
+        plt.xticks(rotation=45)
         plt.grid()
         plt.show()
-        uc_gleba['Área Sobreposta (ha)'] = (uc_gleba.to_crs(5880).area)/10000
-        uc_gleba = uc_gleba.rename(columns={'nome_uc1':'Nome',
-        'categori3':'Categoria','esfera5':'Responsabilidade'})
+
         display(uc_gleba[['Nome','Categoria','Responsabilidade',
         'Área Sobreposta (ha)']].to_html(index=False))
-    else:
+
+    except:
+
         display(Markdown('Não há sobreposição'))
 
-    display(Markdown('### Terra Indígenas'))
-    ti=gpd.read_file('../glebas-federais.gpkg', layer='ti-portarias',
-                    mask=gleba)
-    ti = ti.set_crs(4674, allow_override=True)
-    ti_gleba = ti.overlay(gleba, how='intersection')
-    if ti_gleba.shape[0]>0:
+    display(Markdown('### Terras Indígenas'))
+
+    try:
+        ti_gleba = gpd.read_file('../ti-glebas.gpkg', 
+                                layer=f'{indice}')
         fig_ti, ax_ti = plt.subplots(figsize=(13,6))
         ti_gleba.plot(ax=ax_ti, column='terrai_nom', categorical=True,
                         legend=True,
                         alpha=0.65, cmap='Pastel2',
                         legend_kwds={'loc': 'upper center',
-                        'bbox_to_anchor':(0.5,-0.15),'ncols':3})
+                        'bbox_to_anchor':(0.5,-0.2),'ncols':3})
         gleba.plot(ax=ax_ti, facecolor='none', edgecolor='black', linewidth=2)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
+        plt.xticks(rotation=45)
         plt.grid()
         plt.show()
-        ti_gleba['Área Sobreposta (ha)'] = (ti_gleba.to_crs(5880).area)/10000
-        ti_gleba = ti_gleba.rename(columns={'terrai_nom':'Nome',
-                                        'fase_ti':'Fase de Regularização'})
+
         display(ti_gleba[['Nome', 'Fase de Regularização',
                         'Área Sobreposta (ha)']].to_html(index=False))
-    else:
+
+    except:
+
         display(Markdown('Não há sobreposição'))
 
     display(Markdown('### Projetos de Assentamento'))
-    pa = gpd.read_file('../glebas-federais.gpkg', layer='pa_brasil',
-                        mask=gleba)
-    pa_gleba = pa.overlay(gleba, how='intersection')
-    if pa_gleba.shape[0] > 0:
+
+    try:
+        pa_gleba = gpd.read_file('../pa-glebas.gpkg', 
+                            layer=f'{indice}')
         fig_pa, ax_pa = plt.subplots(figsize=(13,6))
-        pa_gleba.plot(ax=ax_pa, column='nome_proje', categorical=True,
+        pa_gleba.plot(ax=ax_pa, column='Nome', categorical=True,
                         legend=True,
                         alpha=0.65, cmap='Pastel2',
                         legend_kwds={'loc': 'upper center',
-                        'bbox_to_anchor':(0.5,-0.15),'ncols':3})
+                        'bbox_to_anchor':(0.5,-0.2),'ncols':3})
         gleba.plot(ax=ax_pa, facecolor='none', edgecolor='black', linewidth=2)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
+        plt.xticks(rotation=45)
         plt.grid()
         plt.show()
-        pa_gleba['Área Sobreposta (ha)'] = (pa_gleba.to_crs(5880).area)/10000
-        pa_gleba = pa_gleba.rename(columns={'cd_sipra':'SIPRA',
-                                'nome_proje':'Nome','municipio':'Município'})
         display(pa_gleba[['SIPRA','Nome','Município',
                 'Área Sobreposta (ha)']].to_html(index=False))
-    else:
+
+    except:
+
         display(Markdown('Não há sobreposição'))
 
     display(Markdown('### Território Quilombola'))
-    tq = gpd.read_file('../glebas-federais.gpkg',
-                        layer='tq_brasil', mask=gleba)
-    tq_gleba = tq.overlay(gleba, how='intersection')
-    if tq_gleba.shape[0] >0:
+
+    try:
+        tq_gleba = gpd.read_file('../tq-glebas.gpkg', 
+                        layer=f'{indice}')
         fig_tq, ax_tq = plt.subplots(figsize=(13,6))
         tq_gleba.plot(ax=ax_tq, column='nm_comunid', categorical=True,
                         legend=True, alpha=0.65, cmap='Pastel2',
                         legend_kwds={'loc': 'upper center',
-                        'bbox_to_anchor':(0.5,-0.15),'ncols':3})
+                        'bbox_to_anchor':(0.5,-0.2),'ncols':3})
         gleba.plot(ax=ax_tq, facecolor='none', edgecolor='black', linewidth=2)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
+        plt.xticks(rotation=45)
         plt.grid()
         plt.show()
-        tq_gleba['Área Sobreposta (ha)'] = (tq_gleba.to_crs(5880).area)/10000
-        tq_gleba = tq_gleba.rename(columns={'nm_comunid':'Nome',
-                'esfera':'Responsabilidade', 'fase':'Fase da Regularização'})
         display(tq_gleba[['Nome', 'Responsabilidade', 'Fase da Regularização',
                     'Área Sobreposta (ha)']].to_html(index=False))
-    else:
+
+    except:
+
         display(Markdown('Não há sobreposição'))
 
     display(Markdown('### SIGEF'))
-    sigef = gpd.read_file('../glebas-federais.gpkg', layer='sigef-particular',
-                        mask=gleba)
-    sigef_gleba = sigef.overlay(gleba, how='intersection')
-    if sigef_gleba.shape[0] > 0:
+
+    try:
+        sigef_gleba = gpd.read_file('../sigef-glebas.gpkg', 
+                        layer=f'{indice}')
         fig_sigef, ax_sigef = plt.subplots(figsize=(13,6))
-        sigef_gleba.plot(ax=ax_sigef, facecolor=cor_SIGEF)
+        sigef_gleba.plot(ax=ax_sigef, facecolor=cor_SIGEF, edgecolor='blue', linewidth=0.5)
         gleba.plot(ax=ax_sigef, facecolor='none', edgecolor='black',
                     linewidth=1)
         # LEGENDAS
@@ -185,24 +184,25 @@ for item in lista:
                             edgecolor='none', label='SIGEF', linewidth=1))
         # Creates a legend with the list of patches above.
         ax_sigef.legend(handles=patch_list, fontsize=10, loc='upper center',
-                bbox_to_anchor = (0.5 , -0.15), ncols=3,title='Legenda', title_fontsize=12)
+                bbox_to_anchor = (0.5 , -0.2), ncols=3,title='Legenda', title_fontsize=12)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
+        plt.xticks(rotation=45)
         plt.grid()
         plt.show()
-        sigef_gleba['Área Sobreposta (ha)'] = (sigef_gleba.to_crs(5880).area)/10000
-        sigef_gleba = sigef_gleba.rename(columns={'parcela_co':'Código SIGEF','natureza':'Natureza do Polígono'})
-        display(sigef_gleba[['Código SIGEF','Natureza do Polígono', 'Área Sobreposta (ha)']].to_html(index=False))
-    else:
+
+        display(sigef_gleba[['Código SIGEF','Natureza do Polígono', 'Área Sobreposta (ha)']].sort_values('Natureza do Polígono').to_html(index=False))
+
+    except:
+
         display(Markdown('Não há sobreposição'))
     
     display(Markdown('### SNCI'))
-    snci = gpd.read_file('../glebas-federais.gpkg', layer='snci-particular',
-                        mask=gleba)
-    snci_gleba = snci.overlay(gleba, how='intersection')
-    if snci_gleba.shape[0] > 0:
+
+    try:
+        snci_gleba = gpd.read_file('../snci-glebas.gpkg', layer=f'{indice}')
         fig_snci, ax_snci = plt.subplots(figsize=(13,6))
-        snci_gleba.plot(ax=ax_snci, facecolor=cor_SIGEF)
+        snci_gleba.plot(ax=ax_snci, facecolor=cor_SIGEF, edgecolor='blue', linewidth=0.5)
         gleba.plot(ax=ax_snci, facecolor='none', edgecolor='black',
                     linewidth=1)
         # LEGENDAS
@@ -213,15 +213,19 @@ for item in lista:
                             edgecolor='none', label='SNCI', linewidth=1))
         # Creates a legend with the list of patches above.
         ax_sigef.legend(handles=patch_list, fontsize=10, loc='upper center',
-                bbox_to_anchor = (0.5 , -0.15), ncols=3,title='Legenda', title_fontsize=12)
+                bbox_to_anchor = (0.5 , -0.2), ncols=3,title='Legenda', title_fontsize=12)
         plt.xlabel('Longitude (°)')
         plt.ylabel('Latitude (°)')
+        plt.xticks(rotation=45)
         plt.grid()
         plt.show()
-        snci_gleba['Área Sobreposta (ha)'] = (snci_gleba.to_crs(5880).area)/10000
-        snci_gleba = snci_gleba.rename(columns={'num_certif_1':'Código SNCI'})
+        snci_gleba = snci_gleba.rename(columns={
+            'num_certif':'Código SNCI'
+        })
         display(snci_gleba[['Código SNCI', 'Área Sobreposta (ha)']].to_html(index=False))
-    else:
+
+    except:
+
         display(Markdown('Não há sobreposição'))
 
 ```

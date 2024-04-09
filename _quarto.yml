@@ -39,14 +39,61 @@ book:
     - 22-roraima.qmd
     - 23-tocantins.qmd
     - 24-analise-individual-acre.qmd
+    - 24-analise-individual-acre2.qmd
     - 25-analise-individual-amapa.qmd
     - 26-analise-individual-amazonas.qmd
+    - 26-analise-individual-amazonas2.qmd
+    - 26-analise-individual-amazonas3.qmd
+    - 26-analise-individual-amazonas4.qmd
+    - 26-analise-individual-amazonas5.qmd
+    - 26-analise-individual-amazonas6.qmd
+    - 26-analise-individual-amazonas7.qmd
     - 27-analise-individual-maranhao.qmd
+    - 27-analise-individual-maranhao2.qmd
+    - 27-analise-individual-maranhao3.qmd
     - 28-analise-individual-matogrosso.qmd
+    - 28-analise-individual-matogrosso2.qmd
+    - 28-analise-individual-matogrosso3.qmd
+    - 28-analise-individual-matogrosso4.qmd
+    - 28-analise-individual-matogrosso5.qmd
+    - 28-analise-individual-matogrosso6.qmd
+    - 28-analise-individual-matogrosso7.qmd
+    - 28-analise-individual-matogrosso8.qmd
+    - 28-analise-individual-matogrosso9.qmd
+    - 28-analise-individual-matogrosso10.qmd
+    - 28-analise-individual-matogrosso11.qmd
+    - 28-analise-individual-matogrosso12.qmd
+    - 28-analise-individual-matogrosso13.qmd
+    - 28-analise-individual-matogrosso14.qmd
+    - 28-analise-individual-matogrosso15.qmd
     - 29-analise-individual-para.qmd
+    - 29-analise-individual-para2.qmd
+    - 29-analise-individual-para3.qmd
+    - 29-analise-individual-para4.qmd
+    - 29-analise-individual-para5.qmd
+    - 29-analise-individual-para6.qmd
+    - 29-analise-individual-para7.qmd
+    - 29-analise-individual-para8.qmd
+    - 29-analise-individual-para9.qmd
+    - 29-analise-individual-para10.qmd
+    - 29-analise-individual-para11.qmd
     - 30-analise-individual-rondonia.qmd
+    - 30-analise-individual-rondonia2.qmd
     - 31-analise-individual-roraima.qmd
     - 32-analise-individual-tocantins.qmd
+    - 32-analise-individual-tocantins2.qmd
+    - 32-analise-individual-tocantins3.qmd
+    - 32-analise-individual-tocantins4.qmd
+    - 32-analise-individual-tocantins5.qmd
+    - 32-analise-individual-tocantins6.qmd
+    - 32-analise-individual-tocantins7.qmd
+    - 32-analise-individual-tocantins8.qmd
+    - 32-analise-individual-tocantins9.qmd
+    - 32-analise-individual-tocantins10.qmd
+    - 32-analise-individual-tocantins11.qmd
+    - 32-analise-individual-tocantins12.qmd
+    - 32-analise-individual-tocantins13.qmd
+    - 32-analise-individual-tocantins14.qmd
     - summary.qmd
     - references.qmd
 bibliography: references.bib
@@ -56,6 +103,11 @@ format:
     theme: cosmo
     default-image-extension: jpg
     page-layout: full
+    grid: 
+      sidebar-width: 300px
+      body-width: 1100px
+      margin-width: 100px
+      gutter-width: 1.5rem
     css: styles.css
     toc: false
     fig-width: 7
@@ -63,15 +115,17 @@ format:
     fig-align: center
 
   pdf:
-    documentclass: report
-    default-image-extension: tex
-    margin-left: 30mm
-    margin-right: 20mm
-    margin-top: 20mm
-    margin-bottom: 20mm
+    documentclass: book
     toc: true
+    lang: "pt-br"
+    geometry: 
+      - top=30mm
+      - left=25mm
+      - right=20mm
     number-sections: true
-    number-depth: 3
+    colorlinks: true
+    papersize: "a4"
+    fontsize: 11pt
 
 lenguage:
   leng: pt

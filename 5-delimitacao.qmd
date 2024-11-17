@@ -31,7 +31,7 @@ glebas = gpd.read_file('../glebas-federais.gpkg',
 area_estudo = gpd.read_file('../glebas-federais.gpkg', 
                                     layer='area-estudo')
 uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
-#glebas.info()
+
 ```
 
 

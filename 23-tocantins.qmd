@@ -37,29 +37,21 @@ from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.4f}'.format
 pd.set_option('display.precision', 4)
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
 import warnings
 warnings.filterwarnings('ignore')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
 uf_select = uf[uf['nm_uf']==uf_analise]
 gleba_uf_clip = gpd.read_file('../glebas-federais.gpkg', layer=f'gleba-clip-{uf_analise}')
 gleba_uf_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'gleba-dissolv-{uf_analise}')
 area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
-floresta_B_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'floresta-tipo-b-{uf_analise}')
 floresta_dissolv_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'floresta-tipo-b-dissolv-{uf_analise}')
-sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra', mask=uf_select)
-uc_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'uc-{uf_analise}')
 uc_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'uc-dissolv-{uf_analise}')
-ti_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'ti-{uf_analise}')
 ti_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'ti-dissolv-{uf_analise}')
-pa_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'pa-{uf_analise}')
 pa_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'pa-dissolv-{uf_analise}')
-tq_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'tq-{uf_analise}')
-tq_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'tq-dissolv-{uf_analise}')
 sigef_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'sigef-{uf_analise}')
-sigef_dissolv = sigef_uf[['uf_sigla','area_hecta']].groupby('uf_sigla').sum()
+sigef_dissolv = sigef_uf['area_hecta'].sum()
 snci_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'snci-{uf_analise}')
-snci_dissolv = snci_uf[['uf_municip','area_ha']].groupby('uf_municip').sum()
-# mun = gpd.read_file('../glebas-federais.gpkg', layer='municipios-area-estudo', mask=uf_select)
+snci_dissolv = snci_uf['area_ha'].sum()
 area_uf = round(uf_select['area_km2'],4)
 ```
 
@@ -91,7 +83,7 @@ plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
 plt.show()
-area_total_glebas = round(gleba_uf_dissolv['area_km'].sum(),4)
+area_total_glebas = round(gleba_uf_dissolv['area_km'][0],4)
 percentual_glebas = round((area_total_glebas/area_uf)*100,2)
 percentual_glebas = locale.currency(percentual_glebas.values[0], grouping=True, symbol=None)
 area_total_glebas = locale.currency(area_total_glebas, grouping=True, symbol=None)
@@ -116,7 +108,7 @@ fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assu
 #| fig-align: center
 fig_flor, ax_flor = plt.subplots()
 # flrestas tipo B dentro da uf analisada
-floresta_B_uf.plot(ax=ax_flor,facecolor = cor_Floresta, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+floresta_dissolv_uf.plot(ax=ax_flor,facecolor = cor_Floresta, edgecolor = 'none', alpha = 1, linewidth = 0.7)
 uf_select.plot(ax=ax_flor, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
 plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
@@ -140,7 +132,7 @@ display(Markdown(f'### Percentual do {uf_analise} ocupado por Florestas Pública
 #| fig-align: center
 
 fig_uc, ax_uc = plt.subplots()
-uc_uf.plot(ax=ax_uc, facecolor= cor_UC, edgecolor='none', alpha=1)
+uc_dissolv.plot(ax=ax_uc, facecolor= cor_UC, edgecolor='none', alpha=1)
 uf_select.plot(ax=ax_uc, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
 plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
@@ -163,7 +155,7 @@ display(Markdown(f'### O Percentual do {uf_analise} ocupado por Unidades de Cons
 #| fig-align: center
 
 fig_ti, ax_ti = plt.subplots()
-ti_uf.plot(ax=ax_ti, facecolor= cor_TI, edgecolor='none', alpha=1)
+ti_dissolv.plot(ax=ax_ti, facecolor= cor_TI, edgecolor='none', alpha=1)
 uf_select.plot(ax=ax_ti, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
 plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
@@ -186,7 +178,7 @@ display(Markdown(f'### O Percentual do {uf_analise} ocupado por Terras Indígena
 #| fig-align: center
 
 fig_pa, ax_pa = plt.subplots()
-pa_uf.plot(ax=ax_pa, facecolor= cor_PA, edgecolor='none', alpha=1)
+pa_dissolv.plot(ax=ax_pa, facecolor= cor_PA, edgecolor='none', alpha=1)
 uf_select.plot(ax=ax_pa, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
 plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
@@ -241,7 +233,8 @@ if sigef_uf.shape[0]>0:
     plt.xlabel('Longitude (°)')
     plt.ylabel('Latitude (°)')
     plt.show()
-    sigef_uf_area = sigef_dissolv['area_hecta'].sum()/100
+    # transforma a área de hectares para quilômetros quadrados
+    sigef_uf_area = sigef_dissolv/100
     percentual_sigef = round((sigef_uf_area/area_uf)*100,2)
     sigef_uf_area = locale.currency(sigef_uf_area, grouping=True, symbol=None)
     percentual_sigef = locale.currency(percentual_sigef.values[0], grouping=True, symbol=None)
@@ -266,7 +259,7 @@ if snci_uf.shape[0]>0:
     plt.xlabel('Longitude (°)')
     plt.ylabel('Latitude (°)')
     plt.show()
-    snci_uf_area = snci_dissolv['area_ha'].sum()/100
+    snci_uf_area = snci_dissolv/100
     percentual_snci = round((snci_uf_area/area_uf)*100,2)
     snci_uf_area = locale.currency(snci_uf_area, grouping=True, symbol=None)
     percentual_snci = locale.currency(percentual_snci.values[0], grouping=True, symbol=None)
@@ -292,7 +285,7 @@ As análises de sobreposições visam mostrar a sobreposição entre as classes 
 
 fig_gle_flo, ax_gle_flo = plt.subplots()
 uf_select.plot(ax=ax_gle_flo, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
-floresta_B_uf.plot(ax=ax_gle_flo, facecolor = cor_Floresta, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+floresta_dissolv_uf.plot(ax=ax_gle_flo, facecolor = cor_Floresta, edgecolor = 'none', alpha = 1, linewidth = 0.7)
 gleba_uf_clip.plot(ax=ax_gle_flo, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
 # LEGENDAS
 patch_list = []
@@ -316,7 +309,7 @@ plt.show()
 #| fig-align: center
 fig_gle_flo_clip, ax_gle_flo_clip = plt.subplots()
 uf_select.plot(ax=ax_gle_flo_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
-gle_flo_clip = gleba_uf_clip.overlay(floresta_B_uf, how='intersection', keep_geom_type=False)
+gle_flo_clip = gleba_uf_clip.overlay(floresta_dissolv_uf, how='intersection', keep_geom_type=False)
 gleba_uf_clip.plot(ax=ax_gle_flo_clip, facecolor = 'none', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
 gle_flo_clip.plot(ax=ax_gle_flo_clip, facecolor = cor_gleba_flo, edgecolor = 'none', alpha = 1, linewidth = 0.7)
 # LEGENDAS
@@ -358,7 +351,7 @@ display(Markdown(f'''Dos {floresta_B_uf_area} km² de Florestas Públicas classi
 
 fig_gle_uc, ax_gle_uc = plt.subplots()
 uf_select.plot(ax=ax_gle_uc, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
-uc_uf.plot(ax=ax_gle_uc, facecolor = cor_UC, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+uc_dissolv.plot(ax=ax_gle_uc, facecolor = cor_UC, edgecolor = 'none', alpha = 1, linewidth = 0.7)
 gleba_uf_clip.plot(ax=ax_gle_uc, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
 # LEGENDAS
 patch_list = []
@@ -382,7 +375,7 @@ plt.show()
 #| fig-align: center
 fig_gle_uc_clip, ax_gle_uc_clip = plt.subplots()
 uf_select.plot(ax=ax_gle_uc_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
-gle_uc_clip = gleba_uf_clip.overlay(uc_uf, how='intersection', keep_geom_type=False)
+gle_uc_clip = gleba_uf_clip.overlay(uc_dissolv, how='intersection', keep_geom_type=False)
 gleba_uf_clip.plot(ax=ax_gle_uc_clip, facecolor='none', edgecolor='blue', alpha = 0.5, linewidth = 0.7)
 gle_uc_clip.plot(ax=ax_gle_uc_clip, facecolor = cor_gleba_uc, edgecolor = 'none', alpha = 1, linewidth = 0.7)
 # LEGENDAS
@@ -424,7 +417,7 @@ display(Markdown(f'''Dos {uc_uf_area} km² de Unidades de Conservação, {gle_uc
 
 fig_gle_ti, ax_gle_ti = plt.subplots()
 uf_select.plot(ax=ax_gle_ti, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
-ti_uf.plot(ax=ax_gle_ti, facecolor = cor_TI, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+ti_dissolv.plot(ax=ax_gle_ti, facecolor = cor_TI, edgecolor = 'none', alpha = 1, linewidth = 0.7)
 gleba_uf_clip.plot(ax=ax_gle_ti, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
 # LEGENDAS
 patch_list = []
@@ -448,7 +441,7 @@ plt.show()
 #| fig-align: center
 fig_gle_ti_clip, ax_gle_ti_clip = plt.subplots()
 uf_select.plot(ax=ax_gle_ti_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
-gle_ti_clip = gleba_uf_clip.overlay(ti_uf, how='intersection', keep_geom_type=False)
+gle_ti_clip = gleba_uf_clip.overlay(ti_dissolv, how='intersection', keep_geom_type=False)
 gleba_uf_clip.plot(ax=ax_gle_ti_clip, facecolor = 'none', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
 gle_ti_clip.plot(ax=ax_gle_ti_clip, facecolor = cor_gleba_ti, edgecolor = 'none', alpha = 1, linewidth = 0.7)
 # LEGENDAS
@@ -490,7 +483,7 @@ display(Markdown(f'''Dos {ti_uf_area} km² de Terras Indígenas, {gle_ti_clip_ar
 
 fig_gle_pa, ax_gle_pa = plt.subplots()
 uf_select.plot(ax=ax_gle_pa, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
-pa_uf.plot(ax=ax_gle_pa, facecolor = cor_PA, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+pa_dissolv.plot(ax=ax_gle_pa, facecolor = cor_PA, edgecolor = 'none', alpha = 1, linewidth = 0.7)
 gleba_uf_clip.plot(ax=ax_gle_pa, facecolor = cor_gleba, edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
 # LEGENDAS
 patch_list = []
@@ -514,7 +507,7 @@ plt.show()
 #| fig-align: center
 fig_gle_pa_clip, ax_gle_pa_clip = plt.subplots()
 uf_select.plot(ax=ax_gle_pa_clip, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)
-gle_pa_clip = gleba_uf_clip.overlay(pa_uf, how='intersection', keep_geom_type=False)
+gle_pa_clip = gleba_uf_clip.overlay(pa_dissolv, how='intersection', keep_geom_type=False)
 gleba_uf_clip.plot(ax=ax_gle_pa_clip, facecolor = 'none', edgecolor = 'black', alpha = 0.5, linewidth = 0.7)
 gle_pa_clip.plot(ax=ax_gle_pa_clip, facecolor = cor_gleba_pa, edgecolor = 'none', alpha = 1, linewidth = 0.7)
 # LEGENDAS

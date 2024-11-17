@@ -229,5 +229,5 @@ for row in glebas.itertuples():
     except:
 
         display(Markdown('Não há sobreposição'))
-
+    break
 ```

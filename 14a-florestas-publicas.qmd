@@ -49,7 +49,8 @@ floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas', ma
 #| fig-align: center
 
 fig, ax = plt.subplots()
-floresta[floresta['area-estudo']==1].plot(ax=ax,alpha=0.5, column='tipo', legend=True,cmap = ListedColormap(["lawngreen", "lightseagreen"]),legend_kwds={'loc': 'lower center', 'bbox_to_anchor':(1.1,0.5)})
+floresta.plot(ax=ax,alpha=0.5, column='tipo', legend=True,cmap = ListedColormap
+(["lawngreen", "lightseagreen"]),legend_kwds={'loc': 'lower center', 'bbox_to_anchor':(1.1,0.5)})
 area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
 uf[uf['amaz_legal']==1].plot(ax=ax,facecolor="none", edgecolor="grey")
 plt.grid(visible=True)
@@ -63,7 +64,8 @@ plt.show()
 #| echo: false
 #| fig-align: center
 
-floresta_tipo = floresta.groupby('tipo').agg({'area_ha':'sum'})
+floresta_tipo = floresta.groupby(['tipo']).agg({'area_ha':'sum'})
+floresta_tipo = floresta_tipo.sort_values(['tipo'])
 floresta_tipo.reset_index(inplace=True)
 floresta_tipo.rename(columns={
   'tipo':'Tipo de Floresta Publica',
@@ -78,31 +80,6 @@ As áreas mensuradas como florestas publicas abrangem divérsos uso do solo dist
 
 Seguindo a definição do Serviço Florestal Brasileiro, as florestas publicas do *Tipo A - lorestas que apresentam destinação e dominialidade específica*, somariam 235.982.649 de hectares e as do *Tipo B - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas* somariam 62.989.475 hectares. Porém esse número não corresponde à área ocupada por vergetação nativa nos respectivos polígonos.
 
-## Florestas Públicas Não Destinadas por Unidade da Federação
-
-A seguir iremos totalizar as floresta publicas não destinadas (Tipo B) por unidade da federação.
-
-```{python}
-#| echo: false
-
-floresta_b = floresta[floresta['tipo']=='TIPO B']
-fig_b, ax_b = plt.subplots()
-floresta_b.plot(ax=ax_b,legend_kwds={'loc': 'lower center', 'bbox_to_anchor':(1.1,0.5)})
-area_estudo.plot(ax=ax_b,facecolor="none", edgecolor="black")
-uf[uf['amaz_legal']==1].plot(ax=ax_b,facecolor="none", edgecolor="grey")
-plt.grid(visible=True)
-plt.xlabel('Longitude (°)')
-plt.ylabel('Latitude (°)')
-plt.show()
-
-display(Markdown('### Área Total de Florestas Públicas Não destinadas por Estado'))
-floresta_b_area = floresta.groupby('uf').agg({'area_ha':'sum'})
-floresta_b_area.reset_index(inplace=True)
-floresta_b_area.rename(columns={
-  'uf':'UF',
-  'area_ha': 'Área (ha)'
-}).sort_values('Área (ha)', ascending=False).to_html(index=False)
-```
 
 ## Análise de sobreposição das Florestas Públicas e das Glebas Federais.
 
@@ -110,6 +87,8 @@ As florstas publicas não destinadas merecem uma maior atenção para que possa-
 
 ```{python}
 #| echo: false
+
+floresta_b = floresta[floresta['tipo']=='TIPO B']
 floresta_gleba = floresta_b.overlay(glebas, how='intersection')
 ```
 
@@ -125,28 +104,26 @@ plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
 plt.show()
 floresta_gleba['Área Sobreposta (ha)'] = (floresta_gleba.to_crs(5880).area)/10000
-floresta_b_area_sobreposta = floresta_gleba.groupby('uf_1').agg({'Área Sobreposta (ha)':'sum'})
+floresta_b_area_sobreposta = floresta_gleba.agg({'Área Sobreposta (ha)':'sum'})
 display(Markdown('### Área de Florestas Públicas Não destinadas sobrepostas a Glebas Federais por Estado'))
-floresta_b_area_sobreposta.reset_index(inplace=True)
-floresta_b_area_sobreposta.rename(columns={
-  'uf_1':'UF'
-}).sort_values('Área Sobreposta (ha)', ascending=False).to_html(index=False)
+
 ```
 
 ### Análise das sobreposições
 
-Apesar do estado com maior área de floresta publica não destinada ser o Amazonas, inclusive as que se sobrepõem às glebas federais administradas pelo INCRA, Rondônia e Tocantins possuem, percentualmente, maiores valores de sobreposição com 24,07% e 20,82% respectivamente, sendo Roraima o estado com menor percentual de sobreposição com apenas 0,22% das glebas federais dentro inteseccionando florestas públicas não destinadas.
+Os cálculos apresentam um erro devido ao tipo de levantamento utilizados na confecção dos polígonos já que muitos ainda não possuem precisão conforme a Lei 10.267/2001. Assim, os percentuais de sobreposição apresentam uma tendência da situação das florestas classificadas como tipo B, ou seja, não destinadas em relação a sua intersecção às glebas ferderais sob a gestão no INCRA. 
+```{python}
+#| echo: false
+area_floresta_b = round(floresta_tipo.loc[1, 'area_ha'],0)
+area_floresta_b_gleba = round(floresta_b_area_sobreposta[0],0)
+area_percentual = round(floresta_b_area_sobreposta[0]/floresta_tipo.loc[1, 'area_ha']*100,2)
 
-UF|Área (ha)|Área Sobreposta (ha)|Percentual
-:---:|---:|---:|---:|
-RO|12.628.472,0000|3.039.903,7726|24,07%
-TO|4.995.508,0000|1.040.161,5098|20,82%
-PA|81.745.810,0000|7.044.767,9311|8,62%
-MT|19.146.575,0000|1.526.235,2604|7,97%
-AM|134.302.021,0000|8.929.946,6138|6,65%
-AP|12.043.765,0000|676.060,5160|5,61%
-MA|4.848.309,0000|257.863,7752|5,32%
-AC|10.794.257,0000|250.900,7200|2,32%
-RR|18.076.209,0000|39.950,8779|0,22%
-
+display(Markdown(
+  f"""
+  |Área de Floresta Tipo B|Área de Sobreposição com Gleba|Percentual de Sobreposição|
+  |:---------------------:|:----------------------------:|:------------------------:|
+  |{area_floresta_b}ha    |{area_floresta_b_gleba}ha     | {area_percentual}%
+  """
+))
+```
 </div>

@@ -25,7 +25,6 @@ cor_gleba_tq = "#CDAFD4"
 cor_gleba_sigef = "#E4C643"
 
 uf_analise = "Amazonas"
-
 import geopandas as gpd
 import pandas as pd
 import locale
@@ -39,7 +38,9 @@ pd.set_option('display.precision', 4)
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 import warnings
 warnings.filterwarnings('ignore')
-uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+from camadas import Camadas
+camadas = Camadas()
+uf = camadas.uf()#gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
 uf_select = uf[uf['nm_uf']==uf_analise]
 gleba_uf_clip = gpd.read_file('../glebas-federais.gpkg', layer=f'gleba-clip-{uf_analise}')
 gleba_uf_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'gleba-dissolv-{uf_analise}')
@@ -49,10 +50,26 @@ uc_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'uc-dissolv-{uf_ana
 ti_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'ti-dissolv-{uf_analise}')
 pa_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'pa-dissolv-{uf_analise}')
 sigef_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'sigef-{uf_analise}')
-sigef_dissolv = sigef_uf['area_hecta'].sum()
+
 snci_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'snci-{uf_analise}')
-snci_dissolv = snci_uf['area_ha'].sum()
+
 area_uf = round(uf_select['area_km2'],4)
+```
+
+```{python}
+#| echo: false
+
+# cálculos de área
+gleba_uf_clip['area_ha'] = gleba_uf_clip.to_crs(5880).area/10000
+gleba_uf_dissolv['area_ha'] = gleba_uf_dissolv.to_crs(5880).area/10000
+floresta_dissolv_uf['area_ha'] = floresta_dissolv_uf.to_crs(5880).area/10000
+uc_dissolv['area_ha'] = uc_dissolv.to_crs(5880).area/10000
+ti_dissolv['area_ha'] = ti_dissolv.to_crs(5880).area/10000
+pa_dissolv['area_ha'] = pa_dissolv.to_crs(5880).area/10000
+sigef_uf['area_ha'] = sigef_uf.to_crs(5880).area/10000
+snci_uf['area_ha'] = snci_uf.to_crs(5880).area/10000
+sigef_dissolv = sigef_uf['area_ha'].sum()
+snci_dissolv = snci_uf['area_ha'].sum()
 ```
 
 ```{python}
@@ -83,7 +100,7 @@ plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
 plt.show()
-area_total_glebas = round(gleba_uf_dissolv['area_km'][0],4)
+area_total_glebas = round(gleba_uf_dissolv['area_ha'][0]/100,4)
 percentual_glebas = round((area_total_glebas/area_uf)*100,2)
 percentual_glebas = locale.currency(percentual_glebas.values[0], grouping=True, symbol=None)
 area_total_glebas = locale.currency(area_total_glebas, grouping=True, symbol=None)
@@ -114,7 +131,7 @@ plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
 plt.show()
-floresta_B_uf_area = floresta_dissolv_uf['area_km2'].sum()
+floresta_B_uf_area = floresta_dissolv_uf['area_ha'].sum()/100
 percentual_floresta_B = round((floresta_B_uf_area/area_uf)*100,2)
 floresta_B_uf_area = locale.currency(floresta_B_uf_area, grouping=True, symbol=None)
 percentual_floresta_B = locale.currency(percentual_floresta_B.values[0], grouping=True, symbol=None)
@@ -138,7 +155,7 @@ plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
 plt.show()
-uc_uf_area = uc_dissolv['area_km'].sum()
+uc_uf_area = uc_dissolv['area_ha'].sum()/100
 percentual_uc = round((uc_uf_area/area_uf)*100,2)
 uc_uf_area = locale.currency(uc_uf_area, grouping=True, symbol=None)
 percentual_uc = locale.currency(percentual_uc.values[0], grouping=True, symbol=None)
@@ -161,7 +178,7 @@ plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
 plt.show()
-ti_uf_area = ti_dissolv['area_km2'].sum()
+ti_uf_area = ti_dissolv['area_ha'].sum()/100
 percentual_ti = round((ti_uf_area/area_uf)*100,2)
 ti_uf_area = locale.currency(ti_uf_area, grouping=True, symbol=None)
 percentual_ti = locale.currency(percentual_ti.values[0], grouping=True, symbol=None)
@@ -184,7 +201,7 @@ plt.grid(visible=True)
 plt.xlabel('Longitude (°)')
 plt.ylabel('Latitude (°)')
 plt.show()
-pa_uf_area = pa_dissolv['area_km2'].sum()
+pa_uf_area = pa_dissolv['area_ha'].sum()/100
 percentual_pa = round((pa_uf_area/area_uf)*100,2)
 pa_uf_area = locale.currency(pa_uf_area, grouping=True, symbol=None)
 percentual_pa = locale.currency(percentual_pa.values[0], grouping=True, symbol=None)
@@ -208,7 +225,7 @@ if len(tq_uf)>0:
     plt.xlabel('Longitude (°)')
     plt.ylabel('Latitude (°)')
     plt.show()
-    tq_uf_area = tq_dissolv['area_km2'].sum()
+    tq_uf_area = tq_dissolv['area_ha'].sum()/100
     percentual_tq = round((tq_uf_area/area_uf)*100,2)
     tq_uf_area = locale.currency(tq_uf_area, grouping=True, symbol=None)
     percentual_tq = locale.currency(percentual_tq.values[0], grouping=True, symbol=None)

@@ -56,7 +56,7 @@ uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
 fig_uc, ax_uc = plt.subplots()
 area_estudo.plot(ax=ax_uc,facecolor="none", edgecolor="black")
 uf[uf['amaz_legal']==1].plot(ax=ax_uc,facecolor="none", edgecolor="grey")
-uc[uc['area-estudo']==1].plot(ax=ax_uc, alpha=0.5, column='categori3', legend=True,
+uc.plot(ax=ax_uc, alpha=0.5, column='categoria', legend=True,
                                           legend_kwds={'loc': 'upper left',
                                           'bbox_to_anchor':(0.9,0.5)})
 plt.grid(visible=True)
@@ -72,15 +72,15 @@ plt.show()
 #| echo: false
 #| fig-align: center
 
-uc_tab = uc[uc['area-estudo']==1].groupby('categori3').agg({
-  'id_uc0':'count',
-  'area_km':'sum'
+uc_tab = uc.groupby('categoria').agg({
+  'uc_id':'count',
+  'area_ha':'sum'
 })
 
 uc_tab.reset_index(inplace=True)
-uc_tab.rename(columns={'categori3':'Categoria da Unidade de Conservação',
-                      'id_uc0':'Quantidade',
-                      'area_km':'Área (km²)'
+uc_tab.rename(columns={'categoria':'Categoria da Unidade de Conservação',
+                      'uc_id':'Quantidade',
+                      'area_ha':'Área (ha)'
           }).to_html(index=False)
 ```
 

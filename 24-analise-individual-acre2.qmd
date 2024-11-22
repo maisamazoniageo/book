@@ -69,7 +69,7 @@ for row in glebas.itertuples():
     plt.xticks(rotation=45)
     plt.grid()
     plt.show()
-    display(municipio_gleba[['Código da UF', 'Estado', 'UF', 
+    display(municipio_gleba[['uf_nome', 
     'Código do Município', 'Nome do Município']].to_html(index=False))
 
     display(Markdown('### Unidades de Conservação'))

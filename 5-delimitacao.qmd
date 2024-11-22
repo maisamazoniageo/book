@@ -88,7 +88,7 @@ cor_gleba = '#e9cf68'
 for estado in glebas[glebas['amaz_legal']==1]['uf'].unique():
     
     fig, ax = plt.subplots()
-    uf[uf['sigla']==estado].plot(ax=ax, facecolor = 'none', 
+    uf[uf['sigla_uf']==estado].plot(ax=ax, facecolor = 'none', 
                         edgecolor = 'black', linewidth = 0.7)
     #area_estudo.plot(ax=ax, alpha=0.2, color='blue')
     glebas[(glebas['amaz_legal']==1) & (glebas['uf']==estado)].plot(ax=ax,

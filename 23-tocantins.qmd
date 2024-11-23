@@ -216,8 +216,14 @@ display(Markdown(f'### O Percentual do {uf_analise} ocupado por Projetos de Asse
 ```{python}
 #| echo: false
 #| fig-align: center
-tq_uf = []
+try:
+    tq_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'tq-{uf_analise}')
+    tq_dissolv = gpd.read_file('../glebas-federais.gpkg', layer=f'tq-dissolv-{uf_analise}')
+except:
+    tq_uf = []
 if len(tq_uf)>0:
+    tq_uf['area_ha'] = tq_uf.to_crs(5880).area/10000
+    tq_dissolv['area_ha'] = tq_dissolv.to_crs(5880).area/10000
     fig_tq, ax_tq = plt.subplots()
     tq_uf.plot(ax=ax_tq, facecolor=cor_TQ, edgecolor='none', alpha=1)
     uf_select.plot(ax=ax_tq, facecolor = 'none', edgecolor = 'black', linewidth = 0.7)

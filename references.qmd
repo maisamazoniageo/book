@@ -29,17 +29,35 @@ As camadas utilizadas estão compiladas em um bando de dados espacial geopackage
 |sigef-geral                      |MULTIPOLYGON   |SIRGAS 2000 (4674)|
 
 
-## Processamentos utilizados nas camadas espaciais
+## Fontes de Dados
 
-### Sistema Nacional de Gestão Fundiária - SIGEF
+### Unidades da Federação
+link: *[estados](https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2022/Brasil/BR/BR_UF_2022.zip)*
 
-O Sistema Nacional de Gestão Fundiária - SIGEF recebe os imóveis certificados pelo Instituto Nacioanl de Colonização e Reforma Agrária - INCRA sendo extraída do banco de dados **CARTOS** na data de 04 de março de 2024 da camada *SIGEF Geral*.
+### Limites Municipais
+link: *[limites municipais](https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2022/Brasil/BR/BR_Municipios_2022.zip)*
 
-Procedemos a separação por unidade da federação para possibilitar os cruzamentos com as demais camadas utilizadas neste estudo.
+### Faixa de Fronteira
+link: *[fronteira](https://geoftp.ibge.gov.br/organizacao_do_territorio/estrutura_territorial/municipios_da_faixa_de_fronteira/2022/Faixa_de_Fronteira_por_UF_2022_shp.zip)*
 
+### Florestas Públicas
+link: *[florestas](https://mmabr-my.sharepoint.com/:u:/g/personal/10810147769_mma_gov_br/EdkDvfzdlpJAneLK56geXAUBq-Pu8pCB5FTrLrD4WOUqnA?e=2fK6JC)*
 
-### Sistema Nacional de Certificação de Imóveis - SNCI
+### Terras Indígenas
+link: *[terra indígena](https://geoserver.funai.gov.br/geoserver/Funai/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Funai%3Atis_poligonais_portarias&maxFeatures=10000&outputFormat=application%2Fvnd.google-earth.kml%2Bxml)*
 
-O Sistema Nacional de Certificação de Imóveis - SNCI precedeu o SIGEF no gerenciamento dos imóveis certificados, como as certificações realizadas nesse sistema permaneceram com sua validade legal após a mudança para o SIGEF, ela foi incluída na análise deste estudo. Esta informação é gerida pelo Instituto Nacioanl de Colonização e Reforma Agrária - INCRA sendo extraída do banco de dados **CARTOS** na data de 04 de março de 2024 da camada *SNCI Geral*.
+### Unidades de Conservação
+link: *[unidade de conservação](https://dados.gov.br/dados/conjuntos-dados/unidadesdeconservacao)*
 
-Procedemos a separação por unidade da federação para possibilitar os cruzamentos com as demais camadas utilizadas neste estudo.
+### Território Quilombola
+link: *[quilombos](https://acervofundiario.incra.gov.br/)*
+
+### Projetos de Assentamentos
+link: *[assentamentos](https://acervofundiario.incra.gov.br/)*
+
+### Imóveis particulares certificados no SIGEF
+Banco de dados *CARTOS*, acesso restrito INCRA
+
+### Imóveis particulares certificados no SNCI
+Banco de dados *CARTOS*, acesso restrito INCRA
+

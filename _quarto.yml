@@ -8,8 +8,10 @@ book:
   sidebar:
     search: true
   title: "Análise Geográfica das Glebas Federais"
+  language: pt
   author: "+ Amazônia"
-  date: "09/02/2025"
+  date: "2025-02-09"
+  date-format: full
   repo-url: https://maisamazoniageo.github.io/book/
   cover-image: img/mais_amazonia.png
   chapters:
@@ -130,7 +132,7 @@ format:
     fontsize: 11pt
 
 lenguage:
-  leng: pt
+  leng: pt-br
 
 plugins:
   - mkquartodocs

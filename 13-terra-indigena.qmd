@@ -50,29 +50,51 @@ plt.grid()
 plt.show()
 ```
 
+## Tabela Geral de Terras Indígenas
+
+```{python}
+#| echo: false
+area_estudo_ha = 508345486.8935
+area = []
+uf_ = []
+quantidade = []
+for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
+
+    ti_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'ti-dissolv-{estado}')
+    area.append(ti_uf['area_calc_'].iloc[0])
+    uf_.append(estado)
+    quantidade.append(ti_uf.shape[0])
+tb_geral = pd.DataFrame({'Estado':uf_,'Área (ha)': area})
+tb_geral['Percentual Área de Estudo'] = tb_geral['Área (ha)'].apply(lambda x: round(x/area_estudo_ha*100, 2))
+
+display(tb_geral.to_html(index=False))
+
+soma_total = tb_geral['Área (ha)'].sum()
+percent_total = tb_geral['Percentual Área de Estudo'].sum()
+
+display(Markdown(f'## A área de estudo contém {soma_total} de hectares de Terras Indígenas correspondendo a {round(percent_total,2)}%'))
+```
+
+
 ## Mapa de terras indígenas por unidade da federação
-
-
 
 ```{python}
 #| echo: false
 #| fig-align: center
+
 for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
     
     fig, ax = plt.subplots(figsize=(13,6))
     uf_alvo = uf[uf['nm_uf']==estado]
     uf_alvo.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
-    ti_uf = ti.sjoin(uf_alvo, how='inner')
-    ti_uf_clip = ti_uf.overlay(uf_alvo, how='intersection').dissolve()
-    ti_uf_clip.plot(ax=ax, facecolor = 'green', edgecolor = 'none', alpha = 1, linewidth = 0.7)
+    ti_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'ti-dissolv-{estado}')
+    ti_uf.plot(ax=ax, facecolor = 'green', edgecolor = 'none', alpha = 1, linewidth = 0.7)
     plt.xlabel('Longitude (°)')
     plt.ylabel('Latitude (°)')
     plt.grid()
     plt.title(f"Terras Indígenas - {estado}.")
+    area_temp = ti_uf['area_calc_']
+    display(Markdown(f'### Quantida de área ocupada com Terra Indígena - {estado}: *{round(area_temp.iloc[0], 2)}ha*'))
     plt.show()
 
-    area_temp = (ti_uf_clip.to_crs(5880).area)/1000000
-    display(Markdown(f'### Quantida de área ocupada com Terra Indígena - {estado}: *{round(area_temp.iloc[0], 2)}km²*'))
 ```
-
-

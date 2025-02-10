@@ -1,0 +1,92 @@
+# Território Quilombola.
+
+:::{.text-justify}
+
+As comunidades quilombolas são grupos étnicos – predominantemente constituídos pela população negra rural ou urbana –, que se autodefinem a partir das relações específicas com a terra, o parentesco, o território, a ancestralidade, as tradições e práticas culturais próprias.
+
+Por força do Decreto nº 4.887, de 2003, o Incra é a autarquia competente, na esfera federal, pela titulação dos territórios quilombolas. As terras ocupadas por remanescentes das comunidades dos quilombos são aquelas utilizadas para a garantia de sua reprodução física, social, econômica e cultural. Como parte de uma reparação histórica, a política de regularização fundiária de Territórios Quilombolas é de suma importância para a dignidade e garantia da continuidade desses grupos étnicos.
+:::
+
+
+
+## Quantificação dos territórios quilombolas por unidade da federação
+
+
+
+```{python}
+#| echo: false
+#| fig-align: center
+
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+import warnings
+warnings.filterwarnings('ignore')
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
+tq=gpd.read_file('../glebas-federais.gpkg', layer='tq_brasil')
+fig, ax = plt.subplots()
+tq.plot(ax=ax, alpha=0.6, column='fase', legend=True, legend_kwds={'loc': 'center left','bbox_to_anchor':(1,0.5)})
+area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
+uf[uf['amaz_legal']==1].plot(ax=ax,facecolor="none", edgecolor="grey")
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.grid()
+plt.show()
+```
+
+## Tabela Geral de Territórios Quilombola
+
+```{python}
+#| echo: false
+area_estudo_ha = 508345486.8935
+area = []
+uf_ = []
+for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
+    try:
+        tq_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'tq-dissolv-{estado}')
+        area.append(tq_uf['area_calc_'].iloc[0])
+        uf_.append(estado)
+    except:
+        mensagem = 'Não há Territórios QUilombolas Idenficados'
+
+tb_geral = pd.DataFrame({'Estado':uf_,'Área (ha)': area})
+tb_geral['Percentual Área de Estudo'] = tb_geral['Área (ha)'].apply(lambda x: round(x/area_estudo_ha*100, 2))
+
+display(tb_geral.to_html(index=False))
+
+soma_total = tb_geral['Área (ha)'].sum()
+percent_total = tb_geral['Percentual Área de Estudo'].sum()
+
+display(Markdown(f'## A área de estudo contém {soma_total} de hectares de Territórios Quilopmbolas identificados correspondendo a {round(percent_total,2)}%'))
+```
+
+
+## Mapa de territórios quilombolas por unidade da federação
+
+```{python}
+#| echo: false
+#| fig-align: center
+
+for estado in tb_geral['Estado']:
+    fig, ax = plt.subplots(figsize=(13,6))
+    uf_alvo = uf[uf['nm_uf']==estado]
+    uf_alvo.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
+    tq_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'tq-dissolv-{estado}')
+    tq_uf.plot(ax=ax, facecolor = 'green', edgecolor = 'none', alpha = 1, linewidth = 0.7)
+    plt.xlabel('Longitude (°)')
+    plt.ylabel('Latitude (°)')
+    plt.grid()
+    plt.title(f"Territórios Quilombola - {estado}.")
+    area_temp = tq_uf['area_calc_']
+    display(Markdown(f'### Quantida de área ocupada com Território Quilombola - {estado}: *{round(area_temp.iloc[0], 2)}ha*'))
+    plt.show()
+
+```

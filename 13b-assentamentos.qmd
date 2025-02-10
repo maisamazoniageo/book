@@ -1,0 +1,106 @@
+# Projetos de Assentamento.
+
+:::{.text-justify}
+
+O assentamento de reforma agrária é um conjunto de unidades agrícolas, instaladas pelo Incra em um imóvel rural.
+
+Cada uma dessas unidades, chamada de parcelas ou lotes, é destinada a uma família de agricultor ou trabalhador rural sem condições econômicas de adquirir um imóvel rural.
+
+A família beneficiada deve residir e explorar o lote, com o desenvolvimento de atividades produtivas diversas.
+
+A quantidade de lotes ou parcelas num assentamento é definida a partir de estudo de capacidade de geração de renda do imóvel. O estudo aponta a destinação agropecuária dos lotes, a quantidade de famílias assentadas, a viabilidade econômica da exploração, a disponibilidade de água e outras condições com impacto na capacidade produtiva. 
+
+O tamanho e a localização de cada lote são determinados pela geografia do terreno e pelas condições produtivas que o local oferece.
+
+As habitações podem ser construídas em cada lote ou em área coletiva com instalação de uma agrovila.
+
+O assentamento tem também áreas de uso comunitária e para construção de estruturas coletivas, como igrejas, centros comunitários, agroindústrias, escolas, unidades de saúde e áreas esportivas. Toda área de reforma agrária tem ainda locais de preservação ambiental, como reserva legal e área de proteção permanente.
+
+Cada lote em assentamento é uma unidade familiar em seu respectivo município e demanda benefícios de todas as esferas de governo, como escolas (municipal e estadual), estradas (federal, estadual e municipal), créditos (federal e estadual), assistência técnica (federal, estadual e municipal), saúde (estadual e municipal) e outros.
+
+Algumas dessas ações para o desenvolvimento e consolidação do assentamento são executadas por iniciativa e com recursos do Incra ou ainda por meio de parcerias com os governos locais e outras instituições públicas. 
+:::
+
+
+
+## Quantificação dos projetos de assentamento por unidade da federação
+
+
+
+```{python}
+#| echo: false
+#| fig-align: center
+
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+from IPython.display import display, Markdown
+pd.options.display.float_format = '{:.4f}'.format
+pd.set_option('display.precision', 4)
+import warnings
+warnings.filterwarnings('ignore')
+glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
+area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
+uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
+sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
+pa=gpd.read_file('../glebas-federais.gpkg', layer='pa_brasil')
+fig, ax = plt.subplots()
+pa.plot(ax=ax, alpha=0.6, legend=True, legend_kwds={'loc': 'center left','bbox_to_anchor':(1,0.5)})
+area_estudo.plot(ax=ax,facecolor="none", edgecolor="black")
+uf[uf['amaz_legal']==1].plot(ax=ax,facecolor="none", edgecolor="grey")
+plt.xlabel('Longitude (°)')
+plt.ylabel('Latitude (°)')
+plt.grid()
+plt.show()
+```
+
+## Tabela Geral de Projetos de Assentamento
+
+```{python}
+#| echo: false
+area_estudo_ha = 508345486.8935
+area = []
+uf_ = []
+for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
+    try:
+        pa_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'pa-dissolv-{estado}')
+        area.append(pa_uf['area_calc_'].iloc[0])
+        uf_.append(estado)
+    except:
+        mensagem = 'Não há Territórios QUilombolas Idenficados'
+
+tb_geral = pd.DataFrame({'Estado':uf_,'Área (ha)': area})
+tb_geral['Percentual Área de Estudo'] = tb_geral['Área (ha)'].apply(lambda x: round(x/area_estudo_ha*100, 2))
+
+display(tb_geral.to_html(index=False))
+
+soma_total = tb_geral['Área (ha)'].sum()
+percent_total = tb_geral['Percentual Área de Estudo'].sum()
+
+display(Markdown(f'## A área de estudo contém {soma_total} de hectares de Projetos de Assentamento correspondendo a {round(percent_total,2)}%'))
+```
+
+
+## Mapa de projetos de assentamento por unidade da federação
+
+```{python}
+#| echo: false
+#| fig-align: center
+
+for estado in tb_geral['Estado']:
+    fig, ax = plt.subplots(figsize=(13,6))
+    uf_alvo = uf[uf['nm_uf']==estado]
+    uf_alvo.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
+    pa_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'pa-dissolv-{estado}')
+    pa_uf.plot(ax=ax, facecolor = 'green', edgecolor = 'none', alpha = 1, linewidth = 0.7)
+    plt.xlabel('Longitude (°)')
+    plt.ylabel('Latitude (°)')
+    plt.grid()
+    plt.title(f"Territórios Quilombola - {estado}.")
+    area_temp = pa_uf['area_calc_']
+    display(Markdown(f'### Quantida de área ocupada com Projetos de Assentamento - {estado}: *{round(area_temp.iloc[0], 2)}ha*'))
+    plt.show()
+
+```

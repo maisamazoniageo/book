@@ -42,7 +42,6 @@ cor_gleba_sigef = '#E4C643'
 
 glebas = glebas[glebas['uf_nome']==uf_analise].sort_values('nome_gleba')
 glebas = glebas.iloc[200:240]
-
 for row in glebas.itertuples():
     indice = int(row.Index)
     gleba = glebas.loc[[indice]]
@@ -76,6 +75,7 @@ for row in glebas.itertuples():
         uc_gleba = gpd.read_file('../uc-glebas.gpkg', 
                                         layer=f'{indice}')
         fig_uc, ax_uc = plt.subplots(figsize=(13,6))
+        uc_gleba = uc_gleba.rename(columns={'nome_uc':'Nome', 'categoria': 'Categoria', 'esfera':'Responsabilidade'})
         uc_gleba.plot(ax=ax_uc, column='Nome', categorical=True,
                         legend=True,
                         alpha=0.65, cmap='Pastel2',
@@ -101,7 +101,7 @@ for row in glebas.itertuples():
         ti_gleba = gpd.read_file('../ti-glebas.gpkg', 
                                 layer=f'{indice}')
         fig_ti, ax_ti = plt.subplots(figsize=(13,6))
-        ti_gleba.plot(ax=ax_ti, column='terrai_nom', categorical=True,
+        ti_gleba.plot(ax=ax_ti, column='Nome', categorical=True,
                         legend=True,
                         alpha=0.65, cmap='Pastel2',
                         legend_kwds={'loc': 'upper center',
@@ -150,7 +150,7 @@ for row in glebas.itertuples():
         tq_gleba = gpd.read_file('../tq-glebas.gpkg', 
                         layer=f'{indice}')
         fig_tq, ax_tq = plt.subplots(figsize=(13,6))
-        tq_gleba.plot(ax=ax_tq, column='nm_comunid', categorical=True,
+        tq_gleba.plot(ax=ax_tq, column='Nome', categorical=True,
                         legend=True, alpha=0.65, cmap='Pastel2',
                         legend_kwds={'loc': 'upper center',
                         'bbox_to_anchor':(0.5,-0.2),'ncols':3})

@@ -44,8 +44,9 @@ glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
 area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
 uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
 sr_ponto = gpd.read_file('../glebas-federais.gpkg', layer='sr_incra')
-floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
+#floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas')
 uc=gpd.read_file('../glebas-federais.gpkg', layer='uc')
+cor_UC = '#99eb65'
 ```
 
 
@@ -84,4 +85,50 @@ uc_tab.rename(columns={'categoria':'Categoria da Unidade de Conservação',
           }).to_html(index=False)
 ```
 
+## Tabela Geral de Unidade de Conservação
+```{python}
+#| echo: false
+area_estudo_ha = 508345486.8935
+area = []
+uf_ = []
+quantidade = []
+for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
+
+    uc_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'uc-dissolv-{estado}')
+    area.append(uc_uf['area_calc_'].iloc[0])
+    uf_.append(estado)
+    quantidade.append(uc_uf.shape[0])
+tb_geral = pd.DataFrame({'Estado':uf_,'Área (ha)': area})
+tb_geral['Percentual Área de Estudo'] = tb_geral['Área (ha)'].apply(lambda x: round(x/area_estudo_ha*100, 2))
+
+display(tb_geral.to_html(index=False))
+
+soma_total = tb_geral['Área (ha)'].sum()
+percent_total = tb_geral['Percentual Área de Estudo'].sum()
+
+display(Markdown(f'## A área de estudo contém {soma_total} de hectares de Unidades de Conservação correspondendo a {round(percent_total,2)}%'))
+```
+
+## Mapa de unidades de conservação por unidade da federação
+
+```{python}
+#| echo: false
+#| fig-align: center
+
+for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
+    
+    fig, ax = plt.subplots(figsize=(13,6))
+    uf_alvo = uf[uf['nm_uf']==estado]
+    uf_alvo.plot(ax=ax, alpha=0.2, color='grey',edgecolor='black')
+    uc_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'uc-dissolv-{estado}')
+    uc_uf.plot(ax=ax, facecolor = cor_UC, edgecolor = 'none', alpha = 1, linewidth = 0.7)
+    plt.xlabel('Longitude (°)')
+    plt.ylabel('Latitude (°)')
+    plt.grid()
+    plt.title(f"Unidades de Conservação - {estado}.")
+    area_temp = uc_uf['area_calc_']
+    display(Markdown(f'### Quantida de área ocupada com Unidades de Consrvação - {estado}: *{round(area_temp.iloc[0], 2)}ha*'))
+    plt.show()
+
+```
 </div>

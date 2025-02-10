@@ -6,10 +6,10 @@ jupyter: python3
 
 book:
   sidebar:
-    search: false
+    search: true
   title: "Análise Geográfica das Glebas Federais"
   author: "+ Amazônia"
-  date: "03/10/2023"
+  date: "09/02/2025"
   repo-url: https://maisamazoniageo.github.io/book/
   cover-image: img/mais_amazonia.png
   chapters:
@@ -27,6 +27,8 @@ book:
     - 11-assentimento.qmd
     - 12-sncr.qmd
     - 13-terra-indigena.qmd
+    - 13a-territorio-quilombola.qmd
+    - 13b-assentamentos.qmd
     - 14-unidade-conservacao.qmd
     - 14a-florestas-publicas.qmd
     - 15-acre.qmd

@@ -43,6 +43,7 @@ cor_gleba_sigef = '#E4C643'
 
 glebas = glebas[glebas['uf_nome']==uf_analise].sort_values('nome_gleba')
 glebas = glebas.iloc[40:80]
+
 for row in glebas.itertuples():
     indice = int(row.Index)
     gleba = glebas.loc[[indice]]
@@ -67,7 +68,7 @@ for row in glebas.itertuples():
     plt.xticks(rotation=45)
     plt.grid()
     plt.show()
-    display(municipio_gleba[['uf_nome', 
+    display(municipio_gleba[['Estado', 
     'Código do Município', 'Nome do Município']].to_html(index=False))
 
     display(Markdown('### Unidades de Conservação'))

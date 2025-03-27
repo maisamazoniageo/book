@@ -28,7 +28,7 @@ warnings.filterwarnings('ignore')
 
 ![Mapa de UF na area Estudo](./img/A4-uf-na-am-legal.jpeg){fig-align="center" fig-pos="H" #fig-uf-area-estudo}
 
-![Grafico de UF na area Estudo](./img/gr-percentual-uf-na-amazonia-legal.jpeg){fig-align="center" fig-pos="H" #fig-uf-area-estudo}
+![Grafico de UF na area Estudo](./img/gr-percentual-uf-na-amazonia-legal.jpg){fig-align="center" fig-pos="H" #fig-grafico-uf-area-estudo}
 
 ## Mapa das Glebas Públicas Federais dentro da área de estudo.
 

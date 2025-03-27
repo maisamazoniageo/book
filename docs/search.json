@@ -123,8 +123,8 @@
     "objectID": "5-delimitacao.html#mapa-das-glebas-públicas-federais-dentro-da-área-de-estudo.",
     "href": "5-delimitacao.html#mapa-das-glebas-públicas-federais-dentro-da-área-de-estudo.",
     "title": "5  Delimitação Geográfica",
-    "section": "5.1 Mapa das Glebas Públicas Federais dentro da área de estudo.",
-    "text": "5.1 Mapa das Glebas Públicas Federais dentro da área de estudo.",
+    "section": "5.3 Mapa das Glebas Públicas Federais dentro da área de estudo.",
+    "text": "5.3 Mapa das Glebas Públicas Federais dentro da área de estudo.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Delimitação Geográfica</span>"
     ]
@@ -133,8 +133,8 @@
     "objectID": "5-delimitacao.html#total-de-área-das-gebas-federais-por-unidade-da-federação",
     "href": "5-delimitacao.html#total-de-área-das-gebas-federais-por-unidade-da-federação",
     "title": "5  Delimitação Geográfica",
-    "section": "5.2 Total de área das Gebas Federais por Unidade da Federação",
-    "text": "5.2 Total de área das Gebas Federais por Unidade da Federação\n\n\n\n\n\n\n\n\n\n\nUF\n\n\n\nÁrea (km²)\n\n\n\n\n\n\n\n\n\n\n\nAC\n\n\n\n15.563,3090\n\n\n\n\n\n\n\nAM\n\n\n\n410.487,2411\n\n\n\n\n\n\n\nAP\n\n\n\n48.644,4545\n\n\n\n\n\n\n\nMA\n\n\n\n32.497,7408\n\n\n\n\n\n\n\nMT\n\n\n\n79.546,6311\n\n\n\n\n\n\n\nPA\n\n\n\n372.493,7957\n\n\n\n\n\n\n\nRO\n\n\n\n163.572,2673\n\n\n\n\n\n\n\nRR\n\n\n\n4.994,1232\n\n\n\n\n\n\n\nTO\n\n\n\n55.653,6272\n\n\n\n\n\n\n\n\n\n\n1km² = 100ha",
+    "section": "5.4 Total de área das Gebas Federais por Unidade da Federação",
+    "text": "5.4 Total de área das Gebas Federais por Unidade da Federação\n\n\n\n\n\n\n\n\n\n\nUF\n\n\n\nÁrea (km²)\n\n\n\n\n\n\n\n\n\n\n\nAC\n\n\n\n15.563,3090\n\n\n\n\n\n\n\nAM\n\n\n\n410.487,2411\n\n\n\n\n\n\n\nAP\n\n\n\n48.644,4545\n\n\n\n\n\n\n\nMA\n\n\n\n32.497,7408\n\n\n\n\n\n\n\nMT\n\n\n\n79.546,6311\n\n\n\n\n\n\n\nPA\n\n\n\n372.493,7957\n\n\n\n\n\n\n\nRO\n\n\n\n163.572,2673\n\n\n\n\n\n\n\nRR\n\n\n\n4.994,1232\n\n\n\n\n\n\n\nTO\n\n\n\n55.653,6272\n\n\n\n\n\n\n\n\n\n\n1km² = 100ha",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Delimitação Geográfica</span>"
     ]
@@ -143,8 +143,8 @@
     "objectID": "5-delimitacao.html#mapa-de-glebas-federais-por-unidade-da-federação.",
     "href": "5-delimitacao.html#mapa-de-glebas-federais-por-unidade-da-federação.",
     "title": "5  Delimitação Geográfica",
-    "section": "5.3 Mapa de glebas federais por unidade da federação.",
-    "text": "5.3 Mapa de glebas federais por unidade da federação.",
+    "section": "5.5 Mapa de glebas federais por unidade da federação.",
+    "text": "5.5 Mapa de glebas federais por unidade da federação.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Delimitação Geográfica</span>"
     ]
@@ -22457,6 +22457,26 @@
     "text": "Fontes de Dados\n\nUnidades da Federação\nlink: estados\n\n\nLimites Municipais\nlink: limites municipais\n\n\nFaixa de Fronteira\nlink: fronteira\n\n\nFlorestas Públicas\nlink: florestas\n\n\nTerras Indígenas\nlink: terra indígena\n\n\nUnidades de Conservação\nlink: unidade de conservação\n\n\nTerritório Quilombola\nlink: quilombos\n\n\nProjetos de Assentamentos\nlink: assentamentos\n\n\nImóveis particulares certificados no SIGEF\nBanco de dados CARTOS, acesso restrito INCRA\n\n\nImóveis particulares certificados no SNCI\nBanco de dados CARTOS, acesso restrito INCRA",
     "crumbs": [
       "References"
+    ]
+  },
+  {
+    "objectID": "5-delimitacao.html#percentual-da-área-de-estudo-em-relação-ao-país",
+    "href": "5-delimitacao.html#percentual-da-área-de-estudo-em-relação-ao-país",
+    "title": "5  Delimitação Geográfica",
+    "section": "5.1 Percentual da área de estudo em relação ao país",
+    "text": "5.1 Percentual da área de estudo em relação ao país\n\n\n\n\n\n\nFigure 5.2: Gráfico de Área de Estudo",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Delimitação Geográfica</span>"
+    ]
+  },
+  {
+    "objectID": "5-delimitacao.html#unidades-da-federação-dentro-da-área-de-estudo-e-da-amazônia-legal.",
+    "href": "5-delimitacao.html#unidades-da-federação-dentro-da-área-de-estudo-e-da-amazônia-legal.",
+    "title": "5  Delimitação Geográfica",
+    "section": "5.2 Unidades da Federação dentro da área de estudo e da Amazônia Legal.",
+    "text": "5.2 Unidades da Federação dentro da área de estudo e da Amazônia Legal.\n\n\n\n\n\n\nFigure 5.3: Mapa de UF na area Estudo\n\n\n\n\n\n\n\n\n\nFigure 5.4: Grafico de UF na area Estudo",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Delimitação Geográfica</span>"
     ]
   }
 ]

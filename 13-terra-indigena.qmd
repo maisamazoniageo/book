@@ -29,6 +29,8 @@ import geopandas as gpd
 import pandas as pd
 import numpy as np
 import os
+import locale
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 import matplotlib.pyplot as plt
 from IPython.display import display, Markdown
 pd.options.display.float_format = '{:.4f}'.format
@@ -54,25 +56,25 @@ plt.show()
 
 ```{python}
 #| echo: false
-area_estudo_ha = 508345486.8935
+area_estudo_km2 = 5083454.868935
 area = []
 uf_ = []
 quantidade = []
 for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
 
     ti_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'ti-dissolv-{estado}')
-    area.append(ti_uf['area_calc_'].iloc[0])
+    area.append(ti_uf['area_km2'].iloc[0])
     uf_.append(estado)
     quantidade.append(ti_uf.shape[0])
-tb_geral = pd.DataFrame({'Estado':uf_,'Área (ha)': area})
-tb_geral['Percentual Área de Estudo'] = tb_geral['Área (ha)'].apply(lambda x: round(x/area_estudo_ha*100, 2))
+tb_geral = pd.DataFrame({'Estado':uf_,'Área (km²)': area})
+tb_geral['Percentual Área de Estudo'] = tb_geral['Área (km²)'].apply(lambda x: round(x/area_estudo_km2*100, 2))
 
 display(tb_geral.to_html(index=False))
 
-soma_total = tb_geral['Área (ha)'].sum()
+soma_total = tb_geral['Área (km²)'].sum()
 percent_total = tb_geral['Percentual Área de Estudo'].sum()
 
-display(Markdown(f'## A área de estudo contém {soma_total} de hectares de Terras Indígenas correspondendo a {round(percent_total,2)}%'))
+display(Markdown(f'## A área de estudo contém {locale.currency(soma_total, grouping=True, symbol=None)} de quilômetros quadrados de Terras Indígenas correspondendo a {round(percent_total,2)}%'))
 ```
 
 
@@ -93,8 +95,8 @@ for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
     plt.ylabel('Latitude (°)')
     plt.grid()
     plt.title(f"Terras Indígenas - {estado}.")
-    area_temp = ti_uf['area_calc_']
-    display(Markdown(f'### Quantida de área ocupada com Terra Indígena - {estado}: *{round(area_temp.iloc[0], 2)}ha*'))
+    area_temp = ti_uf['area_km2']
+    display(Markdown(f'### Quantida de área ocupada com Terra Indígena - {estado}: *{locale.currency(area_temp.iloc[0], grouping=True, symbol=None)}km²*'))
     plt.show()
 
 ```

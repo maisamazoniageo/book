@@ -31,6 +31,8 @@ import geopandas as gpd
 import pandas as pd
 import numpy as np
 import os
+import locale
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, ListedColormap
 from IPython.display import display, Markdown
@@ -64,12 +66,12 @@ plt.show()
 #| echo: false
 #| fig-align: center
 
-floresta_tipo = floresta.groupby(['tipo']).agg({'area_ha':'sum'})
+floresta_tipo = floresta.groupby(['tipo']).agg({'area_km2':'sum'})
 floresta_tipo = floresta_tipo.sort_values(['tipo'])
 floresta_tipo.reset_index(inplace=True)
 floresta_tipo.rename(columns={
   'tipo':'Tipo de Floresta Publica',
-  'area_ha': 'Área (ha)'
+  'area_km2': 'Área (km²)'
 }).to_html(index=False)
 
 ```

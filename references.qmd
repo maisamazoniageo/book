@@ -41,7 +41,7 @@ link: *[limites municipais](https://geoftp.ibge.gov.br/organizacao_do_territorio
 link: *[fronteira](https://geoftp.ibge.gov.br/organizacao_do_territorio/estrutura_territorial/municipios_da_faixa_de_fronteira/2022/Faixa_de_Fronteira_por_UF_2022_shp.zip)*
 
 ### Florestas Públicas
-link: *[florestas](https://mmabr-my.sharepoint.com/:u:/g/personal/10810147769_mma_gov_br/EdkDvfzdlpJAneLK56geXAUBq-Pu8pCB5FTrLrD4WOUqnA?e=2fK6JC)*
+link: *[florestas](https://mapas.florestal.gov.br/portal/home/item.html?id=2ca8817d45694159ad9eed091fc52d7a)*
 
 ### Terras Indígenas
 link: *[terra indígena](https://geoserver.funai.gov.br/geoserver/Funai/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Funai%3Atis_poligonais_portarias&maxFeatures=10000&outputFormat=application%2Fvnd.google-earth.kml%2Bxml)*

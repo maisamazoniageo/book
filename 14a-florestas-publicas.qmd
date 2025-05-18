@@ -18,7 +18,9 @@ Existem três tipos de florestas públicas federais:
 - Florestas Públicas do TIPO B (FPB) - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas.
 - Florestas Públicas do TIPO C (FPC) - São as florestas localizadas em áreas de dominialidade indefinida, comumente chamadas de terras devolutas.
 
+
 fonte: [Serviço Florestal Brasileiro](https://www.gov.br/agricultura/pt-br/assuntos/servico-florestal-brasileiro/cadastro-nacional-de-florestas-publicas){target="_blank"}
+
 
 Os dados baixados do sítio do Seviço Florestral Brasileiro serão analisados abaixo para os polígonos dentro da área de estudo, amazônia legal e Maranhão, confrontando suas interações com as glebas federais de regularização fundiária administradas pelo Instituto Nacional de Colonização e Reforma Agrária - INCRA.
 
@@ -43,7 +45,8 @@ warnings.filterwarnings('ignore')
 glebas = gpd.read_file('../glebas-federais.gpkg', layer='glebas-mais-amazonia')
 area_estudo = gpd.read_file('../glebas-federais.gpkg', layer='area-estudo')
 uf = gpd.read_file('../glebas-federais.gpkg', layer='uf-brasil')
-floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas', mask=area_estudo)
+#floresta=gpd.read_file('../glebas-federais.gpkg', layer='florestas-publicas', mask=area_estudo)
+floresta=gpd.read_file('../cnfp_2024_final/cnfp_2024_amazonia.shp')
 ```
 
 ```{python}
@@ -80,6 +83,15 @@ A denominação de florestas publicas parece abranger integralmentes as poligona
 
 As áreas mensuradas como florestas publicas abrangem divérsos uso do solo distintos de vegetação nativa, levando à conclusões equivocadas quando do uso da totalização de área.
 
-Seguindo a definição do Serviço Florestal Brasileiro, as florestas publicas do *Tipo A - lorestas que apresentam destinação e dominialidade específica*, somariam 235.982.649 de hectares e as do *Tipo B - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas* somariam 62.989.475 hectares. Porém esse número não corresponde à área ocupada por vergetação nativa nos respectivos polígonos.
+```{python}
+#| echo: false
+
+floresta_b = floresta[floresta['tipo']=='TIPO B']['area_km2'].sum()
+floresta_a = floresta[floresta['tipo']=='TIPO A']['area_km2'].sum()
+florestas_total = floresta_b + floresta_a
+
+display(Markdown(f'Seguindo a definição do Serviço Florestal Brasileiro, as florestas publicas do *Tipo A - florestas que apresentam destinação e dominialidade específica*, somariam {locale.currency(florestas_total, grouping=True, symbol=None)} de hectares e as do *Tipo B - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas* somariam {locale.currency(floresta_b, grouping=True, symbol=None)} hectares. Porém esse número não corresponde à área ocupada por vergetação nativa nos respectivos polígonos.'))
+```
+
 
 </div>

@@ -51,15 +51,17 @@ plt.show()
 area_estudo_km2 = 5083454.868935
 area = []
 uf_ = []
+quantidade = []
 for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
     try:
         tq_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'tq-dissolv-{estado}')
         area.append(tq_uf['area_km2'].iloc[0])
         uf_.append(estado)
+        quantidade.append(gpd.read_file('../glebas-federais.gpkg', layer=f'tq-{estado}').shape[0])
     except:
         mensagem = 'Não há Territórios QUilombolas Idenficados'
 
-tb_geral = pd.DataFrame({'Estado':uf_,'Área (km²)': area})
+tb_geral = pd.DataFrame({'Estado':uf_,'Quantidade': quantidade, 'Área (km²)': area})
 tb_geral['Percentual Área de Estudo'] = tb_geral['Área (km²)'].apply(lambda x: round(x/area_estudo_km2*100, 2))
 
 display(tb_geral.to_html(index=False))

@@ -65,8 +65,8 @@ for estado in glebas[glebas['amaz_legal']==1]['uf_nome'].unique():
     ti_uf = gpd.read_file('../glebas-federais.gpkg', layer=f'ti-dissolv-{estado}')
     area.append(ti_uf['area_km2'].iloc[0])
     uf_.append(estado)
-    quantidade.append(ti_uf.shape[0])
-tb_geral = pd.DataFrame({'Estado':uf_,'Área (km²)': area})
+    quantidade.append(gpd.read_file('../glebas-federais.gpkg', layer=f'ti-{estado}').shape[0])
+tb_geral = pd.DataFrame({'Estado':uf_,'Quantidade':quantidade ,'Área (km²)': area})
 tb_geral['Percentual Área de Estudo'] = tb_geral['Área (km²)'].apply(lambda x: round(x/area_estudo_km2*100, 2))
 
 display(tb_geral.to_html(index=False))

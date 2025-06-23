@@ -72,7 +72,7 @@ for row in glebas.itertuples():
     'Código do Município', 'Nome do Município']].to_html(index=False))
 
     display(Markdown('### Unidades de Conservação'))
-
+    break
     try:
         uc_gleba = gpd.read_file('../uc-glebas.gpkg', 
                                         layer=f'{indice}')

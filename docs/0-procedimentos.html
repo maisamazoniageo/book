@@ -685,107 +685,217 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div style="text-align: justify">
 <section id="procedimentos-gerais" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="procedimentos-gerais"><span class="header-section-number">1.1</span> Procedimentos Gerais</h2>
-<p>As camadas originais: <code>glebas publicas</code>, <code>florestas publicas</code>, <code>unidades de conservação</code>, <code>terras indígenas</code>, <code>projetos de assentamentos</code>, <code>territórios quilombolas</code>, <code>certificação SIGEF</code> e <code>certificação SNCI</code> devem ser analisadas no QGIS passando pelos seguintes procedimentos:</p>
+<p>As camadas originais: <code>glebas publicas</code>, <code>florestas publicas</code>, <code>unidades de conservação</code>, <code>terras indígenas</code>, <code>projetos de assentamentos</code>, <code>territórios quilombolas</code>, <code>certificação SIGEF</code> e <code>certificação SNCI</code> foram analisadas no QGIS com o auxílio de scripts em python, passando pelos seguintes procedimentos:</p>
 <ul>
 <li>Eliminação de polígonos multipartes, essa geometria uni dois ou mais feições a uma mesma linha de atributos na tabela, esse formato costuma gerar muitos erros quando processados com cortes, sobreposições e uniões com outras camadas vetoriais. Algoritimo: <code>Multipartes para partes simples</code>;</li>
 <li>Eliminação de feições duplicadas, ou seja, feições com geometrias exatamente iguais. Algoritimo: <code>Verificador de Geometrias</code>-&gt; <code>camada não deve ter duplicados</code>, <code>camada não deve ter geometrias multipartes</code> e <code>camada não deve ter geometrias inválidas</code>;</li>
 <li>Correção de geometria através da ferramenta <code>Corrigir geometrias</code> - Esse algoritmo tenta criar uma representação válida de uma dada geometria inválida sem perder nenhum dos vértices de entrada. Geometrias já válidas são retornadas sem intervenção adicional. Sempre gera uma camada de várias geometrias.;</li>
 </ul>
-</section>
-<section id="scripts" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="scripts"><span class="header-section-number">1.2</span> Scripts</h2>
-<section id="clip-temas-por-uf-e-dissolv.ipynb" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="clip-temas-por-uf-e-dissolv.ipynb"><span class="header-section-number">1.2.1</span> clip-temas-por-uf-e-dissolv.ipynb</h3>
-<p>Primeiro script a ser utilizado após a validação das camadas primárias. Ele irá recortar as camadas por unidade da federação gerando um arquivo com polígonos simples e outro com os polígonos dissolvidos.</p>
-<p>Os arquivos de polígono simples serão utilizados para análises individuais nas quais cada polígono de um tema é estudado de forma individual ou a sua interação com os demais temas.</p>
+<p>Os arquivos de polígono simples foram utilizados para análises individuais nas quais cada polígono de um tema é estudado de forma individual e a sua interação com os demais temas.</p>
 <p>Os arquivos de polígonos dissolvidos serão utilizados para os cálculos de totalização, ou seja, total da camada na área de referência, seja ela o estado, município ou outra. Essa operação visa eliminar da totalização as sobreposições que ocerrem, principalmente em polígonos com feição de baixa precisão que não foram normalizados por uma certificação conforme a lei.</p>
+<p>As análises de sobreposições foram realizadas selecionando os temas dois a dois e realizando um procedimento de intersecção espacial para revelar a área comun aos dois temas. Após a realização de sobreposição, os polígonos resultantes foram submetidos à verificação e correção de erros de geometria advindos da operação espacial realizada.</p>
+<p>Após a correção, foi realizado o cálculo da área dos polígonos em quilômetros quadrados, no software QGIS foi utilizado o elpsoide GRS 1980 (SEMI-EIXO MAIOR 6378137,000m) SEMI-EIXO MENOR (6356752,314m).</p>
+<p>A camada final foi salva no banco de dados GPKG conforme as camadas de entrada, exemplo, sobreposição entre <code>Glebas Federais</code> e <code>Territórios Quilombola</code> resultou na camada <code>gleba-inter-tq</code>.</p>
+</section>
+<section id="fonte-dos-dados-brutos" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="fonte-dos-dados-brutos"><span class="header-section-number">1.2</span> Fonte dos dados brutos</h2>
+<section id="glebas-federais" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="glebas-federais"><span class="header-section-number">1.2.1</span> Glebas Federais</h3>
+<section id="extração" class="level4" data-number="1.2.1.1">
+<h4 data-number="1.2.1.1" class="anchored" data-anchor-id="extração"><span class="header-section-number">1.2.1.1</span> Extração</h4>
+<ul>
+<li>Dados obtidos através da tabela <code>tab_glebas_federais</code> no banco de dados <code>cartos</code> de propriedade do INCRA;</li>
+<li>Contém informações sobre as glebas federais;</li>
+<li>Data de extração: 18 de maio de 2025</li>
+</ul>
+</section>
+<section id="transformação" class="level4" data-number="1.2.1.2">
+<h4 data-number="1.2.1.2" class="anchored" data-anchor-id="transformação"><span class="header-section-number">1.2.1.2</span> Transformação</h4>
+<ul>
+<li>Os dados foram selecionados com base na poligonal da área de estudo sendo os demais apagados;</li>
+<li>A camada foi convertida de <code>multipoligon</code> para <code>poligon</code>, ou seja, mutitiparte para parte simples;</li>
+<li>Os polígonos que extrapolaram a poligonal da área de estudo foram recortados, conservando apenas a parte interna à área de estudo;</li>
+<li>Criar um campo com a área calculada em quilômetros quadrados para registrar a área nova para os polígonos pelo fato do corte pela área de estudo. A coluna recebe a denominação de <code>area_km2</code>.</li>
+</ul>
+</section>
+<section id="carregamento" class="level4" data-number="1.2.1.3">
+<h4 data-number="1.2.1.3" class="anchored" data-anchor-id="carregamento"><span class="header-section-number">1.2.1.3</span> Carregamento</h4>
+<ul>
+<li>Carregado na tabela <code>glebas_mais_amazonia</code> no banco de dados <code>glebas-federais.gpk</code></li>
+</ul>
 </section>
 </section>
-<section id="fonte-dos-dados-brutos" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="fonte-dos-dados-brutos"><span class="header-section-number">1.3</span> Fonte dos dados brutos</h2>
-<section id="imóveis-certificados" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="imóveis-certificados"><span class="header-section-number">1.3.1</span> Imóveis Certificados</h3>
-<section id="extração" class="level4" data-number="1.3.1.1">
-<h4 data-number="1.3.1.1" class="anchored" data-anchor-id="extração"><span class="header-section-number">1.3.1.1</span> Extração</h4>
+<section id="imóveis-certificados-sigef" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="imóveis-certificados-sigef"><span class="header-section-number">1.2.2</span> Imóveis Certificados SIGEF</h3>
+<section id="extração-1" class="level4" data-number="1.2.2.1">
+<h4 data-number="1.2.2.1" class="anchored" data-anchor-id="extração-1"><span class="header-section-number">1.2.2.1</span> Extração</h4>
 <ul>
 <li>Ddos obtidos através da tabela <code>tab_sigef_geral</code> no banco de dados <code>cartos</code> de propriedade do INCRA;</li>
 <li>Contém informações sobre imóveis certificados no SIGEF.</li>
 <li>Data da extração: 28 de maio de 2028</li>
 </ul>
 </section>
-<section id="transformação" class="level4" data-number="1.3.1.2">
-<h4 data-number="1.3.1.2" class="anchored" data-anchor-id="transformação"><span class="header-section-number">1.3.1.2</span> Transformação</h4>
+<section id="transformação-1" class="level4" data-number="1.2.2.2">
+<h4 data-number="1.2.2.2" class="anchored" data-anchor-id="transformação-1"><span class="header-section-number">1.2.2.2</span> Transformação</h4>
 <ul>
-<li>Os dados foram selecionados com base na poligonal da área de estudo sendo os demais apagados;</li>
-<li>A camada foi convertida de <code>multipoligon</code> para <code>poligon</code>, ou seja, mutitiparte para parte simples;</li>
-<li>Os polígonos que extrapolaram a poligonal da área de estudo foram recortados, conservando apenas a parte interna à área de estudo;</li>
-<li>Criar um campo com a área calculada em hectares para registrar a área nova para os polígonos pelo fato do corte pela área de estudo. A coluna recebe a denominação de <code>area_calc_ha</code>.</li>
+<li><p>Os dados foram selecionados com base na poligonal da área de estudo sendo os demais apagados;</p></li>
+<li><p>A camada foi convertida de <code>multipoligon</code> para <code>poligon</code>, ou seja, mutitiparte para parte simples;</p></li>
+<li><p>Os polígonos que extrapolaram a poligonal da área de estudo foram recortados, conservando apenas a parte interna à área de estudo;</p></li>
+<li><p>Criar um campo com a área calculada em quilômetros quadrados para registrar a área nova para os polígonos pelo fato do corte pela área de estudo. A coluna recebe a denominação de <code>area_km2</code>.</p></li>
+<li><p>foi utilizado uma consulta SQL com os parâmetros:</p></li>
 </ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> sigef <span class="kw">where</span>  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ot">"natureza"</span> <span class="kw">LIKE</span> <span class="st">'Particular'</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span> (</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   <span class="ot">"situacao_i"</span> <span class="kw">LIKE</span> <span class="st">'REGISTRADA'</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>   <span class="kw">OR</span> <span class="ot">"situacao_i"</span> <span class="kw">LIKE</span> <span class="st">'TITULADA_NAO_REGISTRADA'</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="carregamento" class="level4" data-number="1.3.1.3">
-<h4 data-number="1.3.1.3" class="anchored" data-anchor-id="carregamento"><span class="header-section-number">1.3.1.3</span> Carregamento</h4>
+<section id="carregamento-1" class="level4" data-number="1.2.2.3">
+<h4 data-number="1.2.2.3" class="anchored" data-anchor-id="carregamento-1"><span class="header-section-number">1.2.2.3</span> Carregamento</h4>
 <ul>
-<li>Carregado na tabela <code>sigef</code> no banco de dados <code>glebas-federais.gpk</code></li>
-</ul>
-</section>
-</section>
-<section id="glebas-federais" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="glebas-federais"><span class="header-section-number">1.3.2</span> Glebas Federais</h3>
-<section id="extração-1" class="level4" data-number="1.3.2.1">
-<h4 data-number="1.3.2.1" class="anchored" data-anchor-id="extração-1"><span class="header-section-number">1.3.2.1</span> Extração</h4>
-<ul>
-<li>Dados obttidos através da tabela <code>tab_glebas_federais</code> no banco de dados <code>cartos</code> de propriedade do INCRA;</li>
-<li>Contém informações sobre as glebas federais;</li>
-<li>Data de extração: 18 de maio de 2025</li>
-</ul>
-</section>
-<section id="transformação-1" class="level4" data-number="1.3.2.2">
-<h4 data-number="1.3.2.2" class="anchored" data-anchor-id="transformação-1"><span class="header-section-number">1.3.2.2</span> Transformação</h4>
-<ul>
-<li>Os dados foram selecionados com base na poligonal da área de estudo sendo os demais apagados;</li>
-<li>A camada foi convertida de <code>multipoligon</code> para <code>poligon</code>, ou seja, mutitiparte para parte simples;</li>
-<li>Os polígonos que extrapolaram a poligonal da área de estudo foram recortados, conservando apenas a parte interna à área de estudo;</li>
-<li>Criar um campo com a área calculada em hectares para registrar a área nova para os polígonos pelo fato do corte pela área de estudo. A coluna recebe a denominação de <code>area_calc_ha</code>.</li>
-</ul>
-</section>
-<section id="carregamento-1" class="level4" data-number="1.3.2.3">
-<h4 data-number="1.3.2.3" class="anchored" data-anchor-id="carregamento-1"><span class="header-section-number">1.3.2.3</span> Carregamento</h4>
-<ul>
-<li>Carregado na tabela <code>glebas_mais_amazonia</code> no banco de dados <code>glebas-federais.gpk</code></li>
+<li>Carregado na tabela <code>sigef-particular</code> no banco de dados <code>glebas-federais.gpk</code></li>
 </ul>
 </section>
 </section>
-<section id="snci" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="snci"><span class="header-section-number">1.3.3</span> SNCI</h3>
-<section id="extração-2" class="level4" data-number="1.3.3.1">
-<h4 data-number="1.3.3.1" class="anchored" data-anchor-id="extração-2"><span class="header-section-number">1.3.3.1</span> Extração</h4>
+<section id="imóveis-certificados-snci" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="imóveis-certificados-snci"><span class="header-section-number">1.2.3</span> Imóveis Certificados SNCI</h3>
+<section id="extração-2" class="level4" data-number="1.2.3.1">
+<h4 data-number="1.2.3.1" class="anchored" data-anchor-id="extração-2"><span class="header-section-number">1.2.3.1</span> Extração</h4>
 <ul>
 <li>carregado da tabela <code>tb_snci_vigente</code> do banco de dados <code>cartos</code></li>
 </ul>
 </section>
-<section id="transformação-2" class="level4" data-number="1.3.3.2">
-<h4 data-number="1.3.3.2" class="anchored" data-anchor-id="transformação-2"><span class="header-section-number">1.3.3.2</span> Transformação</h4>
+<section id="transformação-2" class="level4" data-number="1.2.3.2">
+<h4 data-number="1.2.3.2" class="anchored" data-anchor-id="transformação-2"><span class="header-section-number">1.2.3.2</span> Transformação</h4>
 <ul>
 <li>Acrescentado uma coluna de <code>natureza</code> onde foram utilizado dua categorias {‘Público’: ‘imóveis aparentemente ligados a entes públicos’, ‘Particular’: ‘imóveis não selecionados como públicos’};</li>
 <li>foi utilizado uma consulta SQL com os parâmetros:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> snci <span class="kw">where</span>  </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   <span class="ot">"nome_interessado"</span>  <span class="kw">like</span> <span class="st">'INCRA%'</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SUPERINTENDÊNCIA%'</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">OR</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%ESTADO%'</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">OR</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%ESTADO%'</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">OR</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SR(15)%'</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">OR</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SRFA%'</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SUPERINTENDENCIA%'</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIÃO'</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIAO%'</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIAO - INCRA%'</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIAO FEDERAL%'</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIÃO FEDERAL%'</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SECRETARIA%'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> snci <span class="kw">where</span>  </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   <span class="ot">"nome_interessado"</span>  <span class="kw">like</span> <span class="st">'INCRA%'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SUPERINTENDÊNCIA%'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">OR</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%ESTADO%'</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">OR</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%ESTADO%'</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">OR</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SR(15)%'</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">OR</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SRFA%'</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SUPERINTENDENCIA%'</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIÃO'</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIAO%'</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIAO - INCRA%'</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIAO FEDERAL%'</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%UNIÃO FEDERAL%'</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">or</span> <span class="ot">"nome_interessado"</span> <span class="kw">like</span> <span class="st">'%SECRETARIA%'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="carregamento-2" class="level4" data-number="1.3.3.3">
-<h4 data-number="1.3.3.3" class="anchored" data-anchor-id="carregamento-2"><span class="header-section-number">1.3.3.3</span> Carregamento</h4>
+<section id="carregamento-2" class="level4" data-number="1.2.3.3">
+<h4 data-number="1.2.3.3" class="anchored" data-anchor-id="carregamento-2"><span class="header-section-number">1.2.3.3</span> Carregamento</h4>
+<ul>
+<li>Carregado na tabela <code>snci-particular</code> no banco de dados <code>glebas-federais.gpk</code></li>
+</ul>
+</section>
+</section>
+<section id="território-quilombola" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="território-quilombola"><span class="header-section-number">1.2.4</span> Território Quilombola</h3>
+<section id="extração-3" class="level4" data-number="1.2.4.1">
+<h4 data-number="1.2.4.1" class="anchored" data-anchor-id="extração-3"><span class="header-section-number">1.2.4.1</span> Extração</h4>
+<ul>
+<li>Dados obtidos através da tabela <code>xxxxxxx</code> no banco de dados <code>cartos</code> de propriedade do INCRA;</li>
+<li>Contém informações sobre os territórios quilombolas indentificados pelo INCRA;</li>
+<li>Data de extração: 18 de maio de 2025</li>
+</ul>
+</section>
+<section id="transformação-3" class="level4" data-number="1.2.4.2">
+<h4 data-number="1.2.4.2" class="anchored" data-anchor-id="transformação-3"><span class="header-section-number">1.2.4.2</span> Transformação</h4>
+<ul>
+<li>Os dados foram selecionados com base na poligonal da área de estudo sendo os demais apagados;</li>
+<li>A camada foi convertida de <code>multipoligon</code> para <code>poligon</code>, ou seja, mutitiparte para parte simples;</li>
+<li>Os polígonos que extrapolaram a poligonal da área de estudo foram recortados, conservando apenas a parte interna à área de estudo;</li>
+<li>Criar um campo com a área calculada em quilômetros quadrados para registrar a área nova para os polígonos pelo fato do corte pela área de estudo. A coluna recebe a denominação de <code>area_km2</code>.</li>
+</ul>
+</section>
+<section id="carregamento-3" class="level4" data-number="1.2.4.3">
+<h4 data-number="1.2.4.3" class="anchored" data-anchor-id="carregamento-3"><span class="header-section-number">1.2.4.3</span> Carregamento</h4>
+<ul>
+<li>Carregado na tabela <code>tq_brasil</code> no banco de dados <code>glebas-federais.gpk</code></li>
+</ul>
+</section>
+</section>
+<section id="projetos-de-assentamento" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="projetos-de-assentamento"><span class="header-section-number">1.2.5</span> Projetos de Assentamento</h3>
+<section id="extração-4" class="level4" data-number="1.2.5.1">
+<h4 data-number="1.2.5.1" class="anchored" data-anchor-id="extração-4"><span class="header-section-number">1.2.5.1</span> Extração</h4>
+<ul>
+<li>Dados obtidos através da tabela <code>xxxxxxx</code> no banco de dados <code>cartos</code> de propriedade do INCRA;</li>
+<li>Contém informações sobre os projetos de assentamentos criados e reconhecidos pelo INCRA;</li>
+<li>Data de extração: 18 de maio de 2025</li>
+</ul>
+</section>
+<section id="transformação-4" class="level4" data-number="1.2.5.2">
+<h4 data-number="1.2.5.2" class="anchored" data-anchor-id="transformação-4"><span class="header-section-number">1.2.5.2</span> Transformação</h4>
+<ul>
+<li>Os dados foram selecionados com base na poligonal da área de estudo sendo os demais apagados;</li>
+<li>A camada foi convertida de <code>multipoligon</code> para <code>poligon</code>, ou seja, mutitiparte para parte simples;</li>
+<li>Os polígonos que extrapolaram a poligonal da área de estudo foram recortados, conservando apenas a parte interna à área de estudo;</li>
+<li>Criar um campo com a área calculada em quilômetros quadrados para registrar a área nova para os polígonos pelo fato do corte pela área de estudo. A coluna recebe a denominação de <code>area_km2</code>.</li>
+</ul>
+</section>
+<section id="carregamento-4" class="level4" data-number="1.2.5.3">
+<h4 data-number="1.2.5.3" class="anchored" data-anchor-id="carregamento-4"><span class="header-section-number">1.2.5.3</span> Carregamento</h4>
+<ul>
+<li>Carregado na tabela <code>pa_brasil</code> no banco de dados <code>glebas-federais.gpk</code></li>
+</ul>
+</section>
+</section>
+<section id="unidade-de-conservação" class="level3" data-number="1.2.6">
+<h3 data-number="1.2.6" class="anchored" data-anchor-id="unidade-de-conservação"><span class="header-section-number">1.2.6</span> Unidade de Conservação</h3>
+<section id="extração-5" class="level4" data-number="1.2.6.1">
+<h4 data-number="1.2.6.1" class="anchored" data-anchor-id="extração-5"><span class="header-section-number">1.2.6.1</span> Extração</h4>
+<ul>
+<li>Dados obtidos através do link <a href="https://dados.gov.br/dados/conjuntos-dados/unidadesdeconservacao">MMA</a> na página de dados abertos do governo federal;</li>
+<li>Contém informações sobre os polígonos de unidades de conservação cadastrados no SNUC;</li>
+<li>Data de extração: 18 de maio de 2025</li>
+</ul>
+</section>
+<section id="transformação-5" class="level4" data-number="1.2.6.2">
+<h4 data-number="1.2.6.2" class="anchored" data-anchor-id="transformação-5"><span class="header-section-number">1.2.6.2</span> Transformação</h4>
+<ul>
+<li>Os dados foram selecionados com base na poligonal da área de estudo sendo os demais apagados;</li>
+<li>A camada foi convertida de <code>multipoligon</code> para <code>poligon</code>, ou seja, mutitiparte para parte simples;</li>
+<li>Os polígonos que extrapolaram a poligonal da área de estudo foram recortados, conservando apenas a parte interna à área de estudo;</li>
+<li>Criar um campo com a área calculada em quilômetros quadrados para registrar a área nova para os polígonos pelo fato do corte pela área de estudo. A coluna recebe a denominação de <code>area_km2</code>.</li>
+</ul>
+</section>
+<section id="carregamento-5" class="level4" data-number="1.2.6.3">
+<h4 data-number="1.2.6.3" class="anchored" data-anchor-id="carregamento-5"><span class="header-section-number">1.2.6.3</span> Carregamento</h4>
+<ul>
+<li>Carregado na tabela <code>uc</code> no banco de dados <code>glebas-federais.gpk</code></li>
+</ul>
+</section>
+</section>
+<section id="terras-indígenas" class="level3" data-number="1.2.7">
+<h3 data-number="1.2.7" class="anchored" data-anchor-id="terras-indígenas"><span class="header-section-number">1.2.7</span> Terras Indígenas</h3>
+<section id="extração-6" class="level4" data-number="1.2.7.1">
+<h4 data-number="1.2.7.1" class="anchored" data-anchor-id="extração-6"><span class="header-section-number">1.2.7.1</span> Extração</h4>
+<ul>
+<li>Dados obtidos através do link <a href="https://geoserver.funai.gov.br/geoserver/Funai/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=Funai%3Atis_poligonais_portarias&amp;maxFeatures=10000&amp;outputFormat=application%2Fvnd.google-earth.kml%2Bxml">funai</a>;</li>
+<li>Contém informações sobre os polígonos de terras indígenas;</li>
+<li>Data de extração: 18 de maio de 2025</li>
+</ul>
+</section>
+<section id="transformação-6" class="level4" data-number="1.2.7.2">
+<h4 data-number="1.2.7.2" class="anchored" data-anchor-id="transformação-6"><span class="header-section-number">1.2.7.2</span> Transformação</h4>
+<ul>
+<li>Os dados foram selecionados com base na poligonal da área de estudo sendo os demais apagados;</li>
+<li>A camada foi convertida de <code>multipoligon</code> para <code>poligon</code>, ou seja, mutitiparte para parte simples;</li>
+<li>Os polígonos que extrapolaram a poligonal da área de estudo foram recortados, conservando apenas a parte interna à área de estudo;</li>
+<li>Criar um campo com a área calculada em quilômetros quadrados para registrar a área nova para os polígonos pelo fato do corte pela área de estudo. A coluna recebe a denominação de <code>area_km2</code>.</li>
+</ul>
+</section>
+<section id="carregamento-6" class="level4" data-number="1.2.7.3">
+<h4 data-number="1.2.7.3" class="anchored" data-anchor-id="carregamento-6"><span class="header-section-number">1.2.7.3</span> Carregamento</h4>
+<ul>
+<li>Carregado na tabela <code>ti-portarias</code> no banco de dados <code>glebas-federais.gpk</code></li>
+</ul>
 
 
 </section>
